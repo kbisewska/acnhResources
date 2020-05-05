@@ -9,15 +9,20 @@
 /* Begin PBXBuildFile section */
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
-		8F4334192461687400714B95 /* FishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishViewController.swift */; };
+		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
 		8F43341E2461687C00714B95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F43341D2461687C00714B95 /* Assets.xcassets */; };
 		8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F43341F2461687C00714B95 /* LaunchScreen.storyboard */; };
 		8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */; };
 		8F4334372461687C00714B95 /* ACNHResourcesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334362461687C00714B95 /* ACNHResourcesUITests.swift */; };
 		8F433446246169E000714B95 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433445246169E000714B95 /* TabBarController.swift */; };
 		8F43344924616F0400714B95 /* VillagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344824616F0400714B95 /* VillagersViewController.swift */; };
-		8F43344B2461733200714B95 /* BugsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsViewController.swift */; };
-		8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsViewController.swift */; };
+		8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsTableViewController.swift */; };
+		8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsTableViewController.swift */; };
+		8F43345124617DB000714B95 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345024617DB000714B95 /* NetworkManager.swift */; };
+		8F4334532461827200714B95 /* Villager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334522461827200714B95 /* Villager.swift */; };
+		8F4334552461827B00714B95 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334542461827B00714B95 /* Fish.swift */; };
+		8F4334572461828600714B95 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334562461828600714B95 /* Bug.swift */; };
+		8F4334592461828F00714B95 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334582461828F00714B95 /* Fossil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +46,7 @@
 		8F4334112461687400714B95 /* ACNHResources.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHResources.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4334142461687400714B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4334162461687400714B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8F4334182461687400714B95 /* FishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewController.swift; sourceTree = "<group>"; };
+		8F4334182461687400714B95 /* FishTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewController.swift; sourceTree = "<group>"; };
 		8F43341D2461687C00714B95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F4334202461687C00714B95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F4334222461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,8 +58,13 @@
 		8F4334382461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F433445246169E000714B95 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8F43344824616F0400714B95 /* VillagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewController.swift; sourceTree = "<group>"; };
-		8F43344A2461733200714B95 /* BugsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewController.swift; sourceTree = "<group>"; };
-		8F43344C2461734000714B95 /* FossilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsViewController.swift; sourceTree = "<group>"; };
+		8F43344A2461733200714B95 /* BugsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewController.swift; sourceTree = "<group>"; };
+		8F43344C2461734000714B95 /* FossilsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewController.swift; sourceTree = "<group>"; };
+		8F43345024617DB000714B95 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8F4334522461827200714B95 /* Villager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Villager.swift; sourceTree = "<group>"; };
+		8F4334542461827B00714B95 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
+		8F4334562461828600714B95 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
+		8F4334582461828F00714B95 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,8 @@
 		8F4334132461687400714B95 /* ACNHResources */ = {
 			isa = PBXGroup;
 			children = (
+				8F43344F24617D9F00714B95 /* Managers */,
+				8F43344E24617D9A00714B95 /* Models */,
 				8F43344724616ED200714B95 /* Screens */,
 				8F433444246168E600714B95 /* Supporting Files */,
 				8F4334222461687C00714B95 /* Info.plist */,
@@ -146,11 +158,30 @@
 			isa = PBXGroup;
 			children = (
 				8F43344824616F0400714B95 /* VillagersViewController.swift */,
-				8F4334182461687400714B95 /* FishViewController.swift */,
-				8F43344A2461733200714B95 /* BugsViewController.swift */,
-				8F43344C2461734000714B95 /* FossilsViewController.swift */,
+				8F4334182461687400714B95 /* FishTableViewController.swift */,
+				8F43344A2461733200714B95 /* BugsTableViewController.swift */,
+				8F43344C2461734000714B95 /* FossilsTableViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		8F43344E24617D9A00714B95 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8F4334522461827200714B95 /* Villager.swift */,
+				8F4334542461827B00714B95 /* Fish.swift */,
+				8F4334562461828600714B95 /* Bug.swift */,
+				8F4334582461828F00714B95 /* Fossil.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8F43344F24617D9F00714B95 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8F43345024617DB000714B95 /* NetworkManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,13 +314,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F4334192461687400714B95 /* FishViewController.swift in Sources */,
-				8F43344B2461733200714B95 /* BugsViewController.swift in Sources */,
+				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
+				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
+				8F4334572461828600714B95 /* Bug.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
-				8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */,
+				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
+				8F43345124617DB000714B95 /* NetworkManager.swift in Sources */,
+				8F4334552461827B00714B95 /* Fish.swift in Sources */,
+				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
 				8F43344924616F0400714B95 /* VillagersViewController.swift in Sources */,
+				8F4334532461827200714B95 /* Villager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
