@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FishViewController: UIViewController {
+class FishTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

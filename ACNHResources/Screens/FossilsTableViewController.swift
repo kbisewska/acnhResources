@@ -1,5 +1,5 @@
 //
-//  BugsViewController.swift
+//  FossilsViewController.swift
 //  ACNHResources
 //
 //  Created by Kornelia Bisewska on 05/05/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BugsViewController: UIViewController {
+class FossilsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

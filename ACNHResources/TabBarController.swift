@@ -29,23 +29,23 @@ class TabBarController: UITabBarController {
     }
     
     func createFishNavigationController() -> UINavigationController {
-        let fishViewController = FishViewController()
-        fishViewController.title = "Fish"
+        let fishTableViewController = FishTableViewController()
+        fishTableViewController.title = "Fish"
         
-        return UINavigationController(rootViewController: fishViewController)
+        return UINavigationController(rootViewController: fishTableViewController)
     }
     
     func createBugsNavigationController() -> UINavigationController {
-        let bugsViewController = BugsViewController()
-        bugsViewController.title = "Bugs"
+        let bugsTableViewController = BugsTableViewController()
+        bugsTableViewController.title = "Bugs"
         
-        return UINavigationController(rootViewController: bugsViewController)
+        return UINavigationController(rootViewController: bugsTableViewController)
     }
     
     func createFossilsNavigationController() -> UINavigationController {
-        let fossilsViewController = FossilsViewController()
-        fossilsViewController.title = "Fossils"
+        let fossilsTableViewController = FossilsTableViewController()
+        fossilsTableViewController.title = "Fossils"
         
-        return UINavigationController(rootViewController: fossilsViewController)
+        return UINavigationController(rootViewController: fossilsTableViewController)
     }
 }
