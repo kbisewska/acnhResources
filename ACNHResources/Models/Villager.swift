@@ -11,15 +11,25 @@ import Foundation
 struct Villager: Codable {
     
     let id: Int
-    let name: String
+    var name: String { nameDetails.nameEn }
     let personality: String
     let birthday: String
     let species: String
     let gender: String
     
+    private let nameDetails: Name
+    
     enum CodingKeys: String, CodingKey {
-        case name = "name-en"
+        case nameDetails = "name"
         case birthday = "birthday-string"
         case id, personality, species, gender
+    }
+    
+    private struct Name: Codable {
+        let nameEn: String
+        
+        enum CodingKeys: String, CodingKey {
+            case nameEn = "name-en"
+        }
     }
 }

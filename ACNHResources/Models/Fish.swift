@@ -10,23 +10,42 @@ import Foundation
 
 struct Fish: Codable {
     
-    let id: String
-    let name: String
-    let availabilityNorthern: String
-    let availabilitySouthern: String
-    var time: String?
-    var isAllDay: Bool?
-    let location: String
-    let rarity: String
+    let id: Int
+    var name: String { nameDetails.nameEn }
+    let availability: Availability
     let price: Int
     let cjPrice: Int
     
+    private let nameDetails: Name
+    
     enum CodingKeys: String, CodingKey {
-        case name = "name-en"
-        case availabilityNorthern = "month-northern"
-        case availabilitySouthern = "month-southern"
+        case nameDetails = "name"
         case cjPrice = "price-cj"
-        case id, time, isAllDay, location, rarity, price
+        case id, availability, price
+    }
+    
+    private struct Name: Codable {
+        let nameEn: String
+        
+        enum CodingKeys: String, CodingKey {
+            case nameEn = "name-en"
+        }
+    }
+    
+    struct Availability: Codable {
+        let monthNorthern: String?
+        let monthSouthern: String?
+        let time: String?
+        let isAllDay: Bool
+        let isAllYear: Bool
+        let location: String
+        let rarity: String
+        
+        enum CodingKeys: String, CodingKey {
+            case monthNorthern = "month-northern"
+            case monthSouthern = "month-southern"
+            case time, isAllDay, isAllYear, location, rarity
+        }
     }
 }
 
