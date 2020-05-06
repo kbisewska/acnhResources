@@ -23,6 +23,7 @@
 		8F4334552461827B00714B95 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334542461827B00714B95 /* Fish.swift */; };
 		8F4334572461828600714B95 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334562461828600714B95 /* Bug.swift */; };
 		8F4334592461828F00714B95 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334582461828F00714B95 /* Fossil.swift */; };
+		8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345A24618C1F00714B95 /* ErrorMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		8F4334542461827B00714B95 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
 		8F4334562461828600714B95 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		8F4334582461828F00714B95 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
+		8F43345A24618C1F00714B95 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				8F433444246168E600714B95 /* Supporting Files */,
 				8F4334222461687C00714B95 /* Info.plist */,
 				8F433445246169E000714B95 /* TabBarController.swift */,
+				8F43345A24618C1F00714B95 /* ErrorMessage.swift */,
 			);
 			path = ACNHResources;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
 				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
 				8F43345124617DB000714B95 /* NetworkManager.swift in Sources */,
+				8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */,
 				8F4334552461827B00714B95 /* Fish.swift in Sources */,
 				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
@@ -492,6 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SBJ7C58BY6;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ACNHResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -510,6 +515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SBJ7C58BY6;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ACNHResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
