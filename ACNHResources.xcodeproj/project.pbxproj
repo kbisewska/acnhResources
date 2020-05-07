@@ -24,6 +24,7 @@
 		8F4334572461828600714B95 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334562461828600714B95 /* Bug.swift */; };
 		8F4334592461828F00714B95 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334582461828F00714B95 /* Fossil.swift */; };
 		8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345A24618C1F00714B95 /* ErrorMessage.swift */; };
+		8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346224643FBA00714B95 /* ResourceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		8F4334562461828600714B95 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		8F4334582461828F00714B95 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
 		8F43345A24618C1F00714B95 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		8F43346224643FBA00714B95 /* ResourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		8F4334132461687400714B95 /* ACNHResources */ = {
 			isa = PBXGroup;
 			children = (
+				8F43346124643F9500714B95 /* Cells */,
 				8F43344F24617D9F00714B95 /* Managers */,
 				8F43344E24617D9A00714B95 /* Models */,
 				8F43344724616ED200714B95 /* Screens */,
@@ -185,6 +188,14 @@
 				8F43345024617DB000714B95 /* NetworkManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		8F43346124643F9500714B95 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8F43346224643FBA00714B95 /* ResourceCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
 				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
+				8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
 				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
 				8F43345124617DB000714B95 /* NetworkManager.swift in Sources */,
