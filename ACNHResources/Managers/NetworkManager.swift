@@ -8,34 +8,38 @@
 
 import UIKit
 
-class NetworkManager {
+final class NetworkManager {
     
-    let baseURL = "http://acnhapi.com/"
-    let urlSession = URLSession(configuration: .default)
+    private let baseURL = "http://acnhapi.com/"
+    private let urlSession = URLSession(configuration: .default)
     
     // MARK: - Getting Data
     
-    func getVillagerData(completion: @escaping (Result<[String: Villager], ErrorMessage>) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "villagers")!)
+    func getVillagersData(completion: @escaping (Result<[String: Villager], ErrorMessage>) -> Void) {
+        guard let url = URL(string: baseURL + "villagers") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
     func getFishData(completion: @escaping (Result<[String: Fish], ErrorMessage>) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "fish")!)
+        guard let url = URL(string: baseURL + "fish") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
-    func getBugData(completion: @escaping (Result<[String: Bug], ErrorMessage>) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "bugs")!)
+    func getBugsData(completion: @escaping (Result<[String: Bug], ErrorMessage>) -> Void) {
+        guard let url = URL(string: baseURL + "bugs") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
-    func getFossilData(completion: @escaping (Result<[String: Fossil], ErrorMessage>) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "fossils")!)
+    func getFossilsData(completion: @escaping (Result<[String: Fossil], ErrorMessage>) -> Void) {
+        guard let url = URL(string: baseURL + "fossils") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
-    func getResourceData<T: Codable>(urlRequest: URLRequest, completion: @escaping (Result<T, ErrorMessage>) -> Void) {
+    private func getResourceData<T: Codable>(urlRequest: URLRequest, completion: @escaping (Result<T, ErrorMessage>) -> Void) {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             var resource: T?
             var errorMessage: ErrorMessage?
@@ -51,13 +55,13 @@ class NetworkManager {
             }
             
             guard error == nil, let data = data else {
-                errorMessage = .clientError
+                errorMessage = .unableToComplete
                 return
             }
             
             guard let response = response as? HTTPURLResponse,
                 200..<300 ~= response.statusCode else {
-                    errorMessage = .serverError
+                    errorMessage = .invalidResponse
                     return
             }
             
@@ -73,27 +77,31 @@ class NetworkManager {
     
     // MARK: - Getting Images
     
-    func getVillagerImage(with id: Int, completion: @escaping (UIImage?) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "images/villagers/\(id)")!)
+    func getVillagerImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/villagers/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getFishImage(with id: Int, completion: @escaping (UIImage?) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "images/fish/\(id)")!)
+    func getFishImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/fish/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getBugImage(with id: Int, completion: @escaping (UIImage?) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "images/bugs/\(id)")!)
+    func getBugImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/bugs/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getFossilImage(with fileName: String, completion: @escaping (UIImage?) -> Void) {
-        let urlRequest = URLRequest(url: URL(string: baseURL + "images/fossils/\(fileName)")!)
+    func getFossilImage(fileName: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/fossils/\(fileName)") else { return }
+        let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
+    private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             guard error == nil,
                 let response = response as? HTTPURLResponse,
