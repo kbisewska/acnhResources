@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NetworkManager {
+final class NetworkManager {
     
     let baseURL = "http://acnhapi.com/"
     let urlSession = URLSession(configuration: .default)
