@@ -55,13 +55,13 @@ final class NetworkManager {
             }
             
             guard error == nil, let data = data else {
-                errorMessage = .clientError
+                errorMessage = .unableToComplete
                 return
             }
             
             guard let response = response as? HTTPURLResponse,
                 200..<300 ~= response.statusCode else {
-                    errorMessage = .serverError
+                    errorMessage = .invalidResponse
                     return
             }
             
