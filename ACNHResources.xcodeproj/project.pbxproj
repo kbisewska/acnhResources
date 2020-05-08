@@ -25,6 +25,7 @@
 		8F4334592461828F00714B95 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334582461828F00714B95 /* Fossil.swift */; };
 		8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345A24618C1F00714B95 /* ErrorMessage.swift */; };
 		8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346224643FBA00714B95 /* ResourceCell.swift */; };
+		8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346A2464544200714B95 /* UIImageView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		8F4334582461828F00714B95 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
 		8F43345A24618C1F00714B95 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		8F43346224643FBA00714B95 /* ResourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
+		8F43346A2464544200714B95 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		8F4334132461687400714B95 /* ACNHResources */ = {
 			isa = PBXGroup;
 			children = (
+				8F43346924644A8B00714B95 /* Extensions */,
 				8F43346124643F9500714B95 /* Cells */,
 				8F43344F24617D9F00714B95 /* Managers */,
 				8F43344E24617D9A00714B95 /* Models */,
@@ -196,6 +199,14 @@
 				8F43346224643FBA00714B95 /* ResourceCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8F43346924644A8B00714B95 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +350,7 @@
 				8F4334552461827B00714B95 /* Fish.swift in Sources */,
 				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
+				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
 				8F43344924616F0400714B95 /* VillagersViewController.swift in Sources */,
 				8F4334532461827200714B95 /* Villager.swift in Sources */,
