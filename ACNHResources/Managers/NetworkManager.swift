@@ -10,8 +10,8 @@ import UIKit
 
 final class NetworkManager {
     
-    let baseURL = "http://acnhapi.com/"
-    let urlSession = URLSession(configuration: .default)
+    private let baseURL = "http://acnhapi.com/"
+    private let urlSession = URLSession(configuration: .default)
     
     // MARK: - Getting Data
     
@@ -35,7 +35,7 @@ final class NetworkManager {
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
-    func getResourceData<T: Codable>(urlRequest: URLRequest, completion: @escaping (Result<T, ErrorMessage>) -> Void) {
+    private func getResourceData<T: Codable>(urlRequest: URLRequest, completion: @escaping (Result<T, ErrorMessage>) -> Void) {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             var resource: T?
             var errorMessage: ErrorMessage?
@@ -93,7 +93,7 @@ final class NetworkManager {
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
+    private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             guard error == nil,
                 let response = response as? HTTPURLResponse,
