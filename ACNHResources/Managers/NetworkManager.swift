@@ -39,6 +39,42 @@ final class NetworkManager {
         getResourceData(urlRequest: urlRequest, completion: completion)
     }
     
+    // MARK: - Getting Images
+    
+    func getVillagerImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/villagers/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
+        getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func getFishImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/fish/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
+        getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func getBugImage(id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/bugs/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
+        getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func getFossilImage(fileName: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "images/fossils/\(fileName)") else { return }
+        let urlRequest = URLRequest(url: url)
+        getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    // MARK: - Getting Icons
+    
+    func getIcon(for resource: String, id: Int, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: baseURL + "icons/\(resource)/\(id)") else { return }
+        let urlRequest = URLRequest(url: url)
+        getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    // MARK: - Helper Methods
+    
     private func getResourceData<T: Codable>(urlRequest: URLRequest, completion: @escaping (Result<T, ErrorMessage>) -> Void) {
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
             var resource: T?
@@ -73,32 +109,6 @@ final class NetworkManager {
         }
         
         task.resume()
-    }
-    
-    // MARK: - Getting Images
-    
-    func getVillagerImage(id: Int, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/villagers/\(id)") else { return }
-        let urlRequest = URLRequest(url: url)
-        getResourceImage(urlRequest: urlRequest, completion: completion)
-    }
-    
-    func getFishImage(id: Int, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/fish/\(id)") else { return }
-        let urlRequest = URLRequest(url: url)
-        getResourceImage(urlRequest: urlRequest, completion: completion)
-    }
-    
-    func getBugImage(id: Int, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/bugs/\(id)") else { return }
-        let urlRequest = URLRequest(url: url)
-        getResourceImage(urlRequest: urlRequest, completion: completion)
-    }
-    
-    func getFossilImage(fileName: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/fossils/\(fileName)") else { return }
-        let urlRequest = URLRequest(url: url)
-        getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
     private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
