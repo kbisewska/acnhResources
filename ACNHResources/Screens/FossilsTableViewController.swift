@@ -13,23 +13,25 @@ class FossilsTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var fossils = [Fossil]()
     let reuseIdentifier = "FossilCell"
+    var ownedItems = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
 
         getFossils()
     }
     
     func getFossils() {
-        networkManager.getFossilData() { [weak self] result in
+        networkManager.getFossilsData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let fossilsDictionary):
                 let fossilsList = Array(fossilsDictionary.values).sorted { $0.fileName.lowercased() < $1.fileName.lowercased() }
                 self.fossils = fossilsList
+                print(self.fossils)
                 
                 self.tableView.reloadData()
 
@@ -44,9 +46,25 @@ class FossilsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
         let fossil = fossils[indexPath.row]
-        cell.textLabel?.text = fossil.name
+        var isItemChecked = false
+        
+        cell.checkmarkButtonAction = { [unowned self] in
+            if !isItemChecked {
+                self.ownedItems += 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+                isItemChecked.toggle()
+            } else {
+                self.ownedItems -= 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+                isItemChecked.toggle()
+            }
+        }
+        cell.resourceNameLabel.text = "\(indexPath.row + 1). \(fossil.name)"
+        cell.resourceImageView.downloadImage(for: .fossil(fileName: fossil.fileName))
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
 }

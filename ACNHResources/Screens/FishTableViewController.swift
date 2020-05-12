@@ -13,11 +13,12 @@ class FishTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var fish = [Fish]()
     let reuseIdentifier = "FishCell"
+    var ownedItems = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         getFish()
     }
@@ -44,9 +45,25 @@ class FishTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
         let fishItem = fish[indexPath.row]
-        cell.textLabel?.text = fishItem.name
+        var isItemChecked = false
+        
+        cell.checkmarkButtonAction = { [unowned self] in
+            if !isItemChecked {
+                self.ownedItems += 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+                isItemChecked.toggle()
+            } else {
+                self.ownedItems -= 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+                isItemChecked.toggle()
+            }
+        }
+        cell.resourceNameLabel.text = "\(fishItem.id). \(fishItem.name)"
+        cell.resourceImageView.downloadIcon(for: .fish(id: fishItem.id))
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
 }

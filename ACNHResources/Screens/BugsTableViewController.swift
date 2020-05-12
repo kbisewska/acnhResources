@@ -13,17 +13,18 @@ class BugsTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var bugs = [Bug]()
     let reuseIdentifier = "BugCell"
+    var ownedItems = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
 
         getBugs()
     }
     
     func getBugs() {
-        networkManager.getBugData() { [weak self] result in
+        networkManager.getBugsData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -44,9 +45,25 @@ class BugsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
         let bug = bugs[indexPath.row]
-        cell.textLabel?.text = bug.name
+        var isItemChecked = false
+        
+        cell.checkmarkButtonAction = { [unowned self] in
+            if !isItemChecked {
+                self.ownedItems += 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+                isItemChecked.toggle()
+            } else {
+                self.ownedItems -= 1
+                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+                isItemChecked.toggle()
+            }
+        }
+        cell.resourceNameLabel.text = "\(bug.id). \(bug.name)"
+        cell.resourceImageView.downloadIcon(for: .bug(id: bug.id))
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
 }
