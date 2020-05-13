@@ -11,7 +11,7 @@ import Foundation
 struct Bug: Codable {
     
     let id: Int
-    var name: String { nameDetails.nameEn }
+    var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let availability: Availability
     let price: Int
     let flickPrice: Int

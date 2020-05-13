@@ -11,7 +11,7 @@ import Foundation
 struct Fossil: Codable {
     
     let fileName: String
-    var name: String { nameDetails.nameEn }
+    var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let price: Int
     
     private let nameDetails: Name

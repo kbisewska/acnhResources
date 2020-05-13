@@ -11,7 +11,7 @@ import Foundation
 struct Villager: Codable {
     
     let id: Int
-    var name: String { nameDetails.nameEn }
+    var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let personality: String
     let birthday: String
     let species: String
