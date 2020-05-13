@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Fossil: Codable {
+struct Fossil: Codable, Equatable {
+    
+    static func == (lhs: Fossil, rhs: Fossil) -> Bool {
+        lhs.fileName == rhs.fileName
+    }
     
     let fileName: String
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }

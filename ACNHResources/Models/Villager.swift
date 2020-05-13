@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Villager: Codable {
+struct Villager: Codable, Equatable {
+
+    static func == (lhs: Villager, rhs: Villager) -> Bool {
+        lhs.id == rhs.id
+    }
     
     let id: Int
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
