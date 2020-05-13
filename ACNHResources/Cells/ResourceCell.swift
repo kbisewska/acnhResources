@@ -30,7 +30,6 @@ class ResourceCell: UITableViewCell {
     var resourceImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "questionmark.square")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -45,6 +44,11 @@ class ResourceCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        resourceImageView.image = UIImage(systemName: "questionmark.square")
     }
     
     @objc func checkmarkButtonTapped(_ sender: UIButton) {
