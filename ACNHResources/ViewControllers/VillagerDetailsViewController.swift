@@ -30,11 +30,14 @@ class VillagerDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         customView.resourceImageView.downloadImage(for: .villager(id: villager.id))
-        customView.resourceNameLabel.text = "Name: \(villager.name)"
+        customView.resourceNameLabel.text = villager.name
         customView.resourceDetailsLabel.text = """
         Personality: \(villager.personality)
+        
         Birthday: \(villager.birthday)
+        
         Species: \(villager.species)
+        
         Gender: \(villager.gender)
         """
     }

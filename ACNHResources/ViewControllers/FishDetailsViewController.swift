@@ -29,15 +29,24 @@ class FishDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.resourceImageView.downloadImage(for: .fish(id: fish.id))
-        customView.resourceNameLabel.text = "Name: \(fish.name)"
+        let allYear = "All Year"
+        let allDay = "All Day"
+        
+        customView.resourceImageView.downloadIcon(for: .fish(id: fish.id))
+        customView.resourceNameLabel.text = fish.name
         customView.resourceDetailsLabel.text = """
-        Availability in the Northern Hemisphere: \(fish.availability.monthNorthern ?? "")
-        Availability in the Southern Hemisphere: \(fish.availability.monthSouthern ?? "")
-        Time: \(fish.availability.time ?? "")
+        Availability in the Northern Hemisphere: \(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern?.convertMonths() ?? "")
+        
+        Availability in the Southern Hemisphere: \(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern?.convertMonths() ?? "")
+        
+        Time: \(fish.availability.isAllDay ? allDay : fish.availability.time ?? "")
+        
         Location: \(fish.availability.location)
+        
         Rarity: \(fish.availability.rarity)
+        
         Price: \(fish.price) Bells
+        
         CJ's Price: \(fish.cjPrice) Bells
         """
     }

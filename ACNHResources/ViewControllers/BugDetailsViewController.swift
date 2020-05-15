@@ -29,15 +29,24 @@ class BugDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.resourceImageView.downloadImage(for: .bug(id: bug.id))
-        customView.resourceNameLabel.text = "Name: \(bug.name)"
+        let allYear = "All Year"
+        let allDay = "All Day"
+        
+        customView.resourceImageView.downloadIcon(for: .bug(id: bug.id))
+        customView.resourceNameLabel.text = bug.name
         customView.resourceDetailsLabel.text = """
-        Availability in the Northern Hemisphere: \(bug.availability.monthNorthern ?? "")
-        Availability in the Southern Hemisphere: \(bug.availability.monthSouthern ?? "")
-        Time: \(bug.availability.time ?? "")
+        Availability in the Northern Hemisphere: \(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern?.convertMonths() ?? "")
+        
+        Availability in the Southern Hemisphere: \(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern?.convertMonths() ?? "")
+        
+        Time: \(bug.availability.isAllDay ? allDay : bug.availability.time ?? "")
+        
         Location: \(bug.availability.location)
+        
         Rarity: \(bug.availability.rarity)
+        
         Price: \(bug.price) Bells
+        
         Flick's Price: \(bug.flickPrice) Bells
         """
     }

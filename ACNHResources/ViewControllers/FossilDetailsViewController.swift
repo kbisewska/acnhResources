@@ -30,7 +30,7 @@ class FossilDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         customView.resourceImageView.downloadImage(for: .fossil(fileName: fossil.fileName))
-        customView.resourceNameLabel.text = "Name: \(fossil.name)"
+        customView.resourceNameLabel.text = fossil.name
         customView.resourceDetailsLabel.text = "Price: \(fossil.price)"
     }
 }
