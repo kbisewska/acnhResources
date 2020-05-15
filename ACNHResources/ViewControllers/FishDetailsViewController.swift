@@ -10,21 +10,35 @@ import UIKit
 
 class FishDetailsViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private let customView = DetailsView()
+    private var fish: Fish
+    
+    init(with fish: Fish) {
+        self.fish = fish
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    override func loadView() {
+        view = customView
+    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        customView.resourceImageView.downloadImage(for: .fish(id: fish.id))
+        customView.resourceNameLabel.text = "Name: \(fish.name)"
+        customView.resourceDetailsLabel.text = """
+        Availability in the Northern Hemisphere: \(fish.availability.monthNorthern ?? "")
+        Availability in the Southern Hemisphere: \(fish.availability.monthSouthern ?? "")
+        Time: \(fish.availability.time ?? "")
+        Location: \(fish.availability.location)
+        Rarity: \(fish.availability.rarity)
+        Price: \(fish.price) Bells
+        CJ's Price: \(fish.cjPrice) Bells
+        """
+    }
 }
