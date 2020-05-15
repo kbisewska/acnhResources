@@ -11,13 +11,15 @@ import UIKit
 final class DetailsView: UIView {
     
     lazy var resourceImageView: UIImageView = {
-        let imageView = UIImageView().adjustedForAutoLayout()
-        return imageView
+        UIImageView().adjustedForAutoLayout()
     }()
     
     lazy var resourceNameLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.textColor = .systemIndigo
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -42,21 +44,21 @@ final class DetailsView: UIView {
         
         addSubviews(resourceImageView, resourceNameLabel, resourceDetailsLabel)
         
-        let padding: CGFloat = 20
+        let padding: CGFloat = 50
         
         NSLayoutConstraint.activate([
             resourceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
             resourceImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            resourceImageView.heightAnchor.constraint(equalToConstant: 300),
-            resourceImageView.widthAnchor.constraint(equalToConstant: 300),
+            resourceImageView.heightAnchor.constraint(equalToConstant: 150),
+            resourceImageView.widthAnchor.constraint(equalToConstant: 150),
             
             resourceNameLabel.topAnchor.constraint(equalTo: resourceImageView.bottomAnchor, constant: padding),
-            resourceNameLabel.leadingAnchor.constraint(equalTo: resourceImageView.leadingAnchor),
-            resourceNameLabel.trailingAnchor.constraint(equalTo: resourceImageView.trailingAnchor),
+            resourceNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            resourceNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             
             resourceDetailsLabel.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding),
-            resourceDetailsLabel.leadingAnchor.constraint(equalTo: resourceImageView.leadingAnchor),
-            resourceDetailsLabel.trailingAnchor.constraint(equalTo: resourceImageView.trailingAnchor),
+            resourceDetailsLabel.leadingAnchor.constraint(equalTo: resourceNameLabel.leadingAnchor),
+            resourceDetailsLabel.trailingAnchor.constraint(equalTo: resourceNameLabel.trailingAnchor),
         ])
     }
 }
