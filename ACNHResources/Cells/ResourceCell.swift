@@ -86,4 +86,9 @@ class ResourceCell: UITableViewCell {
             resourceImageView.heightAnchor.constraint(equalTo: resourceImageView.widthAnchor)
         ])
     }
+    
+    func configure(forSelectionState isSelected: Bool) {
+        let stateImage = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
+        checkmarkButton.setBackgroundImage(stateImage, for: .normal)
+    }
 }
