@@ -14,6 +14,7 @@ class ResourceCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+        button.tintColor = .systemIndigo
         return button
     }()
     
@@ -49,6 +50,7 @@ class ResourceCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         resourceImageView.image = UIImage(systemName: "questionmark.square")
+        resourceImageView.tintColor = .systemIndigo
     }
     
     @objc func checkmarkButtonTapped(_ sender: UIButton) {
