@@ -11,15 +11,27 @@ import UIKit
 class FossilsTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
-    var fossils = [Fossil]()
     let reuseIdentifier = "FossilCell"
-    var ownedItems = 0
+    
+    var fossils = [Fossil]()
+    var filteredFossils = [Fossil]()
+    var isFiltering = false
+    var ownedFossils = [Fossil]() {
+        didSet {
+            ownedCountLabel?.text = "You found \(ownedFossils.count) out of \(fossils.count) fossils."
+        }
+    }
+    weak var ownedCountLabel: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
+        
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
 
+        configureSearchController()
         getFossils()
     }
     
@@ -42,21 +54,22 @@ class FossilsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        fossils.count
+        isFiltering ? filteredFossils.count : fossils.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
-        let fossil = fossils[indexPath.row]
+        let activeFossilsArray = isFiltering ? filteredFossils : fossils
+        let fossil = activeFossilsArray[indexPath.row]
         var isItemChecked = false
         
         cell.checkmarkButtonAction = { [unowned self] in
             if !isItemChecked {
-                self.ownedItems += 1
+                self.ownedFossils.append(fossil)
                 cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
                 isItemChecked.toggle()
             } else {
-                self.ownedItems -= 1
+                self.ownedFossils.removeAll(where: { $0.fileName == fossil.fileName })
                 cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
                 isItemChecked.toggle()
             }
@@ -66,5 +79,78 @@ class FossilsTableViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let activeFossilsArray = isFiltering ? filteredFossils : fossils
+        
+        let fossilDetailsViewController = FossilDetailsViewController(with: activeFossilsArray[indexPath.row])
+        present(fossilDetailsViewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .systemIndigo
+        
+        let headerTitle = UILabel()
+        headerTitle.text = "You found \(ownedFossils.count) out of \(fossils.count) fossils."
+        headerTitle.textColor = .white
+        headerTitle.textAlignment = .center
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .body)
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(headerTitle)
+        ownedCountLabel = headerTitle
+        
+        let padding: CGFloat = 16
+        
+        NSLayoutConstraint.activate([
+            headerTitle.topAnchor.constraint(equalTo: header.topAnchor, constant: padding),
+            headerTitle.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -padding),
+            headerTitle.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: padding),
+            headerTitle.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -padding)
+        ])
+        
+        return header
+    }
+    
+    @objc func filterItems() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = true
+            self.filteredFossils = self.ownedFossils
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = true
+            self.filteredFossils = self.fossils.filter { !self.ownedFossils.contains($0) }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Show all items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = false
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true)
+    }
+    
+    override func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            isFiltering = false
+            filteredFossils.removeAll()
+            tableView.reloadData()
+            return
+        }
+        
+        isFiltering = true
+        filteredFossils = fossils.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        tableView.reloadData()
     }
 }

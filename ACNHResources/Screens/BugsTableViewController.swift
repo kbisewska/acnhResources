@@ -11,15 +11,27 @@ import UIKit
 class BugsTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
-    var bugs = [Bug]()
     let reuseIdentifier = "BugCell"
-    var ownedItems = 0
+    
+    var bugs = [Bug]()
+    var filteredBugs = [Bug]()
+    var isFiltering = false
+    var ownedBugs = [Bug]() {
+        didSet {
+            ownedCountLabel?.text = "You found \(ownedBugs.count) out of \(bugs.count) bugs."
+        }
+    }
+    weak var ownedCountLabel: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
+        
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
-
+        
+        configureSearchController()
         getBugs()
     }
     
@@ -41,29 +53,99 @@ class BugsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        bugs.count
+        isFiltering ? filteredBugs.count : bugs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
-        let bug = bugs[indexPath.row]
-        var isItemChecked = false
+        let activeBugsArray = isFiltering ? filteredBugs : bugs
+        let bug = activeBugsArray[indexPath.row]
+        
+        let isItemChecked = ownedBugs.contains(bug)
+        cell.configure(forSelectionState: isItemChecked)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            if !isItemChecked {
-                self.ownedItems += 1
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
-                isItemChecked.toggle()
-            } else {
-                self.ownedItems -= 1
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
-                isItemChecked.toggle()
-            }
+            isItemChecked ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
+            cell.configure(forSelectionState: !isItemChecked)
         }
+        
         cell.resourceNameLabel.text = "\(bug.id). \(bug.name)"
         cell.resourceImageView.downloadIcon(for: .bug(id: bug.id))
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let activeBugsArray = isFiltering ? filteredBugs : bugs
+        
+        let bugDetailsViewController = BugDetailsViewController(with: activeBugsArray[indexPath.row])
+        present(bugDetailsViewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .systemIndigo
+        
+        let headerTitle = UILabel()
+        headerTitle.text = "You found \(ownedBugs.count) out of \(bugs.count) bugs."
+        headerTitle.textColor = .white
+        headerTitle.textAlignment = .center
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .body)
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(headerTitle)
+        ownedCountLabel = headerTitle
+        
+        let padding: CGFloat = 16
+        
+        NSLayoutConstraint.activate([
+            headerTitle.topAnchor.constraint(equalTo: header.topAnchor, constant: padding),
+            headerTitle.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -padding),
+            headerTitle.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: padding),
+            headerTitle.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -padding)
+        ])
+        
+        return header
+    }
+    
+    @objc func filterItems() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = true
+            self.filteredBugs = self.ownedBugs
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = true
+            self.filteredBugs = self.bugs.filter { !self.ownedBugs.contains($0) }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Show all items", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.isFiltering = false
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true)
+    }
+    
+    override func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            isFiltering = false
+            filteredBugs.removeAll()
+            tableView.reloadData()
+            return
+        }
+        
+        isFiltering = true
+        filteredBugs = bugs.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        tableView.reloadData()
     }
 }
