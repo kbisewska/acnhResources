@@ -20,6 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().tintColor = .systemIndigo
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
