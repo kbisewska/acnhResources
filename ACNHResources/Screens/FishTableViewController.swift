@@ -61,19 +61,17 @@ class FishTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
         let activeFishArray = isFiltering ? filteredFish : fish
         let fishItem = activeFishArray[indexPath.row]
-        var isItemChecked = false
+        
+        var selectionState = ownedFish.contains(fishItem)
+        cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            if !isItemChecked {
-                self.ownedFish.append(fishItem)
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
-                isItemChecked.toggle()
-            } else {
-                self.ownedFish.removeAll(where: { $0.id == fishItem.id })
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
-                isItemChecked.toggle()
-            }
+            selectionState ? self.ownedFish.removeAll(where: { $0.id == fishItem.id }) : self.ownedFish.append(fishItem)
+            let updatedState = !selectionState
+            cell.configure(forSelectionState: updatedState)
+            selectionState = updatedState
         }
+        
         cell.resourceNameLabel.text = fishItem.name
         cell.resourceImageView.downloadIcon(for: .fish(id: fishItem.id))
         cell.accessoryType = .disclosureIndicator

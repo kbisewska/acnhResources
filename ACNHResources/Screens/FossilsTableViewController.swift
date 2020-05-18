@@ -62,19 +62,17 @@ class FossilsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
         let activeFossilsArray = isFiltering ? filteredFossils : fossils
         let fossil = activeFossilsArray[indexPath.row]
-        var isItemChecked = false
+        
+        var selectionState = ownedFossils.contains(fossil)
+        cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            if !isItemChecked {
-                self.ownedFossils.append(fossil)
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
-                isItemChecked.toggle()
-            } else {
-                self.ownedFossils.removeAll(where: { $0.fileName == fossil.fileName })
-                cell.checkmarkButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
-                isItemChecked.toggle()
-            }
+            selectionState ? self.ownedFossils.removeAll(where: { $0.fileName == fossil.fileName }) : self.ownedFossils.append(fossil)
+            let updatedState = !selectionState
+            cell.configure(forSelectionState: updatedState)
+            selectionState = updatedState
         }
+        
         cell.resourceNameLabel.text = fossil.name
         cell.resourceImageView.downloadImage(for: .fossil(fileName: fossil.fileName))
         cell.accessoryType = .disclosureIndicator

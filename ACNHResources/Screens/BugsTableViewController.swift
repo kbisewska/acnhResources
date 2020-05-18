@@ -62,12 +62,14 @@ class BugsTableViewController: UITableViewController {
         let activeBugsArray = isFiltering ? filteredBugs : bugs
         let bug = activeBugsArray[indexPath.row]
         
-        let isItemChecked = ownedBugs.contains(bug)
-        cell.configure(forSelectionState: isItemChecked)
+        var selectionState = ownedBugs.contains(bug)
+        cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            isItemChecked ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
-            cell.configure(forSelectionState: !isItemChecked)
+            selectionState ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
+            let updatedState = !selectionState
+            cell.configure(forSelectionState: updatedState)
+            selectionState = updatedState
         }
         
         cell.resourceNameLabel.text = bug.name
