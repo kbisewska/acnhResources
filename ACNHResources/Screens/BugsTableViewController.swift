@@ -27,6 +27,7 @@ class BugsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortItems))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -69,7 +70,7 @@ class BugsTableViewController: UITableViewController {
             cell.configure(forSelectionState: !isItemChecked)
         }
         
-        cell.resourceNameLabel.text = "\(bug.id). \(bug.name)"
+        cell.resourceNameLabel.text = bug.name
         cell.resourceImageView.downloadIcon(for: .bug(id: bug.id))
         cell.accessoryType = .disclosureIndicator
         
@@ -128,6 +129,38 @@ class BugsTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Show all items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = false
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true)
+    }
+    
+    @objc func sortItems() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Sort by name: A to Z", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.bugs.sort { $0.name < $1.name }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Sort by name: Z to A", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.bugs.sort { $0.name > $1.name }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Sort by price: low to high", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.bugs.sort { $0.price < $1.price }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Sort by price: high to low", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.bugs.sort { $0.price > $1.price }
             self.tableView.reloadData()
         })
         
