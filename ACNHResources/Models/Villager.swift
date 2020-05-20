@@ -8,12 +8,8 @@
 
 import Foundation
 
-struct Villager: Codable, Equatable {
+struct Villager: Codable, Equatable, Hashable {
 
-    static func == (lhs: Villager, rhs: Villager) -> Bool {
-        lhs.id == rhs.id
-    }
-    
     let id: Int
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let personality: String
@@ -35,5 +31,13 @@ struct Villager: Codable, Equatable {
         enum CodingKeys: String, CodingKey {
             case nameEn = "name-en"
         }
+    }
+    
+    static func == (lhs: Villager, rhs: Villager) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
