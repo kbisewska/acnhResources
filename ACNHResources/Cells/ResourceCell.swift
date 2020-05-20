@@ -13,7 +13,10 @@ class ResourceCell: UITableViewCell {
     var checkmarkButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+        button.setImage(UIImage(systemName: "square"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 9, left: 8, bottom: 9, right: 8)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
         button.tintColor = .systemIndigo
         return button
     }()
@@ -59,8 +62,6 @@ class ResourceCell: UITableViewCell {
     
     var checkmarkButtonAction: (() -> ())?
     
-    // FIXME: Fix issues with constraints
-    
     private func configureLayout() {
         contentView.addSubview(checkmarkButton)
         contentView.addSubview(resourceImageView)
@@ -69,11 +70,14 @@ class ResourceCell: UITableViewCell {
         let horizontalPadding: CGFloat = 16
         let verticalPadding: CGFloat = 2
         
+        let resourceImageViewHeightAnchor = resourceImageView.heightAnchor.constraint(equalToConstant: 76)
+        resourceImageViewHeightAnchor.priority = UILayoutPriority(999)
+        
         NSLayoutConstraint.activate([
             checkmarkButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: horizontalPadding),
             checkmarkButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            checkmarkButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.07),
-            checkmarkButton.heightAnchor.constraint(equalTo: checkmarkButton.widthAnchor),
+            checkmarkButton.widthAnchor.constraint(equalToConstant: 44),
+            checkmarkButton.heightAnchor.constraint(equalToConstant: 44),
             
             resourceNameLabel.leadingAnchor.constraint(equalTo: checkmarkButton.trailingAnchor, constant: horizontalPadding),
             resourceNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -82,13 +86,13 @@ class ResourceCell: UITableViewCell {
             resourceImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -horizontalPadding),
             resourceImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             resourceImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
-            resourceImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.2),
-            resourceImageView.heightAnchor.constraint(equalTo: resourceImageView.widthAnchor)
+            resourceImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
+            resourceImageViewHeightAnchor
         ])
     }
     
     func configure(forSelectionState isSelected: Bool) {
         let stateImage = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
-        checkmarkButton.setBackgroundImage(stateImage, for: .normal)
+        checkmarkButton.setImage(stateImage, for: .normal)
     }
 }
