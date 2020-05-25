@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Villager: Codable, Equatable, Hashable {
+class Villager: Codable, Equatable, Hashable {
 
     let id: Int
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
@@ -16,6 +16,8 @@ struct Villager: Codable, Equatable, Hashable {
     let birthday: String
     let species: String
     let gender: String
+    
+    var isOwned: Bool = false
     
     private let nameDetails: Name
     
@@ -29,7 +31,7 @@ struct Villager: Codable, Equatable, Hashable {
         let nameEn: String
         
         enum CodingKeys: String, CodingKey {
-            case nameEn = "name-en"
+            case nameEn = "name-EUen"
         }
     }
     

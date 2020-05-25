@@ -32,7 +32,7 @@ struct Bug: Codable, Equatable {
         let nameEn: String
         
         enum CodingKeys: String, CodingKey {
-            case nameEn = "name-en"
+            case nameEn = "name-EUen"
         }
     }
     
