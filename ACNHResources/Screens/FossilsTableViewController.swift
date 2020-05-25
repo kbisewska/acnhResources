@@ -44,7 +44,6 @@ class FossilsTableViewController: UITableViewController {
             case .success(let fossilsDictionary):
                 let fossilsList = Array(fossilsDictionary.values).sorted { $0.fileName.lowercased() < $1.fileName.lowercased() }
                 self.fossils = fossilsList
-                print(self.fossils)
                 
                 self.tableView.reloadData()
 
@@ -95,7 +94,7 @@ class FossilsTableViewController: UITableViewController {
         headerTitle.text = "You found \(ownedFossils.count) out of \(fossils.count) fossils."
         headerTitle.textColor = .white
         headerTitle.textAlignment = .center
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .body)
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle

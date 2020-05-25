@@ -94,7 +94,7 @@ class BugsTableViewController: UITableViewController {
         headerTitle.text = "You found \(ownedBugs.count) out of \(bugs.count) bugs."
         headerTitle.textColor = .white
         headerTitle.textAlignment = .center
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .body)
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle

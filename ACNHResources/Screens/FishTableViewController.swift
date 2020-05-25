@@ -94,7 +94,7 @@ class FishTableViewController: UITableViewController {
         headerTitle.text = "You found \(ownedFish.count) out of \(fish.count) fish."
         headerTitle.textColor = .white
         headerTitle.textAlignment = .center
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .body)
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
