@@ -49,8 +49,8 @@ final class DetailsView: UIView {
         NSLayoutConstraint.activate([
             resourceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
             resourceImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            resourceImageView.heightAnchor.constraint(equalToConstant: 150),
-            resourceImageView.widthAnchor.constraint(equalToConstant: 150),
+            resourceImageView.heightAnchor.constraint(equalToConstant: 200),
+            resourceImageView.widthAnchor.constraint(equalToConstant: 200),
             
             resourceNameLabel.topAnchor.constraint(equalTo: resourceImageView.bottomAnchor, constant: padding),
             resourceNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
