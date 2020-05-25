@@ -24,7 +24,7 @@ class ResourceCell: UITableViewCell {
     var resourceNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.textColor = .label
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -74,7 +74,7 @@ class ResourceCell: UITableViewCell {
         resourceImageViewHeightAnchor.priority = UILayoutPriority(999)
         
         NSLayoutConstraint.activate([
-            checkmarkButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: horizontalPadding),
+            checkmarkButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
             checkmarkButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             checkmarkButton.widthAnchor.constraint(equalToConstant: 44),
             checkmarkButton.heightAnchor.constraint(equalToConstant: 44),
