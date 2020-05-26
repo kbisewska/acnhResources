@@ -14,6 +14,12 @@ final class DetailsView: UIView {
         UIImageView().adjustedForAutoLayout()
     }()
     
+    lazy var separator: UIView = {
+        let view = UIView().adjustedForAutoLayout()
+        view.backgroundColor = .quaternaryLabel
+        return view
+    }()
+    
     lazy var resourceNameLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
@@ -26,6 +32,7 @@ final class DetailsView: UIView {
     lazy var resourceDetailsLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
         label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
         return label
     }()
     
@@ -42,9 +49,9 @@ final class DetailsView: UIView {
     private func configureLayout() {
         backgroundColor = .systemBackground
         
-        addSubviews(resourceImageView, resourceNameLabel, resourceDetailsLabel)
+        addSubviews(resourceImageView, separator, resourceNameLabel, resourceDetailsLabel)
         
-        let padding: CGFloat = 50
+        let padding: CGFloat = 48
         
         NSLayoutConstraint.activate([
             resourceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
@@ -55,6 +62,11 @@ final class DetailsView: UIView {
             resourceNameLabel.topAnchor.constraint(equalTo: resourceImageView.bottomAnchor, constant: padding),
             resourceNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
             resourceNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            
+            separator.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding / 2),
+            separator.leadingAnchor.constraint(equalTo: resourceNameLabel.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: resourceNameLabel.trailingAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 1),
             
             resourceDetailsLabel.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding),
             resourceDetailsLabel.leadingAnchor.constraint(equalTo: resourceNameLabel.leadingAnchor),
