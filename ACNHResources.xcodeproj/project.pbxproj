@@ -15,7 +15,6 @@
 		8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */; };
 		8F4334372461687C00714B95 /* ACNHResourcesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334362461687C00714B95 /* ACNHResourcesUITests.swift */; };
 		8F433446246169E000714B95 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433445246169E000714B95 /* TabBarController.swift */; };
-		8F43344924616F0400714B95 /* VillagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344824616F0400714B95 /* VillagersViewController.swift */; };
 		8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsTableViewController.swift */; };
 		8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsTableViewController.swift */; };
 		8F43345124617DB000714B95 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345024617DB000714B95 /* NetworkManager.swift */; };
@@ -26,6 +25,21 @@
 		8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345A24618C1F00714B95 /* ErrorMessage.swift */; };
 		8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346224643FBA00714B95 /* ResourceCell.swift */; };
 		8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346A2464544200714B95 /* UIImageView+Ext.swift */; };
+		8F43346F246AA7F100714B95 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43346E246AA7F000714B95 /* PersistenceManager.swift */; };
+		8F433471246BF95A00714B95 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433470246BF95A00714B95 /* String+Ext.swift */; };
+		8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433472246C317300714B95 /* VillagerDetailsViewController.swift */; };
+		8F433476246C327A00714B95 /* FishDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433475246C327A00714B95 /* FishDetailsViewController.swift */; };
+		8F433478246C328A00714B95 /* BugDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433477246C328900714B95 /* BugDetailsViewController.swift */; };
+		8F43347A246C329C00714B95 /* FossilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433479246C329C00714B95 /* FossilDetailsViewController.swift */; };
+		8F43347C246C35F500714B95 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43347B246C35F500714B95 /* DetailsView.swift */; };
+		8F43347E246C38B500714B95 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43347D246C38B500714B95 /* UIView+Ext.swift */; };
+		8F433481246EA09300714B95 /* UITableViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433480246EA09300714B95 /* UITableViewController+Ext.swift */; };
+		8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433482246EDC5100714B95 /* VillagersTableViewController.swift */; };
+		8F433485246EDCC100714B95 /* VillagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433484246EDCC100714B95 /* VillagersViewController.swift */; };
+		8F4334882474075900714B95 /* VillagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334872474075900714B95 /* VillagerCell.swift */; };
+		8F43348A2475316400714B95 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334892475316300714B95 /* SelfConfiguringCell.swift */; };
+		8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */; };
+		8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433493247D174C00714B95 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +74,6 @@
 		8F4334362461687C00714B95 /* ACNHResourcesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHResourcesUITests.swift; sourceTree = "<group>"; };
 		8F4334382461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F433445246169E000714B95 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		8F43344824616F0400714B95 /* VillagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewController.swift; sourceTree = "<group>"; };
 		8F43344A2461733200714B95 /* BugsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewController.swift; sourceTree = "<group>"; };
 		8F43344C2461734000714B95 /* FossilsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewController.swift; sourceTree = "<group>"; };
 		8F43345024617DB000714B95 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -71,6 +84,21 @@
 		8F43345A24618C1F00714B95 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		8F43346224643FBA00714B95 /* ResourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
 		8F43346A2464544200714B95 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		8F43346E246AA7F000714B95 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		8F433470246BF95A00714B95 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		8F433472246C317300714B95 /* VillagerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerDetailsViewController.swift; sourceTree = "<group>"; };
+		8F433475246C327A00714B95 /* FishDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewController.swift; sourceTree = "<group>"; };
+		8F433477246C328900714B95 /* BugDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewController.swift; sourceTree = "<group>"; };
+		8F433479246C329C00714B95 /* FossilDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewController.swift; sourceTree = "<group>"; };
+		8F43347B246C35F500714B95 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		8F43347D246C38B500714B95 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		8F433480246EA09300714B95 /* UITableViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Ext.swift"; sourceTree = "<group>"; };
+		8F433482246EDC5100714B95 /* VillagersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersTableViewController.swift; sourceTree = "<group>"; };
+		8F433484246EDCC100714B95 /* VillagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewController.swift; sourceTree = "<group>"; };
+		8F4334872474075900714B95 /* VillagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerCell.swift; sourceTree = "<group>"; };
+		8F4334892475316300714B95 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
+		8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersCollectionViewController.swift; sourceTree = "<group>"; };
+		8F433493247D174C00714B95 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +149,8 @@
 		8F4334132461687400714B95 /* ACNHResources */ = {
 			isa = PBXGroup;
 			children = (
+				8F43347F246D2C3E00714B95 /* Views */,
+				8F433474246C325800714B95 /* ViewControllers */,
 				8F43346924644A8B00714B95 /* Extensions */,
 				8F43346124643F9500714B95 /* Cells */,
 				8F43344F24617D9F00714B95 /* Managers */,
@@ -130,6 +160,7 @@
 				8F4334222461687C00714B95 /* Info.plist */,
 				8F433445246169E000714B95 /* TabBarController.swift */,
 				8F43345A24618C1F00714B95 /* ErrorMessage.swift */,
+				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
 			);
 			path = ACNHResources;
 			sourceTree = "<group>";
@@ -166,7 +197,7 @@
 		8F43344724616ED200714B95 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				8F43344824616F0400714B95 /* VillagersViewController.swift */,
+				8F433484246EDCC100714B95 /* VillagersViewController.swift */,
 				8F4334182461687400714B95 /* FishTableViewController.swift */,
 				8F43344A2461733200714B95 /* BugsTableViewController.swift */,
 				8F43344C2461734000714B95 /* FossilsTableViewController.swift */,
@@ -189,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				8F43345024617DB000714B95 /* NetworkManager.swift */,
+				8F43346E246AA7F000714B95 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -197,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				8F43346224643FBA00714B95 /* ResourceCell.swift */,
+				8F4334872474075900714B95 /* VillagerCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -205,8 +238,41 @@
 			isa = PBXGroup;
 			children = (
 				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
+				8F433470246BF95A00714B95 /* String+Ext.swift */,
+				8F43347D246C38B500714B95 /* UIView+Ext.swift */,
+				8F433480246EA09300714B95 /* UITableViewController+Ext.swift */,
+				8F433493247D174C00714B95 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8F433474246C325800714B95 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F4334862472B8C400714B95 /* DetailsViewControllers */,
+				8F433482246EDC5100714B95 /* VillagersTableViewController.swift */,
+				8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8F43347F246D2C3E00714B95 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F43347B246C35F500714B95 /* DetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F4334862472B8C400714B95 /* DetailsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F433472246C317300714B95 /* VillagerDetailsViewController.swift */,
+				8F433475246C327A00714B95 /* FishDetailsViewController.swift */,
+				8F433477246C328900714B95 /* BugDetailsViewController.swift */,
+				8F433479246C329C00714B95 /* FossilDetailsViewController.swift */,
+			);
+			path = DetailsViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,20 +405,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
+				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
+				8F433481246EA09300714B95 /* UITableViewController+Ext.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
+				8F433471246BF95A00714B95 /* String+Ext.swift in Sources */,
+				8F43346F246AA7F100714B95 /* PersistenceManager.swift in Sources */,
 				8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */,
+				8F433476246C327A00714B95 /* FishDetailsViewController.swift in Sources */,
+				8F433478246C328A00714B95 /* BugDetailsViewController.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
 				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
+				8F43347C246C35F500714B95 /* DetailsView.swift in Sources */,
+				8F4334882474075900714B95 /* VillagerCell.swift in Sources */,
+				8F43347E246C38B500714B95 /* UIView+Ext.swift in Sources */,
+				8F43347A246C329C00714B95 /* FossilDetailsViewController.swift in Sources */,
 				8F43345124617DB000714B95 /* NetworkManager.swift in Sources */,
+				8F433485246EDCC100714B95 /* VillagersViewController.swift in Sources */,
 				8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */,
 				8F4334552461827B00714B95 /* Fish.swift in Sources */,
 				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
+				8F43348A2475316400714B95 /* SelfConfiguringCell.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
+				8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */,
 				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
-				8F43344924616F0400714B95 /* VillagersViewController.swift in Sources */,
+				8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */,
 				8F4334532461827200714B95 /* Villager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
