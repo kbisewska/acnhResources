@@ -10,8 +10,11 @@ import UIKit
 
 final class NetworkManager {
     
-    private let baseURL = "http://acnhapi.com/"
+    private let baseURL = "http://acnhapi.com/v1/"
     private let urlSession = URLSession(configuration: .default)
+    private let persistanceManager = PersistenceManager()
+    
+    static private var cancellableTasks = [String: URLSessionDataTask]()
     
     // MARK: - Getting Data
     
@@ -60,7 +63,7 @@ final class NetworkManager {
     }
     
     func getFossilImage(fileName: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/fossils/\(fileName)") else { return }
+        guard let url = URL(string: baseURL + "images/fossils/\(fileName.lowercased())") else { return }
         let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
@@ -68,9 +71,13 @@ final class NetworkManager {
     // MARK: - Getting Icons
     
     func getIcon(for resource: String, id: Int, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "icons/\(resource)/\(id)") else { return }
+        guard let url = getURL(for: resource, id: id) else { return }
         let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func getURL(for resource: String, id: Int) -> URL? {
+        URL(string: baseURL + "icons/\(resource)/\(id)")
     }
     
     // MARK: - Helper Methods
@@ -112,7 +119,18 @@ final class NetworkManager {
     }
     
     private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
+        let key = urlRequest.url!.absoluteString.sha256()
+        
+        if let image = persistanceManager.retrieveImage(forKey: key) {
+            DispatchQueue.main.async {
+                completion(image)
+            }
+            return
+        }
+        
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
+            NetworkManager.cancellableTasks.removeValue(forKey: key)
+            
             guard error == nil,
                 let response = response as? HTTPURLResponse,
                 200..<300 ~= response.statusCode,
@@ -124,11 +142,20 @@ final class NetworkManager {
                     return
             }
             
+            self.persistanceManager.store(image: image, forKey: key)
+            
             DispatchQueue.main.async {
                 completion(image)
             }
         }
         
+        NetworkManager.cancellableTasks[key] = task
         task.resume()
+    }
+    
+    func cancelTask(for resource: String, id: Int) {
+        guard let key = getURL(for: resource, id: id)?.absoluteString.sha256(), let task = NetworkManager.cancellableTasks[key] else { return }
+        NetworkManager.cancellableTasks.removeValue(forKey: key)
+        task.cancel()
     }
 }
