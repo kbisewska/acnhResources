@@ -10,6 +10,8 @@ import UIKit
 
 class ResourceCell: UITableViewCell {
     
+    var resource: Resource?
+    
     var checkmarkButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +56,11 @@ class ResourceCell: UITableViewCell {
         super.prepareForReuse()
         resourceImageView.image = UIImage(systemName: "questionmark.square")
         resourceImageView.tintColor = .systemIndigo
+        
+        if let resource = resource {
+            resourceImageView.cancelTask(for: resource)
+            self.resource = nil
+        }
     }
     
     @objc func checkmarkButtonTapped(_ sender: UIButton) {
