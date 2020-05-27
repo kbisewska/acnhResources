@@ -61,7 +61,7 @@ extension UIImageView {
         }
     }
     
-    func downloadIcon(for resource: Resource) {
+    func downloadIcon(for resource: Resource, completion: (() -> Void)? = nil) {
         let networkManager = NetworkManager()
         
         switch resource {
@@ -69,7 +69,18 @@ extension UIImageView {
             networkManager.getIcon(for: resource.name, id: id) { [weak self] icon in
                 guard let self = self else { return }
                 self.image = icon
+                completion?()
             }
+        case .fossil: return
+        }
+    }
+    
+    func cancelTask(for resource: Resource) {
+        let networkManager = NetworkManager()
+        
+        switch resource {
+        case .bug(let id), .villager(let id), .fish(let id):
+            networkManager.cancelTask(for: resource.name, id: id)
         case .fossil: return
         }
     }
