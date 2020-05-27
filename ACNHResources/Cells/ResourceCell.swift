@@ -10,7 +10,11 @@ import UIKit
 
 class ResourceCell: UITableViewCell {
     
-    var resource: Resource?
+    private var resource: Resource?
+    
+    var activityIndicator: UIActivityIndicatorView = {
+        UIActivityIndicatorView().adjustedForAutoLayout()
+    }()
     
     var checkmarkButton: UIButton = {
         let button = UIButton()
@@ -54,8 +58,7 @@ class ResourceCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        resourceImageView.image = UIImage(systemName: "questionmark.square")
-        resourceImageView.tintColor = .systemIndigo
+        resourceImageView.image = nil
         
         if let resource = resource {
             resourceImageView.cancelTask(for: resource)
@@ -69,10 +72,23 @@ class ResourceCell: UITableViewCell {
     
     var checkmarkButtonAction: (() -> ())?
     
+    func configure(with resource: Resource) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
+        resourceImageView.downloadIcon(for: resource, completion: { [weak activityIndicator] in
+            activityIndicator?.isHidden = true
+            activityIndicator?.stopAnimating()
+        })
+        accessoryType = .disclosureIndicator
+        self.resource = resource
+    }
+    
     private func configureLayout() {
         contentView.addSubview(checkmarkButton)
         contentView.addSubview(resourceImageView)
         contentView.addSubview(resourceNameLabel)
+        contentView.addSubview(activityIndicator)
         
         let horizontalPadding: CGFloat = 16
         let verticalPadding: CGFloat = 2
@@ -94,7 +110,10 @@ class ResourceCell: UITableViewCell {
             resourceImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             resourceImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
             resourceImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
-            resourceImageViewHeightAnchor
+            resourceImageViewHeightAnchor,
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: resourceImageView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: resourceImageView.centerYAnchor)
         ])
     }
     
