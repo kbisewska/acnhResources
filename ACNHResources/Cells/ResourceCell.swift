@@ -76,12 +76,27 @@ class ResourceCell: UITableViewCell {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         
-        resourceImageView.downloadIcon(for: resource, completion: { [weak activityIndicator] in
-            activityIndicator?.isHidden = true
-            activityIndicator?.stopAnimating()
-        })
+        switch resource {
+        case .villager, .fish, .bug:
+            resourceImageView.downloadIcon(for: resource, completion: { [weak activityIndicator] in
+                activityIndicator?.isHidden = true
+                activityIndicator?.stopAnimating()
+            })
+            
+        case .fossil:
+            resourceImageView.downloadImage(for: resource, completion: { [weak activityIndicator] in
+                activityIndicator?.isHidden = true
+                activityIndicator?.stopAnimating()
+            })
+        }
+        
         accessoryType = .disclosureIndicator
         self.resource = resource
+    }
+    
+    func configure(forSelectionState isSelected: Bool) {
+        let stateImage = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
+        checkmarkButton.setImage(stateImage, for: .normal)
     }
     
     private func configureLayout() {
@@ -115,10 +130,5 @@ class ResourceCell: UITableViewCell {
             activityIndicator.centerXAnchor.constraint(equalTo: resourceImageView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: resourceImageView.centerYAnchor)
         ])
-    }
-    
-    func configure(forSelectionState isSelected: Bool) {
-        let stateImage = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
-        checkmarkButton.setImage(stateImage, for: .normal)
     }
 }
