@@ -63,9 +63,13 @@ final class NetworkManager {
     }
     
     func getFossilImage(fileName: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: baseURL + "images/fossils/\(fileName.lowercased())") else { return }
+        guard let url = getFossilURL(fileName: fileName) else { return }
         let urlRequest = URLRequest(url: url)
         getResourceImage(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func getFossilURL(fileName: String) -> URL? {
+        URL(string: baseURL + "images/fossils/\(fileName.lowercased())")
     }
     
     // MARK: - Getting Icons
@@ -155,6 +159,12 @@ final class NetworkManager {
     
     func cancelTask(for resource: String, id: Int) {
         guard let key = getURL(for: resource, id: id)?.absoluteString.sha256(), let task = NetworkManager.cancellableTasks[key] else { return }
+        NetworkManager.cancellableTasks.removeValue(forKey: key)
+        task.cancel()
+    }
+    
+    func cancelFossilTask(fileName: String) {
+        guard let key = getFossilURL(fileName: fileName)?.absoluteString.sha256(), let task = NetworkManager.cancellableTasks[key] else { return }
         NetworkManager.cancellableTasks.removeValue(forKey: key)
         task.cancel()
     }
