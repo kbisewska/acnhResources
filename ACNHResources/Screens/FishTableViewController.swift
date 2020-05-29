@@ -72,9 +72,9 @@ class FishTableViewController: UITableViewController {
             selectionState = updatedState
         }
         
+        let resource = Resource.fish(id: fishItem.id)
         cell.resourceNameLabel.text = fishItem.name
-        cell.resourceImageView.downloadIcon(for: .fish(id: fishItem.id))
-        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: resource)
         
         return cell
     }

@@ -72,9 +72,9 @@ class BugsTableViewController: UITableViewController {
             selectionState = updatedState
         }
         
+        let resource = Resource.bug(id: bug.id)
         cell.resourceNameLabel.text = bug.name
-        cell.resourceImageView.downloadIcon(for: .bug(id: bug.id))
-        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: resource)
         
         return cell
     }

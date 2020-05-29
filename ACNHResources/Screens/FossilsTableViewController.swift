@@ -72,9 +72,9 @@ class FossilsTableViewController: UITableViewController {
             selectionState = updatedState
         }
         
+        let resource = Resource.fossil(fileName: fossil.fileName)
         cell.resourceNameLabel.text = fossil.name
-        cell.resourceImageView.downloadImage(for: .fossil(fileName: fossil.fileName))
-        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: resource)
         
         return cell
     }
