@@ -16,3 +16,17 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
 }
+
+extension UIViewController: UISearchResultsUpdating {
+    
+    public func updateSearchResults(for searchController: UISearchController) {}
+    
+    func configureSearchController() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a resource"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+}
