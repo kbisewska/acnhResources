@@ -40,6 +40,7 @@
 		8F43348A2475316400714B95 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334892475316300714B95 /* SelfConfiguringCell.swift */; };
 		8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */; };
 		8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433493247D174C00714B95 /* UIViewController+Ext.swift */; };
+		8F433496247FA8C600714B95 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433495247FA8C600714B95 /* Resource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		8F4334892475316300714B95 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
 		8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersCollectionViewController.swift; sourceTree = "<group>"; };
 		8F433493247D174C00714B95 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		8F433495247FA8C600714B95 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				8F433445246169E000714B95 /* TabBarController.swift */,
 				8F43345A24618C1F00714B95 /* ErrorMessage.swift */,
 				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
+				8F433495247FA8C600714B95 /* Resource.swift */,
 			);
 			path = ACNHResources;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
+				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
 				8F433481246EA09300714B95 /* UITableViewController+Ext.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
