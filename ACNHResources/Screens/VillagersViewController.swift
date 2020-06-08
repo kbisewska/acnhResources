@@ -11,7 +11,7 @@ import UIKit
 class VillagersViewController: UIViewController {
     
     private let networkManager = NetworkManager()
-    private let villagersCollectionViewController = VillagersCollectionViewController(with: [])
+    private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class VillagersViewController: UIViewController {
                 self.villagersTableViewController.update(with: villagersList)
                 
             case .failure(let error):
-                print(error)
+                self.presentAlert(with: error.rawValue)
             }
         }
     }
@@ -75,7 +75,7 @@ class VillagersViewController: UIViewController {
         villagersTableViewController.tableView.reloadData()
         
         villagersCollectionViewController.isFiltering = true
-        villagersCollectionViewController.filteredVillagers = villagersTableViewController.villagers.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        villagersCollectionViewController.filteredVillagers = villagersCollectionViewController.villagers.filter { $0.name.lowercased().contains(filter.lowercased()) }
         villagersCollectionViewController.collectionView.reloadData()
     }
 }

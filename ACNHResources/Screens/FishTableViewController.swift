@@ -52,7 +52,7 @@ class FishTableViewController: UITableViewController {
                 self.tableView.reloadData()
 
             case .failure(let error):
-                print(error)
+                self.presentAlert(with: error.rawValue)
             }
         }
     }
