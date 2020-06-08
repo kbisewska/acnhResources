@@ -11,7 +11,8 @@ import UIKit
 class FossilsTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
-    let reuseIdentifier = "FossilCell"
+    private let persistenceManager = PersistenceManager()
+    private let reuseIdentifier = "FossilCell"
     
     var fossils = [Fossil]()
     var filteredFossils = [Fossil]()
@@ -45,6 +46,9 @@ class FossilsTableViewController: UITableViewController {
                 let fossilsList = Array(fossilsDictionary.values).sorted { $0.fileName.lowercased() < $1.fileName.lowercased() }
                 self.fossils = fossilsList
                 
+                let ownedFossils: [Fossil]? = try? self.persistenceManager.retrieve(from: "OwnedFossils")
+                self.ownedFossils = ownedFossils ?? []
+                
                 self.tableView.reloadData()
 
             case .failure(let error):
@@ -67,6 +71,8 @@ class FossilsTableViewController: UITableViewController {
         
         cell.checkmarkButtonAction = { [unowned self] in
             selectionState ? self.ownedFossils.removeAll(where: { $0.fileName == fossil.fileName }) : self.ownedFossils.append(fossil)
+            try? self.persistenceManager.store(value: self.ownedFossils, with: "OwnedFossils")
+            
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState

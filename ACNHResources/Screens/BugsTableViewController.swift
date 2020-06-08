@@ -11,7 +11,8 @@ import UIKit
 class BugsTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
-    let reuseIdentifier = "BugCell"
+    private let persistenceManager = PersistenceManager()
+    private let reuseIdentifier = "BugCell"
     
     var bugs = [Bug]()
     var filteredBugs = [Bug]()
@@ -45,6 +46,9 @@ class BugsTableViewController: UITableViewController {
                 let bugsList = Array(bugsDictionary.values).sorted { $0.id < $1.id }
                 self.bugs = bugsList
                 
+                let ownedBugs: [Bug]? = try? self.persistenceManager.retrieve(from: "OwnedBugs")
+                self.ownedBugs = ownedBugs ?? []
+                
                 self.tableView.reloadData()
 
             case .failure(let error):
@@ -67,6 +71,8 @@ class BugsTableViewController: UITableViewController {
         
         cell.checkmarkButtonAction = { [unowned self] in
             selectionState ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
+            try? self.persistenceManager.store(value: self.ownedBugs, with: "OwnedBugs")
+            
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState

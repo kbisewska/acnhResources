@@ -11,7 +11,8 @@ import UIKit
 class FishTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
-    let reuseIdentifier = "FishCell"
+    private let persistenceManager = PersistenceManager()
+    private let reuseIdentifier = "FishCell"
     
     var fish = [Fish]()
     var filteredFish = [Fish]()
@@ -45,6 +46,9 @@ class FishTableViewController: UITableViewController {
                 let fishList = Array(fishDictionary.values).sorted { $0.id < $1.id }
                 self.fish = fishList
                 
+                let ownedFish: [Fish]? = try? self.persistenceManager.retrieve(from: "OwnedFish")
+                self.ownedFish = ownedFish ?? []
+                
                 self.tableView.reloadData()
 
             case .failure(let error):
@@ -67,6 +71,8 @@ class FishTableViewController: UITableViewController {
         
         cell.checkmarkButtonAction = { [unowned self] in
             selectionState ? self.ownedFish.removeAll(where: { $0.id == fishItem.id }) : self.ownedFish.append(fishItem)
+            try? self.persistenceManager.store(value: self.ownedFish, with: "OwnedFish")
+            
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState
