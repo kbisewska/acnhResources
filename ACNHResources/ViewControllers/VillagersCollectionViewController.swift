@@ -17,9 +17,8 @@ class VillagersCollectionViewController: UICollectionViewController {
     var filteredVillagers = [Villager]()
     var isFiltering = false
     
-    init(with villagers: [Villager]) {
+    init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        self.villagers = villagers
     }
     
     required init?(coder: NSCoder) {
