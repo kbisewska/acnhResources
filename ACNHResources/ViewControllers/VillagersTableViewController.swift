@@ -86,12 +86,8 @@ class VillagersTableViewController: UITableViewController, UISearchBarDelegate {
         let header = UIView()
         header.backgroundColor = .systemIndigo
         
-        let headerTitle = UILabel()
-        headerTitle.text = "All Villagers"
-        headerTitle.textColor = .white
-        headerTitle.textAlignment = .left
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
-        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        let headerTitle = UILabel().adjustedForAutoLayout()
+        headerTitle.configureHeaderLabel(text: "All Villagers", textAlignment: .left)
         header.addSubview(headerTitle)
 
         let horizontalPadding: CGFloat = 20

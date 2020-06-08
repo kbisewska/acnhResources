@@ -68,10 +68,7 @@ class VillagersCollectionViewController: UICollectionViewController {
         header.backgroundColor = .systemIndigo
         
         let headerTitle = UILabel().adjustedForAutoLayout()
-        headerTitle.text = "My Villagers"
-        headerTitle.textColor = .white
-        headerTitle.textAlignment = .left
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
+        headerTitle.configureHeaderLabel(text: "My Villagers", textAlignment: .left)
         header.addSubview(headerTitle)
 
         let horizontalPadding: CGFloat = 20

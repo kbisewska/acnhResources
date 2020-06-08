@@ -96,12 +96,8 @@ class FossilsTableViewController: UITableViewController {
         let header = UIView()
         header.backgroundColor = .systemIndigo
         
-        let headerTitle = UILabel()
-        headerTitle.text = "You found \(ownedFossils.count) out of \(fossils.count) fossils."
-        headerTitle.textColor = .white
-        headerTitle.textAlignment = .center
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .title3)
-        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        let headerTitle = UILabel().adjustedForAutoLayout()
+        headerTitle.configureHeaderLabel(text: "You found \(ownedFossils.count) out of \(fossils.count) fossils.", textAlignment: .center)
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
         
