@@ -125,7 +125,7 @@ final class NetworkManager {
     private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
         let key = urlRequest.url!.absoluteString.sha256()
         
-        if let image = persistanceManager.retrieveImage(forKey: key) {
+        if let image = persistanceManager.retrieveImage(from: key) {
             DispatchQueue.main.async {
                 completion(image)
             }
@@ -146,7 +146,7 @@ final class NetworkManager {
                     return
             }
             
-            self.persistanceManager.store(image: image, forKey: key)
+            self.persistanceManager.store(image: image, with: key)
             
             DispatchQueue.main.async {
                 completion(image)
