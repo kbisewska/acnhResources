@@ -15,6 +15,12 @@ extension UIViewController {
         view.addSubview(child.view.adjustedForAutoLayout())
         child.didMove(toParent: self)
     }
+    
+    func presentAlert(with message: String) {
+        let alert = UIAlertController(title: "Something Went Wrong", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
 }
 
 extension UIViewController: UISearchResultsUpdating {
