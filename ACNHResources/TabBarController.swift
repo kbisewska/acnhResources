@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
     
     func createFishNavigationController() -> UINavigationController {
         let fishTableViewController = FishTableViewController()
-        fishTableViewController.title = "Fish"
+        fishTableViewController.tabBarItem = UITabBarItem(title: "Fish", image: UIImage(named: "Fish.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: fishTableViewController)
     }
