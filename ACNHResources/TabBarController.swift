@@ -25,6 +25,7 @@ class TabBarController: UITabBarController {
     
     func createVillagersNavigationController() -> UINavigationController {
         let villagersViewController = VillagersViewController()
+        villagersViewController.title = "Villagers"
         villagersViewController.tabBarItem = UITabBarItem(title: "Villagers", image: UIImage(named: "Villagers.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: villagersViewController)
@@ -32,6 +33,7 @@ class TabBarController: UITabBarController {
     
     func createFishNavigationController() -> UINavigationController {
         let fishTableViewController = FishTableViewController()
+        fishTableViewController.title = "Fish"
         fishTableViewController.tabBarItem = UITabBarItem(title: "Fish", image: UIImage(named: "Fish.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: fishTableViewController)
@@ -39,6 +41,7 @@ class TabBarController: UITabBarController {
     
     func createBugsNavigationController() -> UINavigationController {
         let bugsTableViewController = BugsTableViewController()
+        bugsTableViewController.title = "Bugs"
         bugsTableViewController.tabBarItem = UITabBarItem(title: "Bugs", image: UIImage(named: "Bug.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: bugsTableViewController)
@@ -46,6 +49,7 @@ class TabBarController: UITabBarController {
     
     func createFossilsNavigationController() -> UINavigationController {
         let fossilsTableViewController = FossilsTableViewController()
+        fossilsTableViewController.title = "Fossils"
         fossilsTableViewController.tabBarItem = UITabBarItem(title: "Fossils", image: UIImage(named: "Fossil.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: fossilsTableViewController)
