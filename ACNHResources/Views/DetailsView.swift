@@ -48,29 +48,32 @@ final class DetailsView: UIView {
     
     private func configureLayout() {
         backgroundColor = .systemBackground
+        layer.cornerRadius = 20
+        layer.borderWidth = 6
+        layer.borderColor = UIColor.systemIndigo.cgColor
         
         addSubviews(resourceImageView, separator, resourceNameLabel, resourceDetailsLabel)
         
-        let padding: CGFloat = 48
+        let padding: CGFloat = 24
         
         NSLayoutConstraint.activate([
-            resourceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
+            resourceImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             resourceImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             resourceImageView.heightAnchor.constraint(equalToConstant: 200),
             resourceImageView.widthAnchor.constraint(equalToConstant: 200),
             
             resourceNameLabel.topAnchor.constraint(equalTo: resourceImageView.bottomAnchor, constant: padding),
-            resourceNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
-            resourceNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            resourceNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            resourceNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             
-            separator.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding / 2),
+            separator.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding),
             separator.leadingAnchor.constraint(equalTo: resourceNameLabel.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: resourceNameLabel.trailingAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1),
             
-            resourceDetailsLabel.topAnchor.constraint(equalTo: resourceNameLabel.bottomAnchor, constant: padding),
-            resourceDetailsLabel.leadingAnchor.constraint(equalTo: resourceNameLabel.leadingAnchor),
-            resourceDetailsLabel.trailingAnchor.constraint(equalTo: resourceNameLabel.trailingAnchor),
+            resourceDetailsLabel.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: padding),
+            resourceDetailsLabel.leadingAnchor.constraint(equalTo: separator.leadingAnchor),
+            resourceDetailsLabel.trailingAnchor.constraint(equalTo: separator.trailingAnchor),
         ])
     }
 }
