@@ -25,6 +25,15 @@ extension UIViewController {
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func presentViewController(_ viewController: UIViewController) {
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        present(viewController, animated: true) {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissViewController))
+            viewController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+        }
+    }
 }
 
 extension UIViewController: UISearchResultsUpdating {
