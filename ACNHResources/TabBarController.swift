@@ -39,7 +39,7 @@ class TabBarController: UITabBarController {
     
     func createBugsNavigationController() -> UINavigationController {
         let bugsTableViewController = BugsTableViewController()
-        bugsTableViewController.title = "Bugs"
+        bugsTableViewController.tabBarItem = UITabBarItem(title: "Bugs", image: UIImage(named: "Bug.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: bugsTableViewController)
     }
