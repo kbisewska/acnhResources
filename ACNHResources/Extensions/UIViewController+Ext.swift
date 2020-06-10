@@ -21,6 +21,10 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
     }
+    
+    @objc func dismissViewController() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension UIViewController: UISearchResultsUpdating {
