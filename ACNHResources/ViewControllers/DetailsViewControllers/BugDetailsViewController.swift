@@ -10,7 +10,7 @@ import UIKit
 
 class BugDetailsViewController: UIViewController {
 
-    private let customView = DetailsView()
+    private let customView = DetailsView().adjustedForAutoLayout()
     private var bug: Bug
     
     init(with bug: Bug) {
@@ -22,12 +22,18 @@ class BugDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        view = customView
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.addSubview(customView)
+        
+        NSLayoutConstraint.activate([
+            customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            customView.widthAnchor.constraint(equalToConstant: 400),
+            customView.heightAnchor.constraint(equalToConstant: 740)
+        ])
         
         let allYear = "All Year"
         let allDay = "All Day"
