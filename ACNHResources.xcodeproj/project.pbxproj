@@ -33,7 +33,6 @@
 		8F43347A246C329C00714B95 /* FossilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433479246C329C00714B95 /* FossilDetailsViewController.swift */; };
 		8F43347C246C35F500714B95 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43347B246C35F500714B95 /* DetailsView.swift */; };
 		8F43347E246C38B500714B95 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43347D246C38B500714B95 /* UIView+Ext.swift */; };
-		8F433481246EA09300714B95 /* UITableViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433480246EA09300714B95 /* UITableViewController+Ext.swift */; };
 		8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433482246EDC5100714B95 /* VillagersTableViewController.swift */; };
 		8F433485246EDCC100714B95 /* VillagersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433484246EDCC100714B95 /* VillagersViewController.swift */; };
 		8F4334882474075900714B95 /* VillagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334872474075900714B95 /* VillagerCell.swift */; };
@@ -41,6 +40,7 @@
 		8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */; };
 		8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433493247D174C00714B95 /* UIViewController+Ext.swift */; };
 		8F433496247FA8C600714B95 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433495247FA8C600714B95 /* Resource.swift */; };
+		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +93,6 @@
 		8F433479246C329C00714B95 /* FossilDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewController.swift; sourceTree = "<group>"; };
 		8F43347B246C35F500714B95 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		8F43347D246C38B500714B95 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		8F433480246EA09300714B95 /* UITableViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Ext.swift"; sourceTree = "<group>"; };
 		8F433482246EDC5100714B95 /* VillagersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersTableViewController.swift; sourceTree = "<group>"; };
 		8F433484246EDCC100714B95 /* VillagersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewController.swift; sourceTree = "<group>"; };
 		8F4334872474075900714B95 /* VillagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerCell.swift; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersCollectionViewController.swift; sourceTree = "<group>"; };
 		8F433493247D174C00714B95 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		8F433495247FA8C600714B95 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +243,8 @@
 				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
 				8F433470246BF95A00714B95 /* String+Ext.swift */,
 				8F43347D246C38B500714B95 /* UIView+Ext.swift */,
-				8F433480246EA09300714B95 /* UITableViewController+Ext.swift */,
 				8F433493247D174C00714B95 /* UIViewController+Ext.swift */,
+				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,8 +412,8 @@
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
+				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
 				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
-				8F433481246EA09300714B95 /* UITableViewController+Ext.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
 				8F433471246BF95A00714B95 /* String+Ext.swift in Sources */,
 				8F43346F246AA7F100714B95 /* PersistenceManager.swift in Sources */,
