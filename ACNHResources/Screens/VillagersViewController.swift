@@ -19,9 +19,9 @@ class VillagersViewController: UIViewController {
         
         add(villagersCollectionViewController)
         add(villagersTableViewController)
+        getVillagers()
         configureLayout()
         configureSearchController()
-        getVillagers()
         
         villagersTableViewController.delegate = villagersCollectionViewController
     }
