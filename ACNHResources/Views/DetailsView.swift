@@ -11,7 +11,10 @@ import UIKit
 final class DetailsView: UIView {
     
     lazy var resourceImageView: UIImageView = {
-        UIImageView().adjustedForAutoLayout()
+        let imageView = UIImageView().adjustedForAutoLayout()
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
     lazy var separator: UIView = {
