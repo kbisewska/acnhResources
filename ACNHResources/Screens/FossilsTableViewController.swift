@@ -89,7 +89,9 @@ class FossilsTableViewController: UITableViewController {
         let activeFossilsArray = isFiltering ? filteredFossils : fossils
         
         let fossilDetailsViewController = FossilDetailsViewController(with: activeFossilsArray[indexPath.row])
-        present(fossilDetailsViewController, animated: true)
+        presentViewController(fossilDetailsViewController)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

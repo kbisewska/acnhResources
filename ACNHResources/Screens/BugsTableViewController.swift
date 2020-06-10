@@ -89,7 +89,9 @@ class BugsTableViewController: UITableViewController {
         let activeBugsArray = isFiltering ? filteredBugs : bugs
         
         let bugDetailsViewController = BugDetailsViewController(with: activeBugsArray[indexPath.row])
-        present(bugDetailsViewController, animated: true)
+        presentViewController(bugDetailsViewController)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

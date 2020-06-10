@@ -89,7 +89,9 @@ class FishTableViewController: UITableViewController {
         let activeFishArray = isFiltering ? filteredFish : fish
         
         let fishDetailsViewController = FishDetailsViewController(with: activeFishArray[indexPath.row])
-        present(fishDetailsViewController, animated: true)
+        presentViewController(fishDetailsViewController)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

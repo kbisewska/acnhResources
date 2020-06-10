@@ -28,14 +28,17 @@ class VillagersCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureCollectionView()
+        update()
+    }
+    
+    func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         collectionView.register(VillagerCell.self, forCellWithReuseIdentifier: VillagerCell.reuseIdentifier)
-        
-        update()
     }
     
     func update() {
@@ -60,7 +63,7 @@ class VillagersCollectionViewController: UICollectionViewController {
         let activeVillagersArray = isFiltering ? filteredVillagers : villagers
         
         let villagerDetailsViewController = VillagerDetailsViewController(with: activeVillagersArray[indexPath.row])
-        present(villagerDetailsViewController, animated: true)
+        presentViewController(villagerDetailsViewController)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

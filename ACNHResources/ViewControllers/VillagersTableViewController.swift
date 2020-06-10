@@ -79,7 +79,9 @@ class VillagersTableViewController: UITableViewController, UISearchBarDelegate {
         let activeVillagersArray = isFiltering ? filteredVillagers : villagers
         
         let villagerDetailsViewController = VillagerDetailsViewController(with: activeVillagersArray[indexPath.row])
-        present(villagerDetailsViewController, animated: true)
+        presentViewController(villagerDetailsViewController)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
