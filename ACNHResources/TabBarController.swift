@@ -46,7 +46,7 @@ class TabBarController: UITabBarController {
     
     func createFossilsNavigationController() -> UINavigationController {
         let fossilsTableViewController = FossilsTableViewController()
-        fossilsTableViewController.title = "Fossils"
+        fossilsTableViewController.tabBarItem = UITabBarItem(title: "Fossils", image: UIImage(named: "Fossil.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: fossilsTableViewController)
     }
