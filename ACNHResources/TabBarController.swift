@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
     
     func createVillagersNavigationController() -> UINavigationController {
         let villagersViewController = VillagersViewController()
-        villagersViewController.title = "Villagers"
+        villagersViewController.tabBarItem = UITabBarItem(title: "Villagers", image: UIImage(named: "Villagers.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: villagersViewController)
     }
