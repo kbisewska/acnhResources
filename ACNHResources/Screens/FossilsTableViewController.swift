@@ -52,7 +52,7 @@ class FossilsTableViewController: UITableViewController {
                 self.tableView.reloadData()
 
             case .failure(let error):
-                self.presentAlert(with: error.rawValue)
+                self.presentAlert(title: "Something went wrong", message: error.rawValue)
             }
         }
     }
