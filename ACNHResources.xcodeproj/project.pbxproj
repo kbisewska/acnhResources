@@ -41,6 +41,7 @@
 		8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433493247D174C00714B95 /* UIViewController+Ext.swift */; };
 		8F433496247FA8C600714B95 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433495247FA8C600714B95 /* Resource.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
+		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		8F433493247D174C00714B95 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		8F433495247FA8C600714B95 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				8F43347D246C38B500714B95 /* UIView+Ext.swift */,
 				8F433493247D174C00714B95 /* UIViewController+Ext.swift */,
 				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
+				8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 			files = (
 				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
+				8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
