@@ -14,6 +14,7 @@ class Villager: Codable, Equatable, Hashable {
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let personality: String
     let birthday: String
+    let birthdaySimplified: String
     let species: String
     let gender: String
     
@@ -24,6 +25,7 @@ class Villager: Codable, Equatable, Hashable {
     enum CodingKeys: String, CodingKey {
         case nameDetails = "name"
         case birthday = "birthday-string"
+        case birthdaySimplified = "birthday"
         case id, personality, species, gender
     }
     
