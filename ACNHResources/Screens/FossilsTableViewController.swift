@@ -148,25 +148,25 @@ class FossilsTableViewController: UITableViewController {
         
         alertController.addAction(UIAlertAction(title: "Sort by name: A to Z", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.fossils.sort { $0.name < $1.name }
+            self.isFiltering ? self.filteredFossils.sort { $0.name < $1.name } : self.fossils.sort { $0.name < $1.name }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by name: Z to A", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.fossils.sort { $0.name > $1.name }
+            self.isFiltering ? self.filteredFossils.sort { $0.name > $1.name } : self.fossils.sort { $0.name > $1.name }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by price: low to high", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.fossils.sort { $0.price < $1.price }
+            self.isFiltering ? self.filteredFossils.sort { $0.price < $1.price } : self.fossils.sort { $0.price < $1.price }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by price: high to low", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.fossils.sort { $0.price > $1.price }
+            self.isFiltering ? self.filteredFossils.sort { $0.price > $1.price } : self.fossils.sort { $0.price > $1.price }
             self.tableView.reloadData()
         })
         
