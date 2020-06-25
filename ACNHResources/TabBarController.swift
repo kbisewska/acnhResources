@@ -19,7 +19,8 @@ class TabBarController: UITabBarController {
             createVillagersNavigationController(),
             createFishNavigationController(),
             createBugsNavigationController(),
-            createFossilsNavigationController()
+            createFossilsNavigationController(),
+            createSettingsNavigationController()
         ]
     }
     
@@ -53,5 +54,13 @@ class TabBarController: UITabBarController {
         fossilsTableViewController.tabBarItem = UITabBarItem(title: "Fossils", image: UIImage(named: "Fossil.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         return UINavigationController(rootViewController: fossilsTableViewController)
+    }
+    
+    func createSettingsNavigationController() -> UINavigationController {
+        let settingsViewController = SettingsViewController()
+        settingsViewController.title = "Settings"
+        settingsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+        
+        return UINavigationController(rootViewController: settingsViewController)
     }
 }
