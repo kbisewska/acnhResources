@@ -41,6 +41,7 @@
 		8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433493247D174C00714B95 /* UIViewController+Ext.swift */; };
 		8F433496247FA8C600714B95 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433495247FA8C600714B95 /* Resource.swift */; };
 		8F765E0524A4B9E80037C6D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0424A4B9E80037C6D0 /* SettingsViewController.swift */; };
+		8F765E0A24A4C6750037C6D0 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		8F433493247D174C00714B95 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		8F433495247FA8C600714B95 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		8F765E0424A4B9E80037C6D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +263,7 @@
 				8F4334862472B8C400714B95 /* DetailsViewControllers */,
 				8F433482246EDC5100714B95 /* VillagersTableViewController.swift */,
 				8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */,
+				8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				8F765E0524A4B9E80037C6D0 /* SettingsViewController.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
 				8F433471246BF95A00714B95 /* String+Ext.swift in Sources */,
+				8F765E0A24A4C6750037C6D0 /* GeneralSettingsViewController.swift in Sources */,
 				8F43346F246AA7F100714B95 /* PersistenceManager.swift in Sources */,
 				8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */,
 				8F433476246C327A00714B95 /* FishDetailsViewController.swift in Sources */,
