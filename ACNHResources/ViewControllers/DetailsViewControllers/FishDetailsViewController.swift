@@ -29,21 +29,19 @@ class FishDetailsViewController: UIViewController {
         view.addSubview(customView)
         
         NSLayoutConstraint.activate([
-            customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            customView.widthAnchor.constraint(equalToConstant: 400),
-            customView.heightAnchor.constraint(equalToConstant: 740)
+            customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customView.widthAnchor.constraint(equalToConstant: 320),
+            customView.heightAnchor.constraint(equalToConstant: 530),
         ])
         
-        let allYear = "All Year"
+        
         let allDay = "All Day"
         
         customView.resourceImageView.downloadIcon(for: .fish(id: fish.id))
         customView.resourceNameLabel.text = fish.name
         customView.resourceDetailsLabel.text = """
-        Availability in the Northern Hemisphere: \(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern?.convertMonths() ?? "")
-        
-        Availability in the Southern Hemisphere: \(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern?.convertMonths() ?? "")
+        Availability: \(availability(northern: true))
         
         Time: \(fish.availability.isAllDay ? allDay : fish.availability.time ?? "")
         
@@ -55,5 +53,16 @@ class FishDetailsViewController: UIViewController {
         
         CJ's Price: \(fish.cjPrice) Bells
         """
+    }
+    
+    // Temporary Solution
+    func availability(northern: Bool) -> String {
+        let allYear = "All Year"
+        
+        if northern {
+            return "\(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern?.convertMonths() ?? "")"
+        } else {
+            return "\(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern?.convertMonths() ?? "")"
+        }
     }
 }

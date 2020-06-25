@@ -31,8 +31,8 @@ class VillagerDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            customView.widthAnchor.constraint(equalToConstant: 400),
-            customView.heightAnchor.constraint(equalToConstant: 540)
+            customView.widthAnchor.constraint(equalToConstant: 320),
+            customView.heightAnchor.constraint(equalToConstant: 446)
         ])
         
         customView.resourceImageView.downloadImage(for: .villager(id: villager.id))

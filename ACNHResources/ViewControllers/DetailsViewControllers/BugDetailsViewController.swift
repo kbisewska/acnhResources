@@ -29,21 +29,18 @@ class BugDetailsViewController: UIViewController {
         view.addSubview(customView)
         
         NSLayoutConstraint.activate([
-            customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            customView.widthAnchor.constraint(equalToConstant: 400),
-            customView.heightAnchor.constraint(equalToConstant: 740)
+            customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customView.widthAnchor.constraint(equalToConstant: 320),
+            customView.heightAnchor.constraint(equalToConstant: 550),
         ])
         
-        let allYear = "All Year"
         let allDay = "All Day"
         
         customView.resourceImageView.downloadIcon(for: .bug(id: bug.id))
         customView.resourceNameLabel.text = bug.name
         customView.resourceDetailsLabel.text = """
-        Availability in the Northern Hemisphere: \(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern?.convertMonths() ?? "")
-        
-        Availability in the Southern Hemisphere: \(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern?.convertMonths() ?? "")
+        Availability: \(availability(northern: true))
         
         Time: \(bug.availability.isAllDay ? allDay : bug.availability.time ?? "")
         
@@ -55,5 +52,16 @@ class BugDetailsViewController: UIViewController {
         
         Flick's Price: \(bug.flickPrice) Bells
         """
+    }
+    
+    // Temporary Solution
+    func availability(northern: Bool) -> String {
+        let allYear = "All Year"
+        
+        if northern {
+            return "\(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern?.convertMonths() ?? "")"
+        } else {
+            return "\(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern?.convertMonths() ?? "")"
+        }
     }
 }

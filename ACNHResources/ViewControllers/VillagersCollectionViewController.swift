@@ -97,7 +97,7 @@ class VillagersCollectionViewController: UICollectionViewController {
             let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
             layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(200))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(131))
             let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
             
             let layoutSection = NSCollectionLayoutSection(group: layoutGroup)

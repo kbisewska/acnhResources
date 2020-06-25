@@ -25,7 +25,7 @@ final class DetailsView: UIView {
     
     lazy var resourceNameLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
-        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .systemIndigo
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -35,7 +35,7 @@ final class DetailsView: UIView {
     lazy var resourceDetailsLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
         label.numberOfLines = 0
-        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
     
@@ -57,13 +57,13 @@ final class DetailsView: UIView {
         
         addSubviews(resourceImageView, separator, resourceNameLabel, resourceDetailsLabel)
         
-        let padding: CGFloat = 24
+        let padding: CGFloat = 16
         
         NSLayoutConstraint.activate([
             resourceImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             resourceImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            resourceImageView.heightAnchor.constraint(equalToConstant: 200),
-            resourceImageView.widthAnchor.constraint(equalToConstant: 200),
+            resourceImageView.heightAnchor.constraint(equalToConstant: 160),
+            resourceImageView.widthAnchor.constraint(equalToConstant: 160),
             
             resourceNameLabel.topAnchor.constraint(equalTo: resourceImageView.bottomAnchor, constant: padding),
             resourceNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),

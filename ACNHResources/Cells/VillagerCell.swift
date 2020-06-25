@@ -13,21 +13,21 @@ class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseIdentifier = "VillagerCell"
     
     var nameLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel().adjustedForAutoLayout()
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.textColor = .label
         return label
     }()
     
     var birthdayLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel().adjustedForAutoLayout()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .secondaryLabel
         return label
     }()
     
     var villagerImageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView().adjustedForAutoLayout()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -35,7 +35,7 @@ class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         configureLayout()
     }
     
@@ -44,15 +44,19 @@ class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
     }
     
     func configureLayout() {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, birthdayLabel, villagerImageView]).adjustedForAutoLayout()
-        stackView.axis = .vertical
-        contentView.addSubview(stackView)
+        contentView.addSubviews(nameLabel, birthdayLabel, villagerImageView)
+        
+        let padding: CGFloat = 14
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -padding),
+            
+            birthdayLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: padding),
+            
+            villagerImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            villagerImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            villagerImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            villagerImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
         ])
     }
     

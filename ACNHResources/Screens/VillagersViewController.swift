@@ -49,9 +49,9 @@ class VillagersViewController: UIViewController {
             villagersCollectionViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             villagersCollectionViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             villagersCollectionViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            villagersCollectionViewController.view.heightAnchor.constraint(equalToConstant: 250),
+            villagersCollectionViewController.view.heightAnchor.constraint(equalToConstant: 187),
             
-            villagersTableViewController.view.topAnchor.constraint(equalTo: villagersCollectionViewController.view.bottomAnchor, constant: 20),
+            villagersTableViewController.view.topAnchor.constraint(equalTo: villagersCollectionViewController.view.bottomAnchor),
             villagersTableViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             villagersTableViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             villagersTableViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)

@@ -31,8 +31,8 @@ class FossilDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             customView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            customView.widthAnchor.constraint(equalToConstant: 360),
-            customView.heightAnchor.constraint(equalToConstant: 400)
+            customView.widthAnchor.constraint(equalToConstant: 320),
+            customView.heightAnchor.constraint(equalToConstant: 306)
         ])
         
         customView.resourceImageView.downloadImage(for: .fossil(fileName: fossil.fileName))

@@ -121,10 +121,10 @@ class ResourceCell: UITableViewCell {
             resourceNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             resourceImageView.leadingAnchor.constraint(greaterThanOrEqualTo: resourceNameLabel.trailingAnchor, constant: horizontalPadding),
-            resourceImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -horizontalPadding),
+            resourceImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 2 * -horizontalPadding),
             resourceImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             resourceImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
-            resourceImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
+            resourceImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.08),
             resourceImageViewHeightAnchor,
             
             activityIndicator.centerXAnchor.constraint(equalTo: resourceImageView.centerXAnchor),
