@@ -44,6 +44,7 @@
 		8F765E0A24A4C6750037C6D0 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */; };
 		8F765E0C24A4C6C00037C6D0 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0B24A4C6C00037C6D0 /* CreditsViewController.swift */; };
 		8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */; };
+		8F765E1024A5F62E0037C6D0 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -109,6 +110,7 @@
 		8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
 		8F765E0B24A4C6C00037C6D0 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,6 +280,7 @@
 			children = (
 				8F43347B246C35F500714B95 /* DetailsView.swift */,
 				8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */,
+				8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
+				8F765E1024A5F62E0037C6D0 /* CreditsView.swift in Sources */,
 				8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */,
 				8F4334532461827200714B95 /* Villager.swift in Sources */,
 			);
