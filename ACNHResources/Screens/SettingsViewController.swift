@@ -9,23 +9,32 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    private let generalSettingsViewController = GeneralSettingsViewController()
+    private let creditsViewController = CreditsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .systemBackground
+        
+        add(generalSettingsViewController)
+        add(creditsViewController)
+        configureLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureLayout() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .systemBackground
+        
+        let padding: CGFloat = 16
+        
+        NSLayoutConstraint.activate([
+            generalSettingsViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+            generalSettingsViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
+            generalSettingsViewController.view.heightAnchor.constraint(equalToConstant: 186),
+            
+            creditsViewController.view.topAnchor.constraint(equalTo: generalSettingsViewController.view.bottomAnchor, constant: padding),
+            creditsViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
+            creditsViewController.view.heightAnchor.constraint(equalToConstant: 250),
+        ])
     }
-    */
-
 }
