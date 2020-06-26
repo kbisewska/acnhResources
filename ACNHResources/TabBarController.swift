@@ -58,7 +58,7 @@ class TabBarController: UITabBarController {
     
     func createSettingsNavigationController() -> UINavigationController {
         let settingsViewController = SettingsViewController()
-        settingsViewController.title = "Settings"
+        settingsViewController.title = "Settings & More"
         settingsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
         
         return UINavigationController(rootViewController: settingsViewController)
