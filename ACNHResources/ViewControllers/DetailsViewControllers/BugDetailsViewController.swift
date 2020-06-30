@@ -10,6 +10,7 @@ import UIKit
 
 class BugDetailsViewController: UIViewController {
 
+    private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
     private var bug: Bug
     
@@ -40,7 +41,7 @@ class BugDetailsViewController: UIViewController {
         customView.resourceImageView.downloadIcon(for: .bug(id: bug.id))
         customView.resourceNameLabel.text = bug.name
         customView.resourceDetailsLabel.text = """
-        Availability: \(availability(northern: true))
+        Availability (Months): \(getAvailability())
         
         Time: \(bug.availability.isAllDay ? allDay : bug.availability.time ?? "")
         
@@ -54,14 +55,14 @@ class BugDetailsViewController: UIViewController {
         """
     }
     
-    // Temporary Solution
-    func availability(northern: Bool) -> String {
+    func getAvailability() -> String {
         let allYear = "All Year"
+        let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         
-        if northern {
-            return "\(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern?.convertMonths() ?? "")"
-        } else {
-            return "\(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern?.convertMonths() ?? "")"
+        switch hemisphere {
+        case .north: return "\(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern ?? "")"
+        case .south: return "\(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern ?? "")"
+        case .none: return ""
         }
     }
 }
