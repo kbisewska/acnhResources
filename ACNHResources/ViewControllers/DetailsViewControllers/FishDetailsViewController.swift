@@ -10,6 +10,7 @@ import UIKit
 
 class FishDetailsViewController: UIViewController {
 
+    private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
     private var fish: Fish
     
@@ -41,7 +42,7 @@ class FishDetailsViewController: UIViewController {
         customView.resourceImageView.downloadIcon(for: .fish(id: fish.id))
         customView.resourceNameLabel.text = fish.name
         customView.resourceDetailsLabel.text = """
-        Availability: \(availability(northern: true))
+        Availability: \(getAvailability())
         
         Time: \(fish.availability.isAllDay ? allDay : fish.availability.time ?? "")
         
@@ -55,14 +56,14 @@ class FishDetailsViewController: UIViewController {
         """
     }
     
-    // Temporary Solution
-    func availability(northern: Bool) -> String {
+    func getAvailability() -> String {
         let allYear = "All Year"
+        let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         
-        if northern {
-            return "\(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern?.convertMonths() ?? "")"
-        } else {
-            return "\(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern?.convertMonths() ?? "")"
+        switch hemisphere {
+        case .north: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern ?? "")"
+        case .south: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern ?? "")"
+        case .none: return ""
         }
     }
 }
