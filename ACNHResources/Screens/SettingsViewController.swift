@@ -30,11 +30,11 @@ class SettingsViewController: UIViewController {
         NSLayoutConstraint.activate([
             generalSettingsViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             generalSettingsViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            generalSettingsViewController.view.heightAnchor.constraint(equalToConstant: 186),
+            generalSettingsViewController.view.heightAnchor.constraint(equalToConstant: 200),
             
             creditsViewController.view.topAnchor.constraint(equalTo: generalSettingsViewController.view.bottomAnchor, constant: padding),
-            creditsViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            creditsViewController.view.heightAnchor.constraint(equalToConstant: 250),
+            creditsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
+            creditsViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
 }

@@ -68,9 +68,9 @@ final class GeneralSettingsView: UIView {
             settingsLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
             settingsLabel.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
             
-            picker.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: 2),
+            picker.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: verticalPadding / 2),
             picker.centerXAnchor.constraint(equalTo: centerXAnchor),
-            picker.heightAnchor.constraint(equalToConstant: 86)
+            picker.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }

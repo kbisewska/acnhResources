@@ -10,6 +10,14 @@ import UIKit
 
 final class CreditsView: UIView {
     
+    lazy var scrollView: UIScrollView = {
+        return UIScrollView().adjustedForAutoLayout()
+    }()
+    
+    lazy var container: UIView = {
+        return UIView().adjustedForAutoLayout()
+    }()
+    
     lazy var header: UIView = {
         let header = UIView().adjustedForAutoLayout()
         header.backgroundColor = .systemIndigo
@@ -43,8 +51,10 @@ final class CreditsView: UIView {
     private func configureLayout() {
         backgroundColor = .systemBackground
         
-        addSubviews(header, firstCreditsLabel, firstSeparator, secondCreditsLabel, secondSeparator, thirdCreditsLabel)
+        addSubviews(header, scrollView)
         header.addSubview(titleLabel)
+        scrollView.addSubview(container)
+        container.addSubviews(firstCreditsLabel, firstSeparator, secondCreditsLabel, secondSeparator, thirdCreditsLabel)
         
         let horizontalPadding: CGFloat = 20
         let verticalPadding: CGFloat = 16
@@ -60,27 +70,39 @@ final class CreditsView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
             titleLabel.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
             
-            firstCreditsLabel.topAnchor.constraint(equalTo: header.bottomAnchor, constant: verticalPadding),
-            firstCreditsLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
-            firstCreditsLabel.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
+            scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            container.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            container.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            container.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            container.heightAnchor.constraint(equalToConstant: 240),
+            
+            firstCreditsLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: verticalPadding),
+            firstCreditsLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: horizontalPadding),
+            firstCreditsLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -horizontalPadding),
             
             firstSeparator.topAnchor.constraint(equalTo: firstCreditsLabel.bottomAnchor, constant: verticalPadding),
-            firstSeparator.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
-            firstSeparator.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
+            firstSeparator.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: horizontalPadding),
+            firstSeparator.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -horizontalPadding),
             firstSeparator.heightAnchor.constraint(equalToConstant: 1),
             
             secondCreditsLabel.topAnchor.constraint(equalTo: firstSeparator.bottomAnchor, constant: verticalPadding),
-            secondCreditsLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
-            secondCreditsLabel.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
+            secondCreditsLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: horizontalPadding),
+            secondCreditsLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -horizontalPadding),
             
             secondSeparator.topAnchor.constraint(equalTo: secondCreditsLabel.bottomAnchor, constant: verticalPadding),
-            secondSeparator.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
-            secondSeparator.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
+            secondSeparator.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: horizontalPadding),
+            secondSeparator.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -horizontalPadding),
             secondSeparator.heightAnchor.constraint(equalToConstant: 1),
             
             thirdCreditsLabel.topAnchor.constraint(equalTo: secondSeparator.bottomAnchor, constant: verticalPadding),
-            thirdCreditsLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: horizontalPadding),
-            thirdCreditsLabel.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -horizontalPadding),
+            thirdCreditsLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: horizontalPadding),
+            thirdCreditsLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -horizontalPadding),
         ])
     }
     
