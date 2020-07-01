@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BugDetailsViewController: UIViewController {
+final class BugDetailsViewController: UIViewController {
 
     private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
@@ -26,6 +26,10 @@ class BugDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLayout()
+    }
+    
+    private func configureLayout() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.addSubview(customView)
         
@@ -36,10 +40,11 @@ class BugDetailsViewController: UIViewController {
             customView.heightAnchor.constraint(equalToConstant: 550),
         ])
         
-        let allDay = "All Day"
-        
         customView.resourceImageView.downloadIcon(for: .bug(id: bug.id))
         customView.resourceNameLabel.text = bug.name
+        
+        let allDay = "All Day"
+        
         customView.resourceDetailsLabel.text = """
         Availability (Months): \(getAvailability())
         
@@ -55,7 +60,7 @@ class BugDetailsViewController: UIViewController {
         """
     }
     
-    func getAvailability() -> String {
+    private func getAvailability() -> String {
         let allYear = "All Year"
         let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         

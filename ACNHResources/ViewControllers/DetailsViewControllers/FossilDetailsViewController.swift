@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FossilDetailsViewController: UIViewController {
+final class FossilDetailsViewController: UIViewController {
     
     private let customView = DetailsView().adjustedForAutoLayout()
     private var fossil: Fossil
@@ -25,6 +25,10 @@ class FossilDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLayout()
+    }
+    
+    private func configureLayout() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.addSubview(customView)
         

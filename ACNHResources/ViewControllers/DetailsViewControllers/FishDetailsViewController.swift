@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FishDetailsViewController: UIViewController {
+final class FishDetailsViewController: UIViewController {
 
     private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
@@ -26,6 +26,10 @@ class FishDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLayout()
+    }
+    
+    private func configureLayout() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.addSubview(customView)
         
@@ -36,11 +40,11 @@ class FishDetailsViewController: UIViewController {
             customView.heightAnchor.constraint(equalToConstant: 530),
         ])
         
+        customView.resourceImageView.downloadIcon(for: .fish(id: fish.id))
+        customView.resourceNameLabel.text = fish.name
         
         let allDay = "All Day"
         
-        customView.resourceImageView.downloadIcon(for: .fish(id: fish.id))
-        customView.resourceNameLabel.text = fish.name
         customView.resourceDetailsLabel.text = """
         Availability: \(getAvailability())
         
@@ -56,7 +60,7 @@ class FishDetailsViewController: UIViewController {
         """
     }
     
-    func getAvailability() -> String {
+    private func getAvailability() -> String {
         let allYear = "All Year"
         let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         

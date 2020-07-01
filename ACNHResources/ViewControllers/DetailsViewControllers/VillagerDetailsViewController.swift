@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VillagerDetailsViewController: UIViewController {
+final class VillagerDetailsViewController: UIViewController {
     
     private let customView = DetailsView().adjustedForAutoLayout()
     private var villager: Villager
@@ -25,6 +25,10 @@ class VillagerDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLayout()
+    }
+    
+    private func configureLayout() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.addSubview(customView)
         
