@@ -80,8 +80,20 @@ final class NetworkManager {
         getResourceImage(urlRequest: urlRequest, completion: completion)
     }
     
-    func getURL(for resource: String, id: Int) -> URL? {
-        URL(string: baseURL + "icons/\(resource)/\(id)")
+    // MARK: - Cancelling Tasks
+    
+    func cancelTask(for resource: String, id: Int) {
+        guard let key = getURL(for: resource, id: id)?.absoluteString.sha256(),
+            let task = NetworkManager.cancellableTasks[key] else { return }
+        NetworkManager.cancellableTasks.removeValue(forKey: key)
+        task.cancel()
+    }
+    
+    func cancelFossilTask(fileName: String) {
+        guard let key = getFossilURL(fileName: fileName)?.absoluteString.sha256(),
+            let task = NetworkManager.cancellableTasks[key] else { return }
+        NetworkManager.cancellableTasks.removeValue(forKey: key)
+        task.cancel()
     }
     
     // MARK: - Helper Methods
@@ -122,6 +134,10 @@ final class NetworkManager {
         task.resume()
     }
     
+    private func getURL(for resource: String, id: Int) -> URL? {
+        URL(string: baseURL + "icons/\(resource)/\(id)")
+    }
+    
     private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
         let key = urlRequest.url!.absoluteString.sha256()
         
@@ -155,17 +171,5 @@ final class NetworkManager {
         
         NetworkManager.cancellableTasks[key] = task
         task.resume()
-    }
-    
-    func cancelTask(for resource: String, id: Int) {
-        guard let key = getURL(for: resource, id: id)?.absoluteString.sha256(), let task = NetworkManager.cancellableTasks[key] else { return }
-        NetworkManager.cancellableTasks.removeValue(forKey: key)
-        task.cancel()
-    }
-    
-    func cancelFossilTask(fileName: String) {
-        guard let key = getFossilURL(fileName: fileName)?.absoluteString.sha256(), let task = NetworkManager.cancellableTasks[key] else { return }
-        NetworkManager.cancellableTasks.removeValue(forKey: key)
-        task.cancel()
     }
 }
