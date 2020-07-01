@@ -165,18 +165,18 @@
 		8F4334132461687400714B95 /* ACNHResources */ = {
 			isa = PBXGroup;
 			children = (
-				8F765E1324AB3EDD0037C6D0 /* Enums */,
-				8F43347F246D2C3E00714B95 /* Views */,
-				8F433474246C325800714B95 /* ViewControllers */,
-				8F43346924644A8B00714B95 /* Extensions */,
 				8F43346124643F9500714B95 /* Cells */,
+				8F765E1324AB3EDD0037C6D0 /* Enums */,
+				8F43346924644A8B00714B95 /* Extensions */,
 				8F43344F24617D9F00714B95 /* Managers */,
 				8F43344E24617D9A00714B95 /* Models */,
+				8F765E1424ACB4070037C6D0 /* Protocols */,
 				8F43344724616ED200714B95 /* Screens */,
 				8F433444246168E600714B95 /* Supporting Files */,
+				8F765E1524ACB4750037C6D0 /* TabBarControllers */,
+				8F433474246C325800714B95 /* ViewControllers */,
+				8F43347F246D2C3E00714B95 /* Views */,
 				8F4334222461687C00714B95 /* Info.plist */,
-				8F433445246169E000714B95 /* TabBarController.swift */,
-				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
 			);
 			path = ACNHResources;
 			sourceTree = "<group>";
@@ -267,11 +267,9 @@
 		8F433474246C325800714B95 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F765E1724ACB4B20037C6D0 /* VillagersViewControllers */,
+				8F765E1624ACB4A70037C6D0 /* SettingsViewControllers */,
 				8F4334862472B8C400714B95 /* DetailsViewControllers */,
-				8F433482246EDC5100714B95 /* VillagersTableViewController.swift */,
-				8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */,
-				8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */,
-				8F765E0B24A4C6C00037C6D0 /* CreditsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -305,6 +303,40 @@
 				8F433495247FA8C600714B95 /* Resource.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		8F765E1424ACB4070037C6D0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8F765E1524ACB4750037C6D0 /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F433445246169E000714B95 /* TabBarController.swift */,
+			);
+			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
+		8F765E1624ACB4A70037C6D0 /* SettingsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F765E0B24A4C6C00037C6D0 /* CreditsViewController.swift */,
+				8F765E0924A4C6750037C6D0 /* GeneralSettingsViewController.swift */,
+			);
+			path = SettingsViewControllers;
+			sourceTree = "<group>";
+		};
+		8F765E1724ACB4B20037C6D0 /* VillagersViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F43348F247BC63100714B95 /* VillagersCollectionViewController.swift */,
+				8F433482246EDC5100714B95 /* VillagersTableViewController.swift */,
+			);
+			path = VillagersViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
