@@ -106,14 +106,14 @@ final class CreditsView: UIView {
         ])
     }
     
-    func createCreditsLabel() -> UILabel {
+    private func createCreditsLabel() -> UILabel {
         let label = UILabel().adjustedForAutoLayout()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
         return label
     }
     
-    func createSeparator() -> UIView {
+    private func createSeparator() -> UIView {
         let view = UIView().adjustedForAutoLayout()
         view.backgroundColor = .quaternaryLabel
         return view
