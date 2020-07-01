@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Villager: Codable, Equatable, Hashable {
+final class Villager: Codable, Equatable, Hashable {
 
     let id: Int
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
@@ -22,7 +22,7 @@ class Villager: Codable, Equatable, Hashable {
     
     private let nameDetails: Name
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case nameDetails = "name"
         case birthday = "birthday-string"
         case birthdaySimplified = "birthday"

@@ -10,10 +10,6 @@ import Foundation
 
 struct Bug: Codable, Equatable {
     
-    static func == (lhs: Bug, rhs: Bug) -> Bool {
-        lhs.id == rhs.id
-    }
-    
     let id: Int
     var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
     let availability: Availability
@@ -22,7 +18,7 @@ struct Bug: Codable, Equatable {
     
     private let nameDetails: Name
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case nameDetails = "name"
         case flickPrice = "price-flick"
         case id, availability, price
@@ -31,7 +27,7 @@ struct Bug: Codable, Equatable {
     private struct Name: Codable {
         let nameEn: String
         
-        enum CodingKeys: String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case nameEn = "name-EUen"
         }
     }
@@ -45,10 +41,14 @@ struct Bug: Codable, Equatable {
         let location: String
         let rarity: String
         
-        enum CodingKeys: String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case monthNorthern = "month-northern"
             case monthSouthern = "month-southern"
             case time, isAllDay, isAllYear, location, rarity
         }
+    }
+    
+    static func == (lhs: Bug, rhs: Bug) -> Bool {
+        lhs.id == rhs.id
     }
 }
