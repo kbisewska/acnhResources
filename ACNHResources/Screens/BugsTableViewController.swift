@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BugsTableViewController: UITableViewController {
+final class BugsTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
     private let persistenceManager = PersistenceManager()
@@ -27,35 +27,14 @@ class BugsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortItems))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
-        
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        configureSearchController()
+        configureNavigationBar()
         getBugs()
+        configureSearchController()
     }
     
-    func getBugs() {
-        networkManager.getBugsData() { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let bugsDictionary):
-                let bugsList = Array(bugsDictionary.values).sorted { $0.id < $1.id }
-                self.bugs = bugsList
-                
-                let ownedBugs: [Bug]? = try? self.persistenceManager.retrieve(from: "OwnedBugs")
-                self.ownedBugs = ownedBugs ?? []
-                
-                self.tableView.reloadData()
-
-            case .failure(let error):
-                self.presentAlert(title: "Something went wrong", message: error.rawValue)
-            }
-        }
-    }
+    // MARK: - Table View Configuration
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isFiltering ? filteredBugs.count : bugs.count
@@ -115,7 +94,39 @@ class BugsTableViewController: UITableViewController {
         return header
     }
     
-    @objc func filterItems() {
+    // MARK: - Navigation Bar Configuration
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortItems))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
+    }
+    
+    // MARK: - Getting Data
+    
+    private func getBugs() {
+        networkManager.getBugsData() { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let bugsDictionary):
+                let bugsList = Array(bugsDictionary.values).sorted { $0.id < $1.id }
+                self.bugs = bugsList
+                
+                let ownedBugs: [Bug]? = try? self.persistenceManager.retrieve(from: "OwnedBugs")
+                self.ownedBugs = ownedBugs ?? []
+                
+                self.tableView.reloadData()
+
+            case .failure(let error):
+                self.presentAlert(title: "Something went wrong", message: error.rawValue)
+            }
+        }
+    }
+    
+    // MARK: - Filtering Items
+    
+    @objc private func filterItems() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
@@ -143,7 +154,9 @@ class BugsTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    @objc func sortItems() {
+    // MARK: - Sorting Items
+    
+    @objc private func sortItems() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Sort by name: A to Z", style: .default) { [weak self] _ in
@@ -174,6 +187,8 @@ class BugsTableViewController: UITableViewController {
         
         present(alertController, animated: true)
     }
+    
+    // MARK: - Searching Items
     
     override func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {

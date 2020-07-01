@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FishTableViewController: UITableViewController {
+final class FishTableViewController: UITableViewController {
     
     private let networkManager = NetworkManager()
     private let persistenceManager = PersistenceManager()
@@ -27,35 +27,14 @@ class FishTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortItems))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
-        
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        configureSearchController()
+        configureNavigationBar()
         getFish()
+        configureSearchController()
     }
-
-    func getFish() {
-        networkManager.getFishData() { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let fishDictionary):
-                let fishList = Array(fishDictionary.values).sorted { $0.id < $1.id }
-                self.fish = fishList
-                
-                let ownedFish: [Fish]? = try? self.persistenceManager.retrieve(from: "OwnedFish")
-                self.ownedFish = ownedFish ?? []
-                
-                self.tableView.reloadData()
-
-            case .failure(let error):
-                self.presentAlert(title: "Something went wrong", message: error.rawValue)
-            }
-        }
-    }
+    
+    // MARK: - Table View Configuration
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isFiltering ? filteredFish.count : fish.count
@@ -115,7 +94,39 @@ class FishTableViewController: UITableViewController {
         return header
     }
     
-    @objc func filterItems() {
+    // MARK: - Navigation Bar Configuration
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortItems))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
+    }
+    
+    // MARK: - Getting Data
+
+    private func getFish() {
+        networkManager.getFishData() { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let fishDictionary):
+                let fishList = Array(fishDictionary.values).sorted { $0.id < $1.id }
+                self.fish = fishList
+                
+                let ownedFish: [Fish]? = try? self.persistenceManager.retrieve(from: "OwnedFish")
+                self.ownedFish = ownedFish ?? []
+                
+                self.tableView.reloadData()
+
+            case .failure(let error):
+                self.presentAlert(title: "Something went wrong", message: error.rawValue)
+            }
+        }
+    }
+    
+    // MARK: - Filtering Items
+    
+    @objc private func filterItems() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
@@ -143,7 +154,9 @@ class FishTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    @objc func sortItems() {
+    // MARK: - Sorting Items
+    
+    @objc private func sortItems() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Sort by name: A to Z", style: .default) { [weak self] _ in
@@ -175,6 +188,8 @@ class FishTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
+    // MARK: - Searching Items
+    
     override func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             isFiltering = false
@@ -188,4 +203,3 @@ class FishTableViewController: UITableViewController {
         tableView.reloadData()
     }
 }
-

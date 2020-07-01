@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VillagersViewController: UIViewController {
+final class VillagersViewController: UIViewController {
     
     private let networkManager = NetworkManager()
     private let villagersCollectionViewController = VillagersCollectionViewController()
@@ -26,7 +26,9 @@ class VillagersViewController: UIViewController {
         villagersTableViewController.delegate = villagersCollectionViewController
     }
     
-    func getVillagers() {
+    // MARK: - Getting Data
+    
+    private func getVillagers() {
         networkManager.getVillagersData() { [weak self] result in
             guard let self = self else { return }
             
@@ -41,7 +43,9 @@ class VillagersViewController: UIViewController {
         }
     }
     
-    func configureLayout() {
+    // MARK: - Layout Configuration
+    
+    private func configureLayout() {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
@@ -57,6 +61,8 @@ class VillagersViewController: UIViewController {
             villagersTableViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    // MARK: - Searching Items
     
     override func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {

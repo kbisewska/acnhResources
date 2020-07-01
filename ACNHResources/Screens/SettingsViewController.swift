@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
     private let generalSettingsViewController = GeneralSettingsViewController()
     private let creditsViewController = CreditsViewController()
@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
         configureLayout()
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
