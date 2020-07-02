@@ -254,12 +254,12 @@
 		8F43346924644A8B00714B95 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
+				8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */,
 				8F433470246BF95A00714B95 /* String+Ext.swift */,
+				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
+				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
 				8F43347D246C38B500714B95 /* UIView+Ext.swift */,
 				8F433493247D174C00714B95 /* UIViewController+Ext.swift */,
-				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
-				8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,9 +267,9 @@
 		8F433474246C325800714B95 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8F765E1724ACB4B20037C6D0 /* VillagersViewControllers */,
-				8F765E1624ACB4A70037C6D0 /* SettingsViewControllers */,
 				8F4334862472B8C400714B95 /* DetailsViewControllers */,
+				8F765E1624ACB4A70037C6D0 /* SettingsViewControllers */,
+				8F765E1724ACB4B20037C6D0 /* VillagersViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 		8F43347F246D2C3E00714B95 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */,
 				8F43347B246C35F500714B95 /* DetailsView.swift */,
 				8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */,
-				8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
