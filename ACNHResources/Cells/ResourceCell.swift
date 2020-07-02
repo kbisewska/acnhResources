@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResourceCell: UITableViewCell {
+final class ResourceCell: UITableViewCell {
     
     private var resource: Resource?
     
@@ -17,8 +17,7 @@ class ResourceCell: UITableViewCell {
     }()
     
     var checkmarkButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = UIButton().adjustedForAutoLayout()
         button.setImage(UIImage(systemName: "square"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 9, left: 8, bottom: 9, right: 8)
         button.contentVerticalAlignment = .fill
@@ -28,8 +27,7 @@ class ResourceCell: UITableViewCell {
     }()
     
     var resourceNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().adjustedForAutoLayout()
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.textColor = .label
         label.numberOfLines = 0
@@ -38,8 +36,7 @@ class ResourceCell: UITableViewCell {
     }()
     
     var resourceImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageView = UIImageView().adjustedForAutoLayout()
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -66,33 +63,11 @@ class ResourceCell: UITableViewCell {
         }
     }
     
-    @objc func checkmarkButtonTapped(_ sender: UIButton) {
+    @objc private func checkmarkButtonTapped(_ sender: UIButton) {
         checkmarkButtonAction?()
     }
     
     var checkmarkButtonAction: (() -> ())?
-    
-    func configure(with resource: Resource) {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        
-        switch resource {
-        case .villager, .fish, .bug:
-            resourceImageView.downloadIcon(for: resource, completion: { [weak activityIndicator] in
-                activityIndicator?.isHidden = true
-                activityIndicator?.stopAnimating()
-            })
-            
-        case .fossil:
-            resourceImageView.downloadImage(for: resource, completion: { [weak activityIndicator] in
-                activityIndicator?.isHidden = true
-                activityIndicator?.stopAnimating()
-            })
-        }
-        
-        accessoryType = .disclosureIndicator
-        self.resource = resource
-    }
     
     func configure(forSelectionState isSelected: Bool) {
         let stateImage = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
@@ -100,10 +75,7 @@ class ResourceCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        contentView.addSubview(checkmarkButton)
-        contentView.addSubview(resourceImageView)
-        contentView.addSubview(resourceNameLabel)
-        contentView.addSubview(activityIndicator)
+        contentView.addSubviews(checkmarkButton, resourceImageView, resourceNameLabel, activityIndicator)
         
         let horizontalPadding: CGFloat = 16
         let verticalPadding: CGFloat = 2
@@ -130,5 +102,27 @@ class ResourceCell: UITableViewCell {
             activityIndicator.centerXAnchor.constraint(equalTo: resourceImageView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: resourceImageView.centerYAnchor)
         ])
+    }
+    
+    func configure(with resource: Resource) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
+        switch resource {
+        case .villager, .fish, .bug:
+            resourceImageView.downloadIcon(for: resource, completion: { [weak activityIndicator] in
+                activityIndicator?.isHidden = true
+                activityIndicator?.stopAnimating()
+            })
+            
+        case .fossil:
+            resourceImageView.downloadImage(for: resource, completion: { [weak activityIndicator] in
+                activityIndicator?.isHidden = true
+                activityIndicator?.stopAnimating()
+            })
+        }
+        
+        accessoryType = .disclosureIndicator
+        self.resource = resource
     }
 }

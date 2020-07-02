@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
+final class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
     
     static var reuseIdentifier = "VillagerCell"
     
@@ -43,7 +43,7 @@ class VillagerCell: UICollectionViewCell, SelfConfiguringCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         contentView.addSubviews(nameLabel, birthdayLabel, villagerImageView)
         
         let padding: CGFloat = 14
