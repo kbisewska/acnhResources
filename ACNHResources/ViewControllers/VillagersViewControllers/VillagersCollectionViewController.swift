@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VillagersCollectionViewController: UICollectionViewController {
+final class VillagersCollectionViewController: UICollectionViewController {
     
     private let headerReuseIdentifier = "Header"
     private let persistenceManager = PersistenceManager()
@@ -32,7 +32,7 @@ class VillagersCollectionViewController: UICollectionViewController {
         update()
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -41,7 +41,7 @@ class VillagersCollectionViewController: UICollectionViewController {
         collectionView.register(VillagerCell.self, forCellWithReuseIdentifier: VillagerCell.reuseIdentifier)
     }
     
-    func update() {
+    private func update() {
         let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
         villagers = ownedVillagers ?? []
         collectionView.reloadData()
@@ -91,7 +91,7 @@ class VillagersCollectionViewController: UICollectionViewController {
         return header
     }
     
-    func createCompositionalLayout() -> UICollectionViewLayout {
+    private func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { _, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)

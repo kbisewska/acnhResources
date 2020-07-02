@@ -12,7 +12,7 @@ protocol VillagersTableViewControllerDelegate: class {
     func didTapCheckmarkButton()
 }
 
-class VillagersTableViewController: UITableViewController, UISearchBarDelegate {
+final class VillagersTableViewController: UITableViewController, UISearchBarDelegate {
     
     weak var delegate: VillagersTableViewControllerDelegate!
     

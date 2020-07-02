@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GeneralSettingsViewController: UIViewController {
+final class GeneralSettingsViewController: UIViewController {
     
     private let customView = GeneralSettingsView()
     private let persistenceManager = PersistenceManager()
@@ -28,14 +28,14 @@ class GeneralSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         view.backgroundColor = .systemBackground
         
         customView.titleLabel.text = "Settings"
         customView.settingsLabel.text = "Your Hemisphere:"
     }
     
-    func configurePicker() {
+    private func configurePicker() {
         customView.picker.delegate = self
         customView.picker.dataSource = self
         customView.picker.selectRow(0, inComponent: 0, animated: true)

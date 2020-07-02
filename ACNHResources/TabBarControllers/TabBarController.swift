@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
         ]
     }
     
-    func createVillagersNavigationController() -> UINavigationController {
+    private func createVillagersNavigationController() -> UINavigationController {
         let villagersViewController = VillagersViewController()
         villagersViewController.title = "Villagers"
         villagersViewController.tabBarItem = UITabBarItem(title: "Villagers", image: UIImage(named: "Villagers.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
         return UINavigationController(rootViewController: villagersViewController)
     }
     
-    func createFishNavigationController() -> UINavigationController {
+    private func createFishNavigationController() -> UINavigationController {
         let fishTableViewController = FishTableViewController()
         fishTableViewController.title = "Fish"
         fishTableViewController.tabBarItem = UITabBarItem(title: "Fish", image: UIImage(named: "Fish.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
@@ -40,7 +40,7 @@ class TabBarController: UITabBarController {
         return UINavigationController(rootViewController: fishTableViewController)
     }
     
-    func createBugsNavigationController() -> UINavigationController {
+    private func createBugsNavigationController() -> UINavigationController {
         let bugsTableViewController = BugsTableViewController()
         bugsTableViewController.title = "Bugs"
         bugsTableViewController.tabBarItem = UITabBarItem(title: "Bugs", image: UIImage(named: "Bug.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
@@ -48,7 +48,7 @@ class TabBarController: UITabBarController {
         return UINavigationController(rootViewController: bugsTableViewController)
     }
     
-    func createFossilsNavigationController() -> UINavigationController {
+    private func createFossilsNavigationController() -> UINavigationController {
         let fossilsTableViewController = FossilsTableViewController()
         fossilsTableViewController.title = "Fossils"
         fossilsTableViewController.tabBarItem = UITabBarItem(title: "Fossils", image: UIImage(named: "Fossil.png")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
@@ -56,7 +56,7 @@ class TabBarController: UITabBarController {
         return UINavigationController(rootViewController: fossilsTableViewController)
     }
     
-    func createSettingsNavigationController() -> UINavigationController {
+    private func createSettingsNavigationController() -> UINavigationController {
         let settingsViewController = SettingsViewController()
         settingsViewController.title = "Settings & More"
         settingsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
