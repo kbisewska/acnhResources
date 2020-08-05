@@ -10,7 +10,7 @@ import UIKit
 
 final class FossilsTableViewController: UITableViewController {
     
-    private let networkManager = NetworkManager()
+    private let networkManager = Current.networkManager
     private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "FossilCell"
     
