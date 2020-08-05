@@ -10,7 +10,7 @@ import UIKit
 
 final class VillagersViewController: UIViewController {
     
-    private let networkManager = NetworkManager()
+    private let networkManager = Current.networkManager
     private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
     
