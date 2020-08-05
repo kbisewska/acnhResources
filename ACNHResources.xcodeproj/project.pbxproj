@@ -47,6 +47,12 @@
 		8F765E1224A63FAD0037C6D0 /* Hemisphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E1124A63FAC0037C6D0 /* Hemisphere.swift */; };
 		8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */; };
 		8F765E2424B322140037C6D0 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8F765E2324B322140037C6D0 /* SnapshotTesting */; };
+		8F765E2724D961E20037C6D0 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 8F765E2624D961E20037C6D0 /* OHHTTPStubs */; };
+		8F765E2924D961E20037C6D0 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F765E2824D961E20037C6D0 /* OHHTTPStubsSwift */; };
+		8F765E2B24D96D8F0037C6D0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E2A24D96D8F0037C6D0 /* Environment.swift */; };
+		8F765E2E24D96FB00037C6D0 /* fish.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E2D24D96FB00037C6D0 /* fish.json */; };
+		8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */; };
+		8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +111,10 @@
 		8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		8F765E1124A63FAC0037C6D0 /* Hemisphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hemisphere.swift; sourceTree = "<group>"; };
 		8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E2A24D96D8F0037C6D0 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		8F765E2D24D96FB00037C6D0 /* fish.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fish.json; sourceTree = "<group>"; };
+		8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
+		8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +132,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F765E2424B322140037C6D0 /* SnapshotTesting in Frameworks */,
+				8F765E2924D961E20037C6D0 /* OHHTTPStubsSwift in Frameworks */,
+				8F765E2724D961E20037C6D0 /* OHHTTPStubs in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +184,7 @@
 				8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */,
 				8F43342D2461687C00714B95 /* Info.plist */,
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
+				8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */,
 			);
 			path = ACNHResourcesTests;
 			sourceTree = "<group>";
@@ -183,6 +196,7 @@
 				8F4334142461687400714B95 /* AppDelegate.swift */,
 				8F4334162461687400714B95 /* SceneDelegate.swift */,
 				8F43341F2461687C00714B95 /* LaunchScreen.storyboard */,
+				8F765E2A24D96D8F0037C6D0 /* Environment.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,6 +227,7 @@
 		8F43344F24617D9F00714B95 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8F765E2C24D96F980037C6D0 /* Stubs */,
 				8F43345024617DB000714B95 /* NetworkManager.swift */,
 				8F43346E246AA7F000714B95 /* PersistenceManager.swift */,
 			);
@@ -237,6 +252,7 @@
 				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
 				8F43347D246C38B500714B95 /* UIView+Ext.swift */,
 				8F433493247D174C00714B95 /* UIViewController+Ext.swift */,
+				8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,6 +339,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F765E2C24D96F980037C6D0 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				8F765E2D24D96FB00037C6D0 /* fish.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -361,6 +385,8 @@
 			name = ACNHResourcesTests;
 			packageProductDependencies = (
 				8F765E2324B322140037C6D0 /* SnapshotTesting */,
+				8F765E2624D961E20037C6D0 /* OHHTTPStubs */,
+				8F765E2824D961E20037C6D0 /* OHHTTPStubsSwift */,
 			);
 			productName = ACNHResourcesTests;
 			productReference = 8F4334272461687C00714B95 /* ACNHResourcesTests.xctest */;
@@ -396,6 +422,7 @@
 			mainGroup = 8F4334082461687400714B95;
 			packageReferences = (
 				8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 8F4334122461687400714B95 /* Products */;
 			projectDirPath = "";
@@ -412,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F765E2E24D96FB00037C6D0 /* fish.json in Resources */,
 				8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */,
 				8F43341E2461687C00714B95 /* Assets.xcassets in Resources */,
 			);
@@ -446,6 +474,7 @@
 				8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */,
 				8F433476246C327A00714B95 /* FishDetailsViewController.swift in Sources */,
 				8F433478246C328A00714B95 /* BugDetailsViewController.swift in Sources */,
+				8F765E2B24D96D8F0037C6D0 /* Environment.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
 				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
 				8F43347C246C35F500714B95 /* DetailsView.swift in Sources */,
@@ -460,6 +489,7 @@
 				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
 				8F43348A2475316400714B95 /* SelfConfiguringCell.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
+				8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */,
 				8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */,
 				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */,
@@ -475,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
 			);
@@ -739,6 +770,14 @@
 				minimumVersion = 1.8.1;
 			};
 		};
+		8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -746,6 +785,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		8F765E2624D961E20037C6D0 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		8F765E2824D961E20037C6D0 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
