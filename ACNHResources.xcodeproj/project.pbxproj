@@ -54,6 +54,7 @@
 		8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */; };
 		8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */; };
 		8F765E3524DAD1AC0037C6D0 /* villagers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3424DAD1AC0037C6D0 /* villagers.json */; };
+		8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,7 @@
 		8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
 		8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3424DAD1AC0037C6D0 /* villagers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = villagers.json; sourceTree = "<group>"; };
+		8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +189,7 @@
 				8F43342D2461687C00714B95 /* Info.plist */,
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
 				8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */,
+				8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */,
 			);
 			path = ACNHResourcesTests;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */,
 				8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
