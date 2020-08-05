@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NetworkManager {
+class NetworkManager {
     
     private let baseURL = "http://acnhapi.com/v1/"
     private let urlSession = URLSession(configuration: .default)
@@ -172,4 +172,21 @@ final class NetworkManager {
         NetworkManager.cancellableTasks[key] = task
         task.resume()
     }
+}
+
+// MARK: - Mocking Network Requests
+
+private class NetworkManagerMock: NetworkManager {
+    
+    override func getFishData(completion: @escaping (Result<[String : Fish], ErrorMessage>) -> Void) {
+        let response = Bundle.main.decode([String: Fish].self, from: "fish.json")
+        completion(.success(response))
+    }
+}
+
+extension NetworkManager {
+    
+    static var mock: NetworkManager = {
+       NetworkManagerMock()
+    }()
 }
