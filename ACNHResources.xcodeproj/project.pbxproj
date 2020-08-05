@@ -57,6 +57,7 @@
 		8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */; };
 		8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3824DAD6EF0037C6D0 /* bugs.json */; };
 		8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */; };
+		8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3C24DAE3B40037C6D0 /* fossils.json */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,7 @@
 		8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3824DAD6EF0037C6D0 /* bugs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bugs.json; sourceTree = "<group>"; };
 		8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3C24DAE3B40037C6D0 /* fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fossils.json; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,6 +357,7 @@
 				8F765E3424DAD1AC0037C6D0 /* villagers.json */,
 				8F765E2D24D96FB00037C6D0 /* fish.json */,
 				8F765E3824DAD6EF0037C6D0 /* bugs.json */,
+				8F765E3C24DAE3B40037C6D0 /* fossils.json */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				8F765E2E24D96FB00037C6D0 /* fish.json in Resources */,
 				8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */,
 				8F43341E2461687C00714B95 /* Assets.xcassets in Resources */,
+				8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */,
 				8F765E3524DAD1AC0037C6D0 /* villagers.json in Resources */,
 				8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */,
 			);
