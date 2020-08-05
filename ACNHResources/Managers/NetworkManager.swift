@@ -178,6 +178,11 @@ class NetworkManager {
 
 private class NetworkManagerMock: NetworkManager {
     
+    override func getVillagersData(completion: @escaping (Result<[String : Villager], ErrorMessage>) -> Void) {
+        let response = Bundle.main.decode([String: Villager].self, from: "villagers.json")
+        completion(.success(response))
+    }
+    
     override func getFishData(completion: @escaping (Result<[String : Fish], ErrorMessage>) -> Void) {
         let response = Bundle.main.decode([String: Fish].self, from: "fish.json")
         completion(.success(response))
