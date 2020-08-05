@@ -55,6 +55,7 @@
 		8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */; };
 		8F765E3524DAD1AC0037C6D0 /* villagers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3424DAD1AC0037C6D0 /* villagers.json */; };
 		8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */; };
+		8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3824DAD6EF0037C6D0 /* bugs.json */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,7 @@
 		8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3424DAD1AC0037C6D0 /* villagers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = villagers.json; sourceTree = "<group>"; };
 		8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3824DAD6EF0037C6D0 /* bugs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bugs.json; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -349,6 +351,7 @@
 			children = (
 				8F765E3424DAD1AC0037C6D0 /* villagers.json */,
 				8F765E2D24D96FB00037C6D0 /* fish.json */,
+				8F765E3824DAD6EF0037C6D0 /* bugs.json */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */,
 				8F43341E2461687C00714B95 /* Assets.xcassets in Resources */,
 				8F765E3524DAD1AC0037C6D0 /* villagers.json in Resources */,
+				8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
