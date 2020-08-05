@@ -187,6 +187,11 @@ private class NetworkManagerMock: NetworkManager {
         let response = Bundle.main.decode([String: Fish].self, from: "fish.json")
         completion(.success(response))
     }
+    
+    override func getBugsData(completion: @escaping (Result<[String : Bug], ErrorMessage>) -> Void) {
+        let response = Bundle.main.decode([String: Bug].self, from: "bugs.json")
+        completion(.success(response))
+    }
 }
 
 extension NetworkManager {
