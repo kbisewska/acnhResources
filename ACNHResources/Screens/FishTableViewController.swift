@@ -10,7 +10,7 @@ import UIKit
 
 final class FishTableViewController: UITableViewController {
     
-    private let networkManager = NetworkManager()
+    private let networkManager = Current.networkManager
     private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "FishCell"
     
