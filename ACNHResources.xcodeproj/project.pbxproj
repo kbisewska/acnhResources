@@ -59,6 +59,7 @@
 		8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */; };
 		8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3C24DAE3B40037C6D0 /* fossils.json */; };
 		8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */; };
+		8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3C24DAE3B40037C6D0 /* fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fossils.json; sourceTree = "<group>"; };
 		8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 				8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */,
 				8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */,
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
+				8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */,
 			);
 			path = ACNHResourcesTests;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
+				8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */,
 				8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */,
 				8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */,
 			);
