@@ -62,6 +62,8 @@
 		8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */; };
 		8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */; };
+		8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */; };
+		8F765E4B24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
 		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -133,6 +135,8 @@
 		8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +213,8 @@
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
 				8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */,
 				8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */,
+				8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */,
+				8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */,
 			);
 			path = ACNHResourcesTests;
 			sourceTree = "<group>";
@@ -539,6 +545,8 @@
 				8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */,
+				8F765E4B24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift in Sources */,
+				8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */,
