@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6225C410770088F274 /* RealmSwift */; };
+		8F2A5C6525C410770088F274 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6425C410770088F274 /* Realm */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
 		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
@@ -146,6 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F2A5C6525C410770088F274 /* Realm in Frameworks */,
+				8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +401,8 @@
 			);
 			name = ACNHResources;
 			packageProductDependencies = (
+				8F2A5C6225C410770088F274 /* RealmSwift */,
+				8F2A5C6425C410770088F274 /* Realm */,
 			);
 			productName = ACNHResources;
 			productReference = 8F4334112461687400714B95 /* ACNHResources.app */;
@@ -456,6 +462,7 @@
 			packageReferences = (
 				8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 8F4334122461687400714B95 /* Products */;
 			projectDirPath = "";
@@ -808,6 +815,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
 		8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
@@ -827,6 +842,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F2A5C6225C410770088F274 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		8F2A5C6425C410770088F274 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
 		8F765E2324B322140037C6D0 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
