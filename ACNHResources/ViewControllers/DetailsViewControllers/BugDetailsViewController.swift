@@ -48,11 +48,11 @@ final class BugDetailsViewController: UIViewController {
         customView.resourceDetailsLabel.text = """
         Availability (Months): \(getAvailability())
         
-        Time: \(bug.availability.isAllDay ? allDay : bug.availability.time ?? "")
+        Time: \(bug.isAllDay ? allDay : bug.time ?? "")
         
-        Location: \(bug.availability.location)
+        Location: \(bug.location)
         
-        Rarity: \(bug.availability.rarity)
+        Rarity: \(bug.rarity)
         
         Price: \(bug.price) Bells
         
@@ -65,8 +65,8 @@ final class BugDetailsViewController: UIViewController {
         let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         
         switch hemisphere {
-        case .north: return "\(bug.availability.isAllYear ? allYear : bug.availability.monthNorthern ?? "")"
-        case .south: return "\(bug.availability.isAllYear ? allYear : bug.availability.monthSouthern ?? "")"
+        case .north: return "\(bug.isAllYear ? allYear : bug.monthNorthern ?? "")"
+        case .south: return "\(bug.isAllYear ? allYear : bug.monthSouthern ?? "")"
         case .none: return ""
         }
     }
