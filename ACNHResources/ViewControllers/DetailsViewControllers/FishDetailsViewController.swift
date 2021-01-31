@@ -48,11 +48,11 @@ final class FishDetailsViewController: UIViewController {
         customView.resourceDetailsLabel.text = """
         Availability: \(getAvailability())
         
-        Time: \(fish.availability.isAllDay ? allDay : fish.availability.time ?? "")
+        Time: \(fish.isAllDay ? allDay : fish.time ?? "")
         
-        Location: \(fish.availability.location)
+        Location: \(fish.location)
         
-        Rarity: \(fish.availability.rarity)
+        Rarity: \(fish.rarity)
         
         Price: \(fish.price) Bells
         
@@ -65,8 +65,8 @@ final class FishDetailsViewController: UIViewController {
         let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
         
         switch hemisphere {
-        case .north: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern ?? "")"
-        case .south: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern ?? "")"
+        case .north: return "\(fish.isAllYear ? allYear : fish.monthNorthern ?? "")"
+        case .south: return "\(fish.isAllYear ? allYear : fish.monthSouthern ?? "")"
         case .none: return ""
         }
     }
