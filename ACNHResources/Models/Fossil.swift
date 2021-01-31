@@ -7,30 +7,46 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Fossil: Codable, Equatable {
+final class Fossil: Object, Codable {
     
-    let fileName: String
-    var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
-    let price: Int
+    @objc dynamic var fileName: String = ""
+    @objc dynamic var name: String = ""
+    @objc dynamic var price: Int = 0
     
-    private let nameDetails: Name
+    @objc dynamic var isOwned: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case fileName = "file-name"
-        case nameDetails = "name"
-        case price
+        case name, price
     }
     
-    private struct Name: Codable {
-        let nameEn: String
+    private enum NameCodingKeys: String, CodingKey {
+        case nameEn = "name-EUen"
+    }
+    
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
         
-        private enum CodingKeys: String, CodingKey {
-            case nameEn = "name-EUen"
-        }
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        fileName = try container.decode(String.self, forKey: .fileName)
+        price = try container.decode(Int.self, forKey: .price)
+        
+        let nameContainer = try container.nestedContainer(keyedBy: NameCodingKeys.self, forKey: .name)
+        name = try nameContainer.decode(String.self, forKey: .nameEn)
     }
     
-    static func == (lhs: Fossil, rhs: Fossil) -> Bool {
-        lhs.fileName == rhs.fileName
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(fileName, forKey: .fileName)
+        try container.encode(price, forKey: .price)
+        
+        var nameContainer = container.nestedContainer(keyedBy: NameCodingKeys.self, forKey: .name)
+        try nameContainer.encode(name, forKey: .nameEn)
+    }
+    
+    override class func primaryKey() -> String? {
+        return "fileName"
     }
 }
