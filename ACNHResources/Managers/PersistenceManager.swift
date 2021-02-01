@@ -80,4 +80,10 @@ struct PersistenceManager {
         guard let results = realm?.objects(type) else { return [] }
         return Array(results)
     }
+    
+    func delete<T: Object>(objectsOfType type: T.Type) {
+        try? realm?.write {
+            realm?.delete(retrieve(objectsOfType: type))
+        }
+    }
 }
