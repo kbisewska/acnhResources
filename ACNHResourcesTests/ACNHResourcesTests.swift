@@ -25,12 +25,6 @@ class ACNHResourcesTests: XCTestCase {
         XCTAssertEqual(date.convertToDayMonthFormat(), "1/1")
     }
     
-    func testCapitalizingFirstLetter() {
-        let word = "test"
-        
-        XCTAssertEqual(word.capitalizeFirstLetter(), "Test")
-    }
-    
     func testSHA256Hash() {
         let word = "test"
         
