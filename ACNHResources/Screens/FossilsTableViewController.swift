@@ -31,7 +31,7 @@ final class FossilsTableViewController: UITableViewController {
         let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
         
         if fossilObjects.isEmpty {
-            getFossils()
+            getFossils(needsUpdate: false)
         } else {
             fossils = fossilObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
@@ -39,6 +39,7 @@ final class FossilsTableViewController: UITableViewController {
         
         configureNavigationBar()
         configureSearchController()
+        configureRefreshControl()
     }
     
     // MARK: - Table View Configuration
@@ -112,9 +113,23 @@ final class FossilsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
     }
     
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getFossils(needsUpdate: true)
+    }
+    
     // MARK: - Getting Data
     
-    private func getFossils() {
+    private func getFossils(needsUpdate: Bool) {
+        let ownedFossils = fossils.filter { $0.isOwned }
+        
         networkManager.getFossilsData() { [weak self] result in
             guard let self = self else { return }
 
@@ -124,15 +139,24 @@ final class FossilsTableViewController: UITableViewController {
                     .sorted { $0.fileName < $1.fileName }
                     .map { entry -> Fossil in
                         entry.name = entry.name.capitalized
+                        if needsUpdate {
+                            entry.isOwned = ownedFossils.first { $0.fileName == entry.fileName }?.isOwned ?? false
+                        }
                         return entry
                     }
+                
+                if needsUpdate {
+                    self.persistenceManager.delete(objectsOfType: Fossil.self)
+                }
                 
                 self.persistenceManager.store(objects: self.fossils)
                 
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
             }
         }
     }
