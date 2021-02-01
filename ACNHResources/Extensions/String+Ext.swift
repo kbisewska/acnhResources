@@ -11,10 +11,6 @@ import Foundation
 
 extension String {
     
-    func capitalizeFirstLetter() -> String {
-        prefix(1).capitalized + dropFirst()
-    }
-    
     func sha256() -> String {
         return SHA256.hash(data: Data(self.utf8))
             .compactMap { String(format: "%02x", $0) }.joined()
