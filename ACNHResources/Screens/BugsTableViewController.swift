@@ -17,20 +17,27 @@ final class BugsTableViewController: UITableViewController {
     var bugs = [Bug]()
     var filteredBugs = [Bug]()
     var isFiltering = false
-    var ownedBugs = [Bug]() {
-        didSet {
-            ownedCountLabel?.text = "You found \(ownedBugs.count) out of \(bugs.count) bugs."
-        }
-    }
+    
     weak var ownedCountLabel: UILabel?
+    var ownedCountLabelText: String {
+        "You found \(bugs.filter { $0.isOwned }.count) out of \(bugs.count) bugs."
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
+        
+        if bugsObjects.isEmpty {
+            getBugs()
+        } else {
+            bugs = bugsObjects.sorted { $0.name < $1.name }
+            tableView.reloadData()
+        }
+        
         configureNavigationBar()
-        getBugs()
         configureSearchController()
     }
     
@@ -45,16 +52,19 @@ final class BugsTableViewController: UITableViewController {
         let activeBugsArray = isFiltering ? filteredBugs : bugs
         let bug = activeBugsArray[indexPath.row]
         
-        var selectionState = ownedBugs.contains(bug)
+        var selectionState = bug.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
-            try? self.persistenceManager.store(value: self.ownedBugs, with: "OwnedBugs")
+            self.persistenceManager.update {
+                bug.isOwned = !bug.isOwned
+            }
             
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState
+            
+            self.ownedCountLabel?.text = self.ownedCountLabelText
         }
         
         let resource = Resource.bug(id: bug.id)
@@ -78,7 +88,7 @@ final class BugsTableViewController: UITableViewController {
         header.backgroundColor = .systemIndigo
         
         let headerTitle = UILabel().adjustedForAutoLayout()
-        headerTitle.configureHeaderLabel(text: "You found \(ownedBugs.count) out of \(bugs.count) bugs.", textAlignment: .center)
+        headerTitle.configureHeaderLabel(text: ownedCountLabelText, textAlignment: .center)
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
         
@@ -110,11 +120,14 @@ final class BugsTableViewController: UITableViewController {
 
             switch result {
             case .success(let bugsDictionary):
-                let bugsList = Array(bugsDictionary.values).sorted { $0.id < $1.id }
-                self.bugs = bugsList
+                self.bugs = Array(bugsDictionary.values)
+                    .sorted { $0.name < $1.name }
+                    .map { entry -> Bug in
+                        entry.name = entry.name.capitalized
+                        return entry
+                    }
                 
-                let ownedBugs: [Bug]? = try? self.persistenceManager.retrieve(from: "OwnedBugs")
-                self.ownedBugs = ownedBugs ?? []
+                self.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
 
@@ -132,14 +145,14 @@ final class BugsTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.ownedBugs
+            self.filteredBugs = self.bugs.filter { $0.isOwned }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.bugs.filter { !self.ownedBugs.contains($0) }
+            self.filteredBugs = self.bugs.filter { !$0.isOwned }
             self.tableView.reloadData()
         })
         
