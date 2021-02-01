@@ -17,20 +17,27 @@ final class FossilsTableViewController: UITableViewController {
     var fossils = [Fossil]()
     var filteredFossils = [Fossil]()
     var isFiltering = false
-    var ownedFossils = [Fossil]() {
-        didSet {
-            ownedCountLabel?.text = "You found \(ownedFossils.count) out of \(fossils.count) fossils."
-        }
-    }
+    
     weak var ownedCountLabel: UILabel?
+    var ownedCountLabelText: String {
+        "You found \(fossils.filter { $0.isOwned }.count) out of \(fossils.count) fossils."
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
+        
+        if fossilObjects.isEmpty {
+            getFossils()
+        } else {
+            fossils = fossilObjects.sorted { $0.name < $1.name }
+            tableView.reloadData()
+        }
+        
         configureNavigationBar()
-        getFossils()
         configureSearchController()
     }
     
@@ -45,16 +52,19 @@ final class FossilsTableViewController: UITableViewController {
         let activeFossilsArray = isFiltering ? filteredFossils : fossils
         let fossil = activeFossilsArray[indexPath.row]
         
-        var selectionState = ownedFossils.contains(fossil)
+        var selectionState = fossil.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedFossils.removeAll(where: { $0.fileName == fossil.fileName }) : self.ownedFossils.append(fossil)
-            try? self.persistenceManager.store(value: self.ownedFossils, with: "OwnedFossils")
+            self.persistenceManager.update {
+                fossil.isOwned = !fossil.isOwned
+            }
             
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState
+            
+            self.ownedCountLabel?.text = self.ownedCountLabelText
         }
         
         let resource = Resource.fossil(fileName: fossil.fileName)
@@ -78,7 +88,7 @@ final class FossilsTableViewController: UITableViewController {
         header.backgroundColor = .systemIndigo
         
         let headerTitle = UILabel().adjustedForAutoLayout()
-        headerTitle.configureHeaderLabel(text: "You found \(ownedFossils.count) out of \(fossils.count) fossils.", textAlignment: .center)
+        headerTitle.configureHeaderLabel(text: ownedCountLabelText, textAlignment: .center)
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
         
@@ -110,11 +120,14 @@ final class FossilsTableViewController: UITableViewController {
 
             switch result {
             case .success(let fossilsDictionary):
-                let fossilsList = Array(fossilsDictionary.values).sorted { $0.fileName.lowercased() < $1.fileName.lowercased() }
-                self.fossils = fossilsList
+                self.fossils = Array(fossilsDictionary.values)
+                    .sorted { $0.fileName < $1.fileName }
+                    .map { entry -> Fossil in
+                        entry.name = entry.name.capitalized
+                        return entry
+                    }
                 
-                let ownedFossils: [Fossil]? = try? self.persistenceManager.retrieve(from: "OwnedFossils")
-                self.ownedFossils = ownedFossils ?? []
+                self.persistenceManager.store(objects: self.fossils)
                 
                 self.tableView.reloadData()
 
@@ -132,14 +145,14 @@ final class FossilsTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredFossils = self.ownedFossils
+            self.filteredFossils = self.fossils.filter { $0.isOwned }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredFossils = self.fossils.filter { !self.ownedFossils.contains($0) }
+            self.filteredFossils = self.fossils.filter { !$0.isOwned }
             self.tableView.reloadData()
         })
         
