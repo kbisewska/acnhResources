@@ -31,7 +31,7 @@ final class FishTableViewController: UITableViewController {
         let fishObjects = persistenceManager.retrieve(objectsOfType: Fish.self)
         
         if fishObjects.isEmpty {
-            getFish()
+            getFish(needsUpdate: false)
         } else {
             fish = fishObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
@@ -39,6 +39,7 @@ final class FishTableViewController: UITableViewController {
         
         configureNavigationBar()
         configureSearchController()
+        configureRefreshControl()
     }
     
     // MARK: - Table View Configuration
@@ -112,9 +113,23 @@ final class FishTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
     }
     
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getFish(needsUpdate: true)
+    }
+    
     // MARK: - Getting Data
 
-    private func getFish() {
+    private func getFish(needsUpdate: Bool) {
+        let ownedFish = fish.filter { $0.isOwned }
+        
         networkManager.getFishData() { [weak self] result in
             guard let self = self else { return }
 
@@ -124,15 +139,24 @@ final class FishTableViewController: UITableViewController {
                     .sorted { $0.name < $1.name }
                     .map { entry -> Fish in
                         entry.name = entry.name.capitalized
+                        if needsUpdate {
+                            entry.isOwned = ownedFish.first { $0.id == entry.id }?.isOwned ?? false
+                        }
                         return entry
                     }
+                
+                if needsUpdate {
+                    self.persistenceManager.delete(objectsOfType: Fish.self)
+                }
                 
                 self.persistenceManager.store(objects: self.fish)
                 
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
             }
         }
     }
