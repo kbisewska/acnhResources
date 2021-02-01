@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct PersistenceManager {
 
     private let fileManager = FileManager.default
     private let userDefaults = UserDefaults.standard
+    private let realm = try? Realm()
     
     // MARK: - Storing and Retrieving Images Using FileManager
     
@@ -58,5 +60,24 @@ struct PersistenceManager {
         } catch (let error) {
             throw error
         }
+    }
+    
+    // MARK: - Storing and Retrieving Data Using Realm Database
+    
+    func store<T: Object>(objects: [T]) {
+        try? realm?.write {
+            realm?.add(objects)
+        }
+    }
+    
+    func update(with action: @escaping () -> Void) {
+        try? realm?.write {
+            action()
+        }
+    }
+    
+    func retrieve<T: Object>(objectsOfType type: T.Type) -> [T] {
+        guard let results = realm?.objects(type) else { return [] }
+        return Array(results)
     }
 }
