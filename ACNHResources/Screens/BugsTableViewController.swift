@@ -31,7 +31,7 @@ final class BugsTableViewController: UITableViewController {
         let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
         
         if bugsObjects.isEmpty {
-            getBugs()
+            getBugs(needsUpdate: false)
         } else {
             bugs = bugsObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
@@ -39,6 +39,7 @@ final class BugsTableViewController: UITableViewController {
         
         configureNavigationBar()
         configureSearchController()
+        configureRefreshControl()
     }
     
     // MARK: - Table View Configuration
@@ -112,9 +113,23 @@ final class BugsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
     }
     
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getBugs(needsUpdate: true)
+    }
+    
     // MARK: - Getting Data
     
-    private func getBugs() {
+    private func getBugs(needsUpdate: Bool) {
+        let ownedBugs = bugs.filter { $0.isOwned }
+        
         networkManager.getBugsData() { [weak self] result in
             guard let self = self else { return }
 
@@ -124,15 +139,24 @@ final class BugsTableViewController: UITableViewController {
                     .sorted { $0.name < $1.name }
                     .map { entry -> Bug in
                         entry.name = entry.name.capitalized
+                        if needsUpdate {
+                            entry.isOwned = ownedBugs.first { $0.id == entry.id }?.isOwned ?? false
+                        }
                         return entry
                     }
+                
+                if needsUpdate {
+                    self.persistenceManager.delete(objectsOfType: Bug.self)
+                }
                 
                 self.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
             }
         }
     }
