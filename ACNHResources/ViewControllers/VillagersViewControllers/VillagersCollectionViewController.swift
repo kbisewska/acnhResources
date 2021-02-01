@@ -42,8 +42,10 @@ final class VillagersCollectionViewController: UICollectionViewController {
     }
     
     private func update() {
-        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
-        villagers = ownedVillagers ?? []
+        villagers = persistenceManager.retrieve(objectsOfType: Villager.self)
+            .filter { $0.isOwned }
+            .sorted { $0.name < $1.name }
+        
         collectionView.reloadData()
         
         if let birthdayVillager = villagers.first(where: { $0.birthdaySimplified == Date().convertToDayMonthFormat() }) {

@@ -11,15 +11,23 @@ import UIKit
 final class VillagersViewController: UIViewController {
     
     private let networkManager = Current.networkManager
+    private let persistenceManager = PersistenceManager()
     private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
+        
+        if villagerObjects.isEmpty {
+            getVillagers()
+        } else {
+            villagersTableViewController.update(with: villagerObjects.sorted { $0.name < $1.name })
+        }
+        
         add(villagersCollectionViewController)
         add(villagersTableViewController)
-        getVillagers()
         configureLayout()
         configureSearchController()
         
@@ -34,8 +42,10 @@ final class VillagersViewController: UIViewController {
             
             switch result {
             case .success(let villagersDictionary):
-                let villagersList = Array(villagersDictionary.values).sorted { $0.name < $1.name }
-                self.villagersTableViewController.update(with: villagersList)
+                let villagers = Array(villagersDictionary.values).sorted { $0.name < $1.name }
+                self.villagersTableViewController.update(with: villagers)
+                
+                self.persistenceManager.store(objects: villagers)
                 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)

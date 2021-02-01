@@ -22,7 +22,6 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
     var isFiltering = false
-    var ownedVillagers = [Villager]()
     
     init(with villagers: [Villager]) {
         super.init(nibName: nil, bundle: nil)
@@ -41,8 +40,8 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     
     func update(with villagers: [Villager]) {
         self.villagers = villagers
-        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
-        self.ownedVillagers = ownedVillagers ?? []
+//        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
+//        self.ownedVillagers = ownedVillagers ?? []
         tableView.reloadData()
     }
 
@@ -55,12 +54,14 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         let activeVillagersArray = isFiltering ? filteredVillagers : villagers
         let villager = activeVillagersArray[indexPath.row]
         
-        var selectionState = ownedVillagers.contains(villager)
+        var selectionState = villager.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedVillagers.removeAll(where: { $0.id == villager.id }) : self.ownedVillagers.append(villager)
-            try? self.persistenceManager.store(value: self.ownedVillagers, with: "OwnedVillagers")
+            self.persistenceManager.update {
+                villager.isOwned = !villager.isOwned
+            }
+            
             self.delegate.didTapCheckmarkButton()
             
             let updatedState = !selectionState
