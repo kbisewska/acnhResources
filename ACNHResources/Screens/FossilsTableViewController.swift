@@ -28,6 +28,10 @@ final class FossilsTableViewController: UITableViewController {
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        configureNavigationBar()
+        configureRefreshControl()
+        configureSearchController()
+        
         let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
         
         if fossilObjects.isEmpty {
@@ -37,9 +41,7 @@ final class FossilsTableViewController: UITableViewController {
             tableView.reloadData()
         }
         
-        configureNavigationBar()
-        configureSearchController()
-        configureRefreshControl()
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
