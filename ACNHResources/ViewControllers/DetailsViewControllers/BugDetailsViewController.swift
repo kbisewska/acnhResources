@@ -62,12 +62,13 @@ final class BugDetailsViewController: UIViewController {
     
     private func getAvailability() -> String {
         let allYear = "All Year"
-        let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
+        
+        let hemisphereIndex: Int? = try? persistenceManager.retrieve(fromKey: "Hemisphere")
+        let hemisphere = Hemisphere.allCases[hemisphereIndex ?? 0]
         
         switch hemisphere {
         case .north: return "\(bug.isAllYear ? allYear : bug.monthNorthern ?? "")"
         case .south: return "\(bug.isAllYear ? allYear : bug.monthSouthern ?? "")"
-        case .none: return ""
         }
     }
 }
