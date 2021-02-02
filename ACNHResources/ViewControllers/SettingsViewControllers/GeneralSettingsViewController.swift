@@ -35,6 +35,7 @@ final class GeneralSettingsViewController: UIViewController {
         customView.hemisphereSettingsLabel.text = "Your Hemisphere:"
         
         customView.resetButton.setTitle("Clear App Data", for: .normal)
+        customView.resetButton.addTarget(self, action: #selector(presentResetAlert), for: .touchUpInside)
     }
     
     private func configurePicker() {
