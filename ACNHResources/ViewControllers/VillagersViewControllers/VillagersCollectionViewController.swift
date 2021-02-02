@@ -29,8 +29,11 @@ final class VillagersCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         configureCollectionView()
-        update()
         presentBirthdayAlert()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        update()
     }
     
     private func configureCollectionView() {
