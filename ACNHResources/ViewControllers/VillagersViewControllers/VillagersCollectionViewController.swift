@@ -29,7 +29,6 @@ final class VillagersCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         configureCollectionView()
-        presentBirthdayAlert()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,12 +50,6 @@ final class VillagersCollectionViewController: UICollectionViewController {
             .sorted { $0.name < $1.name }
         
         collectionView.reloadData()
-    }
-    
-    private func presentBirthdayAlert() {
-        if let birthdayVillager = villagers.first(where: { $0.birthdaySimplified == Date().convertToDayMonthFormat() }) {
-            presentAlert(title: "Hooray!", message: "\(birthdayVillager.name) has a birthday today! 🎉")
-        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
