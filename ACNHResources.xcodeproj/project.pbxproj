@@ -67,7 +67,6 @@
 		8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4B24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
-		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +139,6 @@
 		8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
-		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */,
-				8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */,
 				8F433470246BF95A00714B95 /* String+Ext.swift */,
 				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
 				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
@@ -504,7 +501,6 @@
 			files = (
 				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
-				8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
