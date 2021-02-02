@@ -28,6 +28,10 @@ final class FishTableViewController: UITableViewController {
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        configureNavigationBar()
+        configureRefreshControl()
+        configureSearchController()
+        
         let fishObjects = persistenceManager.retrieve(objectsOfType: Fish.self)
         
         if fishObjects.isEmpty {
@@ -37,9 +41,7 @@ final class FishTableViewController: UITableViewController {
             tableView.reloadData()
         }
         
-        configureNavigationBar()
-        configureSearchController()
-        configureRefreshControl()
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
