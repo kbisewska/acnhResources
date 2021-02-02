@@ -28,6 +28,10 @@ final class BugsTableViewController: UITableViewController {
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        configureNavigationBar()
+        configureRefreshControl()
+        configureSearchController()
+        
         let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
         
         if bugsObjects.isEmpty {
@@ -37,9 +41,7 @@ final class BugsTableViewController: UITableViewController {
             tableView.reloadData()
         }
         
-        configureNavigationBar()
-        configureSearchController()
-        configureRefreshControl()
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
