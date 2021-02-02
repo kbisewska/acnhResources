@@ -52,6 +52,10 @@ struct PersistenceManager {
         return data
     }
     
+    func removeData(withKey key: String) {
+        userDefaults.removeObject(forKey: key)
+    }
+    
     // MARK: - Storing and Retrieving Data Using Realm Database
     
     func store<T: Object>(objects: [T]) {
