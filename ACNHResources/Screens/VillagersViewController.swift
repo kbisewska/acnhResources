@@ -18,39 +18,12 @@ final class VillagersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
-        
-        if villagerObjects.isEmpty {
-            getVillagers()
-        } else {
-            villagersTableViewController.update(with: villagerObjects.sorted { $0.name < $1.name })
-        }
-        
         add(villagersCollectionViewController)
         add(villagersTableViewController)
         configureLayout()
         configureSearchController()
         
         villagersTableViewController.delegate = villagersCollectionViewController
-    }
-    
-    // MARK: - Getting Data
-    
-    private func getVillagers() {
-        networkManager.getVillagersData() { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let villagersDictionary):
-                let villagers = Array(villagersDictionary.values).sorted { $0.name < $1.name }
-                self.villagersTableViewController.update(with: villagers)
-                
-                self.persistenceManager.store(objects: villagers)
-                
-            case .failure(let error):
-                self.presentAlert(title: "Something went wrong", message: error.rawValue)
-            }
-        }
     }
     
     // MARK: - Layout Configuration
