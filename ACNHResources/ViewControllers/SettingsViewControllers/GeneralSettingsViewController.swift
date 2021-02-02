@@ -20,6 +20,8 @@ final class GeneralSettingsViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+        
         configureLayout()
         configurePicker()
     }
