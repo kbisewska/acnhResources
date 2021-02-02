@@ -31,6 +31,7 @@ final class GeneralSettingsViewController: UIViewController {
     }
     
     @objc func resetData() {
+        persistenceManager.removeAllImages()
         persistenceManager.removeData(withKey: "Hemisphere")
         customView.picker.selectRow(0, inComponent: 0, animated: true)
     }
