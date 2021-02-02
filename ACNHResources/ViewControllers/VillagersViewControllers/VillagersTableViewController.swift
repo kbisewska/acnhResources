@@ -38,6 +38,8 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
+        configureRefreshControl()
+        
         let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
         
         if villagerObjects.isEmpty {
@@ -47,7 +49,19 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
             tableView.reloadData()
         }
     }
-
+    
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getVillagers(needsUpdate: true)
+    }
+    
     // MARK: - Table View Configuration
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
