@@ -138,7 +138,6 @@ final class FishTableViewController: UITableViewController {
             switch result {
             case .success(let fishDictionary):
                 self.fish = Array(fishDictionary.values)
-                    .sorted { $0.name < $1.name }
                     .map { entry -> Fish in
                         entry.name = entry.name.capitalized
                         if needsUpdate {
@@ -146,6 +145,7 @@ final class FishTableViewController: UITableViewController {
                         }
                         return entry
                     }
+                    .sorted { $0.name < $1.name }
                 
                 if needsUpdate {
                     self.persistenceManager.delete(objectsOfType: Fish.self)
@@ -161,6 +161,16 @@ final class FishTableViewController: UITableViewController {
                 self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        persistenceManager.delete(objectsOfType: Fish.self)
+        fish = []
+        filteredFish = []
+        
+        getFish(needsUpdate: false)
     }
     
     // MARK: - Filtering Items

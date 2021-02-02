@@ -138,7 +138,6 @@ final class FossilsTableViewController: UITableViewController {
             switch result {
             case .success(let fossilsDictionary):
                 self.fossils = Array(fossilsDictionary.values)
-                    .sorted { $0.fileName < $1.fileName }
                     .map { entry -> Fossil in
                         entry.name = entry.name.capitalized
                         if needsUpdate {
@@ -146,6 +145,7 @@ final class FossilsTableViewController: UITableViewController {
                         }
                         return entry
                     }
+                    .sorted { $0.fileName < $1.fileName }
                 
                 if needsUpdate {
                     self.persistenceManager.delete(objectsOfType: Fossil.self)
@@ -161,6 +161,16 @@ final class FossilsTableViewController: UITableViewController {
                 self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        persistenceManager.delete(objectsOfType: Fossil.self)
+        fossils = []
+        filteredFossils = []
+        
+        getFossils(needsUpdate: false)
     }
     
     // MARK: - Filtering Items

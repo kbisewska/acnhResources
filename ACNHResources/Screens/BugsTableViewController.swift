@@ -138,7 +138,6 @@ final class BugsTableViewController: UITableViewController {
             switch result {
             case .success(let bugsDictionary):
                 self.bugs = Array(bugsDictionary.values)
-                    .sorted { $0.name < $1.name }
                     .map { entry -> Bug in
                         entry.name = entry.name.capitalized
                         if needsUpdate {
@@ -146,6 +145,7 @@ final class BugsTableViewController: UITableViewController {
                         }
                         return entry
                     }
+                    .sorted { $0.name < $1.name }
                 
                 if needsUpdate {
                     self.persistenceManager.delete(objectsOfType: Bug.self)
@@ -161,6 +161,16 @@ final class BugsTableViewController: UITableViewController {
                 self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        persistenceManager.delete(objectsOfType: Bug.self)
+        bugs = []
+        filteredBugs = []
+        
+        getBugs(needsUpdate: false)
     }
     
     // MARK: - Filtering Items
