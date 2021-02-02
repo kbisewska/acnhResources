@@ -18,12 +18,6 @@ class ACNHResourcesTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testDateConverter() {
-        let date = Date.init(timeIntervalSince1970: 0)
-        
-        XCTAssertEqual(date.convertToDayMonthFormat(), "1/1")
-    }
     
     func testSHA256Hash() {
         let word = "test"
