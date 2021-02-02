@@ -20,10 +20,12 @@ final class VillagersViewController: UIViewController {
         
         add(villagersCollectionViewController)
         add(villagersTableViewController)
+        villagersTableViewController.delegate = villagersCollectionViewController
+        
         configureLayout()
         configureSearchController()
         
-        villagersTableViewController.delegate = villagersCollectionViewController
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Layout Configuration
