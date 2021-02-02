@@ -49,6 +49,15 @@ final class GeneralSettingsViewController: UIViewController {
             try? persistenceManager.store(value: 0, withKey: "Hemisphere")
         }
     }
+    
+    @objc func presentResetAlert() {
+        let alert = UIAlertController(title: "Clear App Data", message: "All saved data in this app will be cleared. Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] _ in
+            self?.sendNotification()
+        }))
+        present(alert, animated: true)
+    }
 }
 
 extension GeneralSettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
