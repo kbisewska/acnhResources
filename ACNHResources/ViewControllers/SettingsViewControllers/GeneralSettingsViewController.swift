@@ -31,8 +31,8 @@ final class GeneralSettingsViewController: UIViewController {
     private func configureLayout() {
         view.backgroundColor = .systemBackground
         
-        customView.titleLabel.text = "Settings"
-        customView.settingsLabel.text = "Your Hemisphere:"
+        customView.hemisphereLabel.text = "Settings"
+        customView.hemisphereSettingsLabel.text = "Your Hemisphere:"
     }
     
     private func configurePicker() {
