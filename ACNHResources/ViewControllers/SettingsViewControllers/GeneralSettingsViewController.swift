@@ -30,6 +30,11 @@ final class GeneralSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func resetData() {
+        persistenceManager.removeData(withKey: "Hemisphere")
+        customView.picker.selectRow(0, inComponent: 0, animated: true)
+    }
+    
     private func configureLayout() {
         view.backgroundColor = .systemBackground
         
