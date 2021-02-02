@@ -38,8 +38,13 @@ final class GeneralSettingsViewController: UIViewController {
     private func configurePicker() {
         customView.picker.delegate = self
         customView.picker.dataSource = self
-        customView.picker.selectRow(0, inComponent: 0, animated: true)
-        try? persistenceManager.store(value: Hemisphere.allCases[0], with: "Hemisphere")
+    
+        if let row: Int = try? persistenceManager.retrieve(fromKey: "Hemisphere") {
+            customView.picker.selectRow(row, inComponent: 0, animated: true)
+        } else {
+            customView.picker.selectRow(0, inComponent: 0, animated: true)
+            try? persistenceManager.store(value: 0, withKey: "Hemisphere")
+        }
     }
 }
 
@@ -65,6 +70,6 @@ extension GeneralSettingsViewController: UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        try? persistenceManager.store(value: Hemisphere.allCases[row], with: "Hemisphere")
+        try? persistenceManager.store(value: row, withKey: "Hemisphere")
     }
 }
