@@ -43,23 +43,13 @@ struct PersistenceManager {
     
     // MARK: - Storing and Retrieving Data Using UserDefaults
     
-    func store<T: Codable>(value: T, with key: String) throws {
-        do {
-            let data = try JSONEncoder().encode(value)
-            userDefaults.set(data, forKey: key)
-        } catch (let error) {
-            throw error
-        }
+    func store<T>(value: T, withKey key: String) throws {
+        userDefaults.set(value, forKey: key)
     }
     
-    func retrieve<T: Codable>(from key: String) throws -> T? {
-        guard let data = userDefaults.data(forKey: key) else { return nil }
-        
-        do {
-            return try JSONDecoder().decode(T.self, from: data)
-        } catch (let error) {
-            throw error
-        }
+    func retrieve<T>(fromKey key: String) throws -> T? {
+        guard let data = userDefaults.object(forKey: key) as? T else { return nil }
+        return data
     }
     
     // MARK: - Storing and Retrieving Data Using Realm Database
