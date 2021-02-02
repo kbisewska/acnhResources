@@ -69,4 +69,17 @@ final class VillagersViewController: UIViewController {
         villagersCollectionViewController.filteredVillagers = villagersCollectionViewController.villagers.filter { $0.name.lowercased().contains(filter.lowercased()) }
         villagersCollectionViewController.collectionView.reloadData()
     }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        persistenceManager.delete(objectsOfType: Villager.self)
+        villagersTableViewController.villagers = []
+        villagersTableViewController.filteredVillagers = []
+        villagersTableViewController.tableView.reloadData()
+        
+        villagersCollectionViewController.villagers = []
+        villagersCollectionViewController.filteredVillagers = []
+        villagersCollectionViewController.collectionView.reloadData()
+    }
 }
