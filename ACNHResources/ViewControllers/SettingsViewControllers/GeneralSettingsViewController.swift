@@ -33,6 +33,8 @@ final class GeneralSettingsViewController: UIViewController {
         
         customView.hemisphereLabel.text = "Settings"
         customView.hemisphereSettingsLabel.text = "Your Hemisphere:"
+        
+        customView.resetButton.setTitle("Clear App Data", for: .normal)
     }
     
     private func configurePicker() {
