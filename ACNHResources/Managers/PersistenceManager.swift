@@ -35,6 +35,21 @@ struct PersistenceManager {
         return nil
     }
     
+    func removeAllImages() {
+        if let filesURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let filesPath = filesURL.path
+            
+            if let files = try? fileManager.contentsOfDirectory(atPath: filesPath) {
+                for file in files {
+                    if file.hasSuffix(".png") {
+                        let filePath = "\(filesPath)/\(file)"
+                        try? fileManager.removeItem(atPath: filePath)
+                    }
+                }
+            }
+        }
+    }
+    
     private func getFilePath(for key: String) -> URL? {
         guard let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         
