@@ -32,6 +32,10 @@ final class FossilsTableViewController: UITableViewController {
         configureRefreshControl()
         configureSearchController()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
         
         if fossilObjects.isEmpty {
@@ -40,8 +44,6 @@ final class FossilsTableViewController: UITableViewController {
             fossils = fossilObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
@@ -170,7 +172,7 @@ final class FossilsTableViewController: UITableViewController {
         fossils = []
         filteredFossils = []
         
-        getFossils(needsUpdate: false)
+        tableView.reloadData()
     }
     
     // MARK: - Filtering Items

@@ -32,6 +32,10 @@ final class BugsTableViewController: UITableViewController {
         configureRefreshControl()
         configureSearchController()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
         
         if bugsObjects.isEmpty {
@@ -40,8 +44,6 @@ final class BugsTableViewController: UITableViewController {
             bugs = bugsObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
@@ -170,7 +172,7 @@ final class BugsTableViewController: UITableViewController {
         bugs = []
         filteredBugs = []
         
-        getBugs(needsUpdate: false)
+        tableView.reloadData()
     }
     
     // MARK: - Filtering Items

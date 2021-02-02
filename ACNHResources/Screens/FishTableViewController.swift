@@ -32,6 +32,10 @@ final class FishTableViewController: UITableViewController {
         configureRefreshControl()
         configureSearchController()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let fishObjects = persistenceManager.retrieve(objectsOfType: Fish.self)
         
         if fishObjects.isEmpty {
@@ -40,8 +44,6 @@ final class FishTableViewController: UITableViewController {
             fish = fishObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Table View Configuration
@@ -170,7 +172,7 @@ final class FishTableViewController: UITableViewController {
         fish = []
         filteredFish = []
         
-        getFish(needsUpdate: false)
+        tableView.reloadData()
     }
     
     // MARK: - Filtering Items

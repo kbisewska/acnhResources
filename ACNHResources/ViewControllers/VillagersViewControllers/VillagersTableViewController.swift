@@ -39,7 +39,9 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         configureRefreshControl()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
         
         if villagerObjects.isEmpty {
