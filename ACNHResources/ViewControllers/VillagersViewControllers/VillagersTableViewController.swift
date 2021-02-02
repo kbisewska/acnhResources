@@ -40,8 +40,6 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     
     func update(with villagers: [Villager]) {
         self.villagers = villagers
-//        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
-//        self.ownedVillagers = ownedVillagers ?? []
         tableView.reloadData()
     }
 
