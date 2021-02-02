@@ -58,6 +58,10 @@ final class GeneralSettingsViewController: UIViewController {
         }))
         present(alert, animated: true)
     }
+    
+    func sendNotification() {
+        NotificationCenter.default.post(Notification(name: Notification.Name("ResetData")))
+    }
 }
 
 extension GeneralSettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
