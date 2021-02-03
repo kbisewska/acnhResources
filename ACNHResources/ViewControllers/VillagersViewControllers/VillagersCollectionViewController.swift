@@ -11,7 +11,6 @@ import UIKit
 final class VillagersCollectionViewController: UICollectionViewController {
     
     private let headerReuseIdentifier = "Header"
-    private let persistenceManager = PersistenceManager()
     
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
@@ -47,7 +46,7 @@ final class VillagersCollectionViewController: UICollectionViewController {
     }
     
     private func update() {
-        villagers = persistenceManager.retrieve(objectsOfType: Villager.self)
+        villagers = Current.persistenceManager.retrieve(objectsOfType: Villager.self)
             .filter { $0.isOwned }
             .sorted { $0.name < $1.name }
         

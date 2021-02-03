@@ -16,8 +16,6 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     
     weak var delegate: VillagersTableViewControllerDelegate!
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "VillagerCell"
     
     var villagers = [Villager]()
@@ -44,7 +42,7 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
+        let villagerObjects = Current.persistenceManager.retrieve(objectsOfType: Villager.self)
         
         if villagerObjects.isEmpty {
             getVillagers(needsUpdate: false)
@@ -81,7 +79,7 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            self.persistenceManager.update {
+            Current.persistenceManager.update {
                 villager.isOwned = !villager.isOwned
             }
             
@@ -134,7 +132,7 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     private func getVillagers(needsUpdate: Bool) {
         let ownedVillagers = villagers.filter { $0.isOwned }
         
-        networkManager.getVillagersData() { [weak self] result in
+        Current.networkManager.getVillagersData() { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -149,10 +147,10 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
                     }
                 
                 if needsUpdate {
-                    self.persistenceManager.delete(objectsOfType: Villager.self)
+                    Current.persistenceManager.delete(objectsOfType: Villager.self)
                 }
                 
-                self.persistenceManager.store(objects: self.villagers)
+                Current.persistenceManager.store(objects: self.villagers)
                 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()

@@ -10,7 +10,6 @@ import UIKit
 
 final class FishDetailsViewController: UIViewController {
 
-    private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
     private var fish: Fish
     
@@ -63,7 +62,7 @@ final class FishDetailsViewController: UIViewController {
     private func getAvailability() -> String {
         let allYear = "All Year"
         
-        let hemisphereIndex: Int? = try? persistenceManager.retrieve(fromKey: "Hemisphere")
+        let hemisphereIndex: Int? = try? Current.persistenceManager.retrieve(fromKey: "Hemisphere")
         let hemisphere = Hemisphere.allCases[hemisphereIndex ?? 0]
         
         switch hemisphere {

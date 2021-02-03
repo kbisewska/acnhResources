@@ -10,8 +10,6 @@ import UIKit
 
 final class FossilsTableViewController: UITableViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "FossilCell"
     
     var fossils = [Fossil]()
@@ -38,7 +36,7 @@ final class FossilsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
+        let fossilObjects = Current.persistenceManager.retrieve(objectsOfType: Fossil.self)
         
         if fossilObjects.isEmpty {
             getFossils(needsUpdate: false)
@@ -63,7 +61,7 @@ final class FossilsTableViewController: UITableViewController {
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            self.persistenceManager.update {
+            Current.persistenceManager.update {
                 fossil.isOwned = !fossil.isOwned
             }
             
@@ -136,7 +134,7 @@ final class FossilsTableViewController: UITableViewController {
     private func getFossils(needsUpdate: Bool) {
         let ownedFossils = fossils.filter { $0.isOwned }
         
-        networkManager.getFossilsData() { [weak self] result in
+        Current.networkManager.getFossilsData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -152,10 +150,10 @@ final class FossilsTableViewController: UITableViewController {
                     .sorted { $0.fileName < $1.fileName }
                 
                 if needsUpdate {
-                    self.persistenceManager.delete(objectsOfType: Fossil.self)
+                    Current.persistenceManager.delete(objectsOfType: Fossil.self)
                 }
                 
-                self.persistenceManager.store(objects: self.fossils)
+                Current.persistenceManager.store(objects: self.fossils)
                 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
@@ -170,7 +168,7 @@ final class FossilsTableViewController: UITableViewController {
     // MARK: - Resetting Data
     
     @objc func resetData() {
-        persistenceManager.delete(objectsOfType: Fossil.self)
+        Current.persistenceManager.delete(objectsOfType: Fossil.self)
         fossils = []
         filteredFossils = []
         

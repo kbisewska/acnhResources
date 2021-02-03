@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
     
     func downloadImage(for resource: Resource, completion: (() -> Void)? = nil) {
-        let networkManager = NetworkManager()
+        let networkManager = Current.networkManager
         
         switch resource {
         case .villager(let id):
@@ -45,7 +45,7 @@ extension UIImageView {
     }
     
     func downloadIcon(for resource: Resource, completion: (() -> Void)? = nil) {
-        let networkManager = NetworkManager()
+        let networkManager = Current.networkManager
         
         switch resource {
         case .bug(let id), .villager(let id), .fish(let id):
@@ -59,7 +59,7 @@ extension UIImageView {
     }
     
     func cancelTask(for resource: Resource) {
-        let networkManager = NetworkManager()
+        let networkManager = Current.networkManager
         
         switch resource {
         case .bug(let id), .villager(let id), .fish(let id):

@@ -10,12 +10,20 @@ import Foundation
 
 struct Environment {
     var networkManager = NetworkManager()
+    var persistenceManager = PersistenceManager()
 }
 
 extension Environment {
     static var mock: Environment {
-        Environment(networkManager: .mock)
+        Environment(networkManager: .mock,
+                    persistenceManager: .mock)
     }
 }
 
-var Current: Environment = Environment()
+var Current: Environment = Environment() {
+    didSet (newValue) {
+        Current = newValue
+        print(Current.persistenceManager is PersistenceManagerMock)
+        print(newValue)
+    }
+}

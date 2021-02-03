@@ -10,8 +10,6 @@ import UIKit
 
 final class FishTableViewController: UITableViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "FishCell"
     
     var fish = [Fish]()
@@ -38,7 +36,7 @@ final class FishTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let fishObjects = persistenceManager.retrieve(objectsOfType: Fish.self)
+        let fishObjects = Current.persistenceManager.retrieve(objectsOfType: Fish.self)
         
         if fishObjects.isEmpty {
             getFish(needsUpdate: false)
@@ -63,7 +61,7 @@ final class FishTableViewController: UITableViewController {
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            self.persistenceManager.update {
+            Current.persistenceManager.update {
                 fishItem.isOwned = !fishItem.isOwned
             }
             
@@ -136,7 +134,7 @@ final class FishTableViewController: UITableViewController {
     private func getFish(needsUpdate: Bool) {
         let ownedFish = fish.filter { $0.isOwned }
         
-        networkManager.getFishData() { [weak self] result in
+        Current.networkManager.getFishData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -152,10 +150,10 @@ final class FishTableViewController: UITableViewController {
                     .sorted { $0.name < $1.name }
                 
                 if needsUpdate {
-                    self.persistenceManager.delete(objectsOfType: Fish.self)
+                    Current.persistenceManager.delete(objectsOfType: Fish.self)
                 }
                 
-                self.persistenceManager.store(objects: self.fish)
+                Current.persistenceManager.store(objects: self.fish)
                 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
@@ -170,7 +168,7 @@ final class FishTableViewController: UITableViewController {
     // MARK: - Resetting Data
     
     @objc func resetData() {
-        persistenceManager.delete(objectsOfType: Fish.self)
+        Current.persistenceManager.delete(objectsOfType: Fish.self)
         fish = []
         filteredFish = []
         

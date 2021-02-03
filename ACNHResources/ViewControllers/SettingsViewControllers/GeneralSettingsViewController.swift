@@ -11,7 +11,6 @@ import UIKit
 final class GeneralSettingsViewController: UIViewController {
     
     private let customView = GeneralSettingsView()
-    private let persistenceManager = PersistenceManager()
     
     override func loadView() {
         view = customView
@@ -31,8 +30,8 @@ final class GeneralSettingsViewController: UIViewController {
     }
     
     @objc func resetData() {
-        persistenceManager.removeAllImages()
-        persistenceManager.removeData(withKey: "Hemisphere")
+        Current.persistenceManager.removeAllImages()
+        Current.persistenceManager.removeData(withKey: "Hemisphere")
         customView.picker.selectRow(0, inComponent: 0, animated: true)
     }
     
@@ -50,11 +49,11 @@ final class GeneralSettingsViewController: UIViewController {
         customView.picker.delegate = self
         customView.picker.dataSource = self
     
-        if let row: Int = try? persistenceManager.retrieve(fromKey: "Hemisphere") {
+        if let row: Int = try? Current.persistenceManager.retrieve(fromKey: "Hemisphere") {
             customView.picker.selectRow(row, inComponent: 0, animated: true)
         } else {
             customView.picker.selectRow(0, inComponent: 0, animated: true)
-            try? persistenceManager.store(value: 0, withKey: "Hemisphere")
+            try? Current.persistenceManager.store(value: 0, withKey: "Hemisphere")
         }
     }
     
@@ -94,6 +93,6 @@ extension GeneralSettingsViewController: UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        try? persistenceManager.store(value: row, withKey: "Hemisphere")
+        try? Current.persistenceManager.store(value: row, withKey: "Hemisphere")
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-struct PersistenceManager {
+class PersistenceManager {
 
     private let fileManager = FileManager.default
     private let userDefaults = UserDefaults.standard
@@ -94,5 +94,23 @@ struct PersistenceManager {
         try? realm?.write {
             realm?.delete(retrieve(objectsOfType: type))
         }
+    }
+}
+
+final class PersistenceManagerMock: PersistenceManager {
+    override func store<T>(objects: [T]) where T : Object {}
+    
+    override func update(with action: @escaping () -> Void) {}
+    
+    override func retrieve<T>(objectsOfType type: T.Type) -> [T] where T : Object {
+        return []
+    }
+    
+    override func delete<T>(objectsOfType type: T.Type) where T : Object {}
+}
+
+extension PersistenceManager {
+    static var mock: PersistenceManagerMock {
+        PersistenceManagerMock()
     }
 }

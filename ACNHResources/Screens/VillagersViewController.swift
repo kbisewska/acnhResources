@@ -10,8 +10,6 @@ import UIKit
 
 final class VillagersViewController: UIViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
     
@@ -73,7 +71,7 @@ final class VillagersViewController: UIViewController {
     // MARK: - Resetting Data
     
     @objc func resetData() {
-        persistenceManager.delete(objectsOfType: Villager.self)
+        Current.persistenceManager.delete(objectsOfType: Villager.self)
         villagersTableViewController.villagers = []
         villagersTableViewController.filteredVillagers = []
         villagersTableViewController.tableView.reloadData()

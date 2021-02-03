@@ -10,8 +10,6 @@ import UIKit
 
 final class BugsTableViewController: UITableViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "BugCell"
     
     var bugs = [Bug]()
@@ -38,7 +36,7 @@ final class BugsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
+        let bugsObjects = Current.persistenceManager.retrieve(objectsOfType: Bug.self)
         
         if bugsObjects.isEmpty {
             getBugs(needsUpdate: false)
@@ -63,7 +61,7 @@ final class BugsTableViewController: UITableViewController {
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            self.persistenceManager.update {
+            Current.persistenceManager.update {
                 bug.isOwned = !bug.isOwned
             }
             
@@ -136,7 +134,7 @@ final class BugsTableViewController: UITableViewController {
     private func getBugs(needsUpdate: Bool) {
         let ownedBugs = bugs.filter { $0.isOwned }
         
-        networkManager.getBugsData() { [weak self] result in
+        Current.networkManager.getBugsData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -152,10 +150,10 @@ final class BugsTableViewController: UITableViewController {
                     .sorted { $0.name < $1.name }
                 
                 if needsUpdate {
-                    self.persistenceManager.delete(objectsOfType: Bug.self)
+                    Current.persistenceManager.delete(objectsOfType: Bug.self)
                 }
                 
-                self.persistenceManager.store(objects: self.bugs)
+                Current.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
@@ -170,7 +168,7 @@ final class BugsTableViewController: UITableViewController {
     // MARK: - Resetting Data
     
     @objc func resetData() {
-        persistenceManager.delete(objectsOfType: Bug.self)
+        Current.persistenceManager.delete(objectsOfType: Bug.self)
         bugs = []
         filteredBugs = []
         

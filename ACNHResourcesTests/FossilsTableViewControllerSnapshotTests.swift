@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import RealmSwift
 import SnapshotTesting
 
 @testable import ACNHResources
