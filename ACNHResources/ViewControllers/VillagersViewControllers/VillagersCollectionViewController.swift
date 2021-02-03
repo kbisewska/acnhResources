@@ -38,7 +38,6 @@ final class VillagersCollectionViewController: UICollectionViewController {
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
-            .adjustedForAutoLayout()
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         
