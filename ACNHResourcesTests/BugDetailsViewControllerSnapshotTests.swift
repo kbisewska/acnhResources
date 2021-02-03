@@ -17,7 +17,6 @@ class BugDetailsViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         let bug = Bundle.main.decode([String: Bug].self, from: "bugs.json")
             .compactMap { $0.value }
             .first(where: { $0.id == 1 })!

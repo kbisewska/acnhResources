@@ -17,7 +17,6 @@ class VillagersViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         sut = VillagersViewController()
     }
     

@@ -17,7 +17,6 @@ class FossilDetailsViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         let fossil = Bundle.main.decode([String: Fossil].self, from: "fossils.json")
             .compactMap { $0.value }
             .first(where: { $0.fileName == "acanthostega" })!

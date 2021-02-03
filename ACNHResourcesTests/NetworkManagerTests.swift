@@ -18,7 +18,7 @@ class NetworkManagerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = Current.networkManager
+        sut = NetworkManager()
     }
 
     override func tearDown() {

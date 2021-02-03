@@ -18,7 +18,6 @@ class FossilsTableViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         sut = FossilsTableViewController()
     }
     

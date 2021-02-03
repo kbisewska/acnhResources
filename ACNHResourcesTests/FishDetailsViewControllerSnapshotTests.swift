@@ -17,7 +17,6 @@ class FishDetailsViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         let fish = Bundle.main.decode([String: Fish].self, from: "fish.json")
             .compactMap { $0.value }
             .first(where: { $0.id == 1 })!
