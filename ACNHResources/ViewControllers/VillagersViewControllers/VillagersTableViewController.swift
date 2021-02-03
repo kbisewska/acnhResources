@@ -17,8 +17,8 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     weak var delegate: VillagersTableViewControllerDelegate!
     
     private let networkManager = Current.networkManager
-    private let reuseIdentifier = "VillagerCell"
     private let persistenceManager = PersistenceManager()
+    private let reuseIdentifier = "VillagerCell"
     
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
@@ -42,6 +42,8 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         let villagerObjects = persistenceManager.retrieve(objectsOfType: Villager.self)
         
         if villagerObjects.isEmpty {

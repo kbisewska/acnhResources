@@ -36,6 +36,8 @@ final class FishTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         let fishObjects = persistenceManager.retrieve(objectsOfType: Fish.self)
         
         if fishObjects.isEmpty {

@@ -36,6 +36,8 @@ final class FossilsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         let fossilObjects = persistenceManager.retrieve(objectsOfType: Fossil.self)
         
         if fossilObjects.isEmpty {

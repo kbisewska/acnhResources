@@ -36,6 +36,8 @@ final class BugsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         let bugsObjects = persistenceManager.retrieve(objectsOfType: Bug.self)
         
         if bugsObjects.isEmpty {
