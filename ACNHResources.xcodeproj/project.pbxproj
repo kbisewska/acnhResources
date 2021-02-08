@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6225C410770088F274 /* RealmSwift */; };
 		8F2A5C6525C410770088F274 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6425C410770088F274 /* Realm */; };
+		8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
 		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		8F4334112461687400714B95 /* ACNHResources.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHResources.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4334142461687400714B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4334162461687400714B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */,
 				8F43347B246C35F500714B95 /* DetailsView.swift */,
+				8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */,
 				8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */,
 			);
 			path = Views;
@@ -517,6 +520,7 @@
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
 				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
 				8F43347C246C35F500714B95 /* DetailsView.swift in Sources */,
+				8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */,
 				8F4334882474075900714B95 /* VillagerCell.swift in Sources */,
 				8F43347E246C38B500714B95 /* UIView+Ext.swift in Sources */,
 				8F43347A246C329C00714B95 /* FossilDetailsViewController.swift in Sources */,
