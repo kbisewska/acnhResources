@@ -61,3 +61,22 @@ extension UIViewController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {}
 }
+
+extension UIViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func configure(tableView: UITableView, cell: AnyClass, with identifier: String) {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(cell.self, forCellReuseIdentifier: identifier)
+        view.addSubview(tableView)
+        tableView.adjustedForAutoLayout().pinToEdges(of: view)
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
+}
