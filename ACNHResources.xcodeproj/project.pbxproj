@@ -10,6 +10,7 @@
 		8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6225C410770088F274 /* RealmSwift */; };
 		8F2A5C6525C410770088F274 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6425C410770088F274 /* Realm */; };
 		8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */; };
+		8F2A5C9125D4184F0088F274 /* EmptyStateRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
 		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateRepresentable.swift; sourceTree = "<group>"; };
 		8F4334112461687400714B95 /* ACNHResources.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHResources.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4334142461687400714B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4334162461687400714B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
+				8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
 				8F765E1024A5F62E0037C6D0 /* CreditsView.swift in Sources */,
+				8F2A5C9125D4184F0088F274 /* EmptyStateRepresentable.swift in Sources */,
 				8F765E1224A63FAD0037C6D0 /* Hemisphere.swift in Sources */,
 				8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */,
 				8F4334532461827200714B95 /* Villager.swift in Sources */,
