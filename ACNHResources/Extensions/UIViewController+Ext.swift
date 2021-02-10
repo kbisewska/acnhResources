@@ -39,11 +39,16 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: leftBarButtonAction)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: rightBarButtonAction)
     }
+    
+    func configureNavigationBar(forEnabledState state: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = state
+        navigationItem.leftBarButtonItem?.isEnabled = state
+        navigationItem.rightBarButtonItem?.isEnabled = state
+        navigationItem.searchController?.searchBar.isUserInteractionEnabled = state
+    }
 }
 
 extension UIViewController: UISearchResultsUpdating {
-    
-    public func updateSearchResults(for searchController: UISearchController) {}
     
     func configureSearchController() {
         let searchController = UISearchController()
@@ -53,4 +58,6 @@ extension UIViewController: UISearchResultsUpdating {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
+    public func updateSearchResults(for searchController: UISearchController) {}
 }
