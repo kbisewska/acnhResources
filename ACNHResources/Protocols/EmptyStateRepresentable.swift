@@ -11,3 +11,12 @@ import UIKit
 protocol EmptyStateRepresentable: AnyObject {
     var emptyStateView: EmptyStateView { get }
 }
+
+extension EmptyStateRepresentable where Self: UIViewController {
+    
+    func configureEmptyStateView() {
+        emptyStateView.isHidden = true
+        view.addSubview(emptyStateView)
+        emptyStateView.adjustedForAutoLayout().pinToEdges(of: view)
+    }
+}
