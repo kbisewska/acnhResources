@@ -19,4 +19,12 @@ extension EmptyStateRepresentable where Self: UIViewController {
         view.addSubview(emptyStateView)
         emptyStateView.adjustedForAutoLayout().pinToEdges(of: view)
     }
+    
+    func presentEmptyStateView(withMessage message: String, withAction action: Selector) {
+        configureNavigationBar(forEnabledState: false)
+        
+        emptyStateView.detailsLabel.text = message
+        emptyStateView.tryAgainButton.addTarget(self, action: action, for: .touchUpInside)
+        emptyStateView.isHidden = false
+    }
 }
