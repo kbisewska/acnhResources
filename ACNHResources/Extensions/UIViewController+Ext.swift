@@ -34,6 +34,11 @@ extension UIViewController {
             viewController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
         }
     }
+    
+    func addNavigationItems(leftBarButtonAction: Selector, rightBarButtonAction: Selector) {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: leftBarButtonAction)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: rightBarButtonAction)
+    }
 }
 
 extension UIViewController: UISearchResultsUpdating {
