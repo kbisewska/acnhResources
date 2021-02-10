@@ -72,6 +72,12 @@ extension UIViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.adjustedForAutoLayout().pinToEdges(of: view)
     }
     
+    func configureRefreshControl(forTableView tableView: UITableView, withAction action: Selector) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: action, for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         0
     }
