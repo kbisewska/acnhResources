@@ -12,7 +12,7 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
     
     private let tableView = UITableView()
     private let reuseIdentifier = "BugCell"
-    let refreshControl = UIRefreshControl()
+    var refreshControl: UIRefreshControl? = UIRefreshControl()
     let emptyStateView = EmptyStateView()
     let searchController = UISearchController()
     
@@ -78,18 +78,18 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
                 Current.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
                 self.configureNavigationBar(forEnabledState: true)
 
             case .failure(let error):
                 if needsUpdate {
                     self.presentAlert(title: "Something went wrong", message: error.rawValue)
-                    self.tableView.refreshControl?.endRefreshing()
+                    self.refreshControl?.endRefreshing()
                 } else {
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector(self.tryAgainButtonTapped))
                     self.configureNavigationBar(forEnabledState: false)
-                    self.tableView.refreshControl = nil
+                    self.refreshControl = nil
                 }
             }
         }

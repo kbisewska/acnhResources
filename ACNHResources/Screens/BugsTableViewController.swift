@@ -8,9 +8,9 @@
 
 import UIKit
 
-final class BugsViewController: UIViewController, NavigationBarCustomizable, StateRefreshable,  EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
+final class BugsViewController: UIViewController, NavigationBarCustomizable, StateRefreshable, EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
     
-    private let tableView = UITableView()
+    
     private let reuseIdentifier = "BugCell"
     let refreshControl = UIRefreshControl()
     let emptyStateView = EmptyStateView()

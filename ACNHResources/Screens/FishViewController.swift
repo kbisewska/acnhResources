@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FishViewController.swift
 //  ACNHResources
 //
 //  Created by Kornelia Bisewska on 05/05/2020.
@@ -12,7 +12,7 @@ final class FishViewController: UIViewController, NavigationBarCustomizable, Sta
     
     private let tableView = UITableView()
     private let reuseIdentifier = "FishCell"
-    let refreshControl = UIRefreshControl()
+    var refreshControl: UIRefreshControl? = UIRefreshControl()
     let emptyStateView = EmptyStateView()
     let searchController = UISearchController()
     
@@ -78,18 +78,18 @@ final class FishViewController: UIViewController, NavigationBarCustomizable, Sta
                 Current.persistenceManager.store(objects: self.fish)
                 
                 self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
                 self.configureNavigationBar(forEnabledState: true)
 
             case .failure(let error):
                 if needsUpdate {
                     self.presentAlert(title: "Something went wrong", message: error.rawValue)
-                    self.tableView.refreshControl?.endRefreshing()
+                    self.refreshControl?.endRefreshing()
                 } else {
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector(self.tryAgainButtonTapped))
                     self.configureNavigationBar(forEnabledState: false)
-                    self.tableView.refreshControl = nil
+                    self.refreshControl = nil
                 }
             }
         }
