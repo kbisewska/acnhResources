@@ -21,7 +21,7 @@
 		8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F43341F2461687C00714B95 /* LaunchScreen.storyboard */; };
 		8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */; };
 		8F433446246169E000714B95 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433445246169E000714B95 /* TabBarController.swift */; };
-		8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsTableViewController.swift */; };
+		8F43344B2461733200714B95 /* BugsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsViewController.swift */; };
 		8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsTableViewController.swift */; };
 		8F43345124617DB000714B95 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345024617DB000714B95 /* NetworkManager.swift */; };
 		8F4334532461827200714B95 /* Villager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334522461827200714B95 /* Villager.swift */; };
@@ -101,7 +101,7 @@
 		8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHResourcesTests.swift; sourceTree = "<group>"; };
 		8F43342D2461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F433445246169E000714B95 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		8F43344A2461733200714B95 /* BugsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewController.swift; sourceTree = "<group>"; };
+		8F43344A2461733200714B95 /* BugsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewController.swift; sourceTree = "<group>"; };
 		8F43344C2461734000714B95 /* FossilsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewController.swift; sourceTree = "<group>"; };
 		8F43345024617DB000714B95 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8F4334522461827200714B95 /* Villager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Villager.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 			children = (
 				8F433484246EDCC100714B95 /* VillagersViewController.swift */,
 				8F4334182461687400714B95 /* FishTableViewController.swift */,
-				8F43344A2461733200714B95 /* BugsTableViewController.swift */,
+				8F43344A2461733200714B95 /* BugsViewController.swift */,
 				8F43344C2461734000714B95 /* FossilsTableViewController.swift */,
 				8F765E0424A4B9E80037C6D0 /* SettingsViewController.swift */,
 			);
@@ -519,7 +519,7 @@
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
-				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
+				8F43344B2461733200714B95 /* BugsViewController.swift in Sources */,
 				8F765E0524A4B9E80037C6D0 /* SettingsViewController.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
 				8F433471246BF95A00714B95 /* String+Ext.swift in Sources */,
