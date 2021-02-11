@@ -19,3 +19,12 @@ extension StateRefreshable where Self: UIViewController {
         tableView.refreshControl = refreshControl
     }
 }
+
+extension StateRefreshable where Self: UITableViewController {
+    
+    func configureRefreshControl(withAction action: Selector) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: action, for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+}
