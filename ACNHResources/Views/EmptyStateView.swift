@@ -10,6 +10,13 @@ import UIKit
 
 final class EmptyStateView: UIView {
     
+    lazy var errorImage: UIImageView = {
+        let imageView = UIImageView().adjustedForAutoLayout()
+        imageView.image = UIImage(named: "error")
+        imageView.alpha = 0.7
+        return imageView
+    }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel().adjustedForAutoLayout()
         label.text = "Oops..."
@@ -51,22 +58,28 @@ final class EmptyStateView: UIView {
     private func configureLayout() {
         backgroundColor = .systemBackground
         
-        addSubviews(titleLabel, detailsLabel, tryAgainButton)
+        addSubviews(errorImage, titleLabel, detailsLabel, tryAgainButton)
         
+        let padding: CGFloat = 16
         let verticalPadding: CGFloat = 64
-        let horizontalPadding: CGFloat = 16
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: verticalPadding),
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            errorImage.topAnchor.constraint(greaterThanOrEqualTo: safeAreaLayoutGuide.topAnchor, constant: padding),
+            errorImage.bottomAnchor.constraint(greaterThanOrEqualTo: titleLabel.topAnchor, constant: -verticalPadding),
+            errorImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
+            errorImage.heightAnchor.constraint(equalTo: errorImage.widthAnchor),
+            errorImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            detailsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding),
-            detailsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalPadding),
-            detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalPadding),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            detailsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding / 2),
+            detailsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             detailsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            tryAgainButton.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: verticalPadding),
-            //tryAgainButton.heightAnchor.constraint(equalToConstant: 60),
+            tryAgainButton.topAnchor.constraint(lessThanOrEqualTo: detailsLabel.bottomAnchor, constant: verticalPadding),
+            tryAgainButton.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             tryAgainButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
