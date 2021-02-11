@@ -21,8 +21,6 @@ extension EmptyStateRepresentable where Self: UIViewController {
     }
     
     func presentEmptyStateView(withMessage message: String, withAction action: Selector) {
-        configureNavigationBar(forEnabledState: false)
-        
         emptyStateView.detailsLabel.text = message
         emptyStateView.tryAgainButton.addTarget(self, action: action, for: .touchUpInside)
         emptyStateView.isHidden = false
