@@ -1,23 +1,24 @@
 //
-//  FishTableViewControllerSnapshotTests.swift
+//  FossilsViewControllerSnapshotTests.swift
 //  ACNHResourcesTests
 //
-//  Created by Kornelia Bisewska on 04/08/2020.
+//  Created by Kornelia Bisewska on 05/08/2020.
 //  Copyright © 2020 kbisewska. All rights reserved.
 //
 
 import XCTest
+import RealmSwift
 import SnapshotTesting
 
 @testable import ACNHResources
 
-class FishTableViewControllerSnapshotTests: XCTestCase {
+class FossilsViewControllerSnapshotTests: XCTestCase {
     
-    var sut: FishTableViewController!
+    var sut: FossilsViewController!
     
     override func setUp() {
         super.setUp()
-        sut = FishTableViewController()
+        sut = FossilsViewController()
     }
     
     override func tearDown() {
@@ -25,7 +26,7 @@ class FishTableViewControllerSnapshotTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFishTableViewController() {
+    func testFossilsViewController() {
         assertSnapshot(matching: sut, as: .image(on: .iPhoneXr))
     }
 }

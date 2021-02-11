@@ -65,7 +65,7 @@
 		8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3824DAD6EF0037C6D0 /* bugs.json */; };
 		8F765E3B24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */; };
 		8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3C24DAE3B40037C6D0 /* fossils.json */; };
-		8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */; };
+		8F765E3F24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */; };
 		8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */; };
 		8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */; };
@@ -142,7 +142,7 @@
 		8F765E3824DAD6EF0037C6D0 /* bugs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bugs.json; sourceTree = "<group>"; };
 		8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3C24DAE3B40037C6D0 /* fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fossils.json; sourceTree = "<group>"; };
-		8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStubbedTests.swift; sourceTree = "<group>"; };
 		8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */,
 				8F765E3224D974000037C6D0 /* FishViewControllerSnapshotTests.swift */,
 				8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */,
-				8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */,
+				8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */,
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
 				8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */,
 				8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */,
@@ -574,7 +574,7 @@
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */,
 				8F765E3B24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift in Sources */,
-				8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */,
+				8F765E3F24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
