@@ -22,7 +22,7 @@
 		8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */; };
 		8F433446246169E000714B95 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433445246169E000714B95 /* TabBarController.swift */; };
 		8F43344B2461733200714B95 /* BugsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsViewController.swift */; };
-		8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsTableViewController.swift */; };
+		8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsViewController.swift */; };
 		8F43345124617DB000714B95 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345024617DB000714B95 /* NetworkManager.swift */; };
 		8F4334532461827200714B95 /* Villager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334522461827200714B95 /* Villager.swift */; };
 		8F4334552461827B00714B95 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334542461827B00714B95 /* Fish.swift */; };
@@ -102,7 +102,7 @@
 		8F43342D2461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F433445246169E000714B95 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8F43344A2461733200714B95 /* BugsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewController.swift; sourceTree = "<group>"; };
-		8F43344C2461734000714B95 /* FossilsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewController.swift; sourceTree = "<group>"; };
+		8F43344C2461734000714B95 /* FossilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsViewController.swift; sourceTree = "<group>"; };
 		8F43345024617DB000714B95 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8F4334522461827200714B95 /* Villager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Villager.swift; sourceTree = "<group>"; };
 		8F4334542461827B00714B95 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 				8F433484246EDCC100714B95 /* VillagersViewController.swift */,
 				8F4334182461687400714B95 /* FishViewController.swift */,
 				8F43344A2461733200714B95 /* BugsViewController.swift */,
-				8F43344C2461734000714B95 /* FossilsTableViewController.swift */,
+				8F43344C2461734000714B95 /* FossilsViewController.swift */,
 				8F765E0424A4B9E80037C6D0 /* SettingsViewController.swift */,
 			);
 			path = Screens;
@@ -531,7 +531,7 @@
 				8F433478246C328A00714B95 /* BugDetailsViewController.swift in Sources */,
 				8F765E2B24D96D8F0037C6D0 /* Environment.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
-				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
+				8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */,
 				8F43347C246C35F500714B95 /* DetailsView.swift in Sources */,
 				8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */,
 				8F4334882474075900714B95 /* VillagerCell.swift in Sources */,
