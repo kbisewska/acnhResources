@@ -13,6 +13,7 @@
 		8F2A5C9125D4184F0088F274 /* EmptyStateRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */; };
 		8F2A5C9525D41EB00088F274 /* StateRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */; };
 		8F2A5C9B25D4227B0088F274 /* ContentSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */; };
+		8F2A5CA125D42BED0088F274 /* NavigationBarCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
 		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
@@ -88,6 +89,7 @@
 		8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateRepresentable.swift; sourceTree = "<group>"; };
 		8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRefreshable.swift; sourceTree = "<group>"; };
 		8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSearchable.swift; sourceTree = "<group>"; };
+		8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCustomizable.swift; sourceTree = "<group>"; };
 		8F4334112461687400714B95 /* ACNHResources.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHResources.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4334142461687400714B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4334162461687400714B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */,
 				8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */,
+				8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */,
 				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
 				8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */,
 			);
@@ -545,6 +548,7 @@
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
 				8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */,
 				8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */,
+				8F2A5CA125D42BED0088F274 /* NavigationBarCustomizable.swift in Sources */,
 				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
