@@ -34,8 +34,8 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure(tableView: tableView, cell: ResourceCell.self, with: reuseIdentifier)
-        configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
+        tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
+        configureRefreshControl(withAction: #selector(refresh))
     }
     
     override func viewWillAppear(_ animated: Bool) {
