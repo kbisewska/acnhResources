@@ -12,7 +12,7 @@ protocol VillagersTableViewControllerDelegate: class {
     func didTapCheckmarkButton()
 }
 
-final class VillagersTableViewController: UITableViewController, UISearchBarDelegate {
+final class VillagersTableViewController: UITableViewController, StateRefreshable, UISearchBarDelegate {
     
     weak var delegate: VillagersTableViewControllerDelegate!
     
@@ -34,9 +34,8 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
-        
-        configureRefreshControl()
+        configure(tableView: tableView, cell: ResourceCell.self, with: reuseIdentifier)
+        configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,19 +51,61 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         }
     }
     
-    // MARK: - Refresh Control Configuration
+    // MARK: - Getting Data
     
-    func configureRefreshControl() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.refreshControl = refreshControl
+    private func getVillagers(needsUpdate: Bool) {
+        let ownedVillagers = villagers.filter { $0.isOwned }
+        
+        Current.networkManager.getVillagersData() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let villagersDictionary):
+                self.villagers = Array(villagersDictionary.values)
+                    .sorted { $0.name < $1.name }
+                    .map { entry -> Villager in
+                        if needsUpdate {
+                            entry.isOwned = ownedVillagers.first { $0.id == entry.id }?.isOwned ?? false
+                        }
+                        return entry
+                    }
+                
+                if needsUpdate {
+                    Current.persistenceManager.delete(objectsOfType: Villager.self)
+                }
+                
+                Current.persistenceManager.store(objects: self.villagers)
+                
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                
+            case .failure(let error):
+                if needsUpdate {
+                    self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.setContentOffset(.zero, animated: true)
+                } else {
+                    self.refreshControl = nil
+                }
+            }
+        }
     }
+    
+    // MARK: - Selectors
     
     @objc func refresh() {
         getVillagers(needsUpdate: true)
     }
     
-    // MARK: - Table View Configuration
+    @objc func tryAgainButtonTapped() {
+        getVillagers(needsUpdate: false)
+        configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
+    }
+}
+
+// MARK: - Table View Configuration
+
+extension VillagersTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isFiltering ? filteredVillagers.count : villagers.count
@@ -125,41 +166,5 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         ])
         
         return header
-    }
-    
-    // MARK: - Getting Data
-    
-    private func getVillagers(needsUpdate: Bool) {
-        let ownedVillagers = villagers.filter { $0.isOwned }
-        
-        Current.networkManager.getVillagersData() { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let villagersDictionary):
-                self.villagers = Array(villagersDictionary.values)
-                    .sorted { $0.name < $1.name }
-                    .map { entry -> Villager in
-                        if needsUpdate {
-                            entry.isOwned = ownedVillagers.first { $0.id == entry.id }?.isOwned ?? false
-                        }
-                        return entry
-                    }
-                
-                if needsUpdate {
-                    Current.persistenceManager.delete(objectsOfType: Villager.self)
-                }
-                
-                Current.persistenceManager.store(objects: self.villagers)
-                
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-                
-            case .failure(let error):
-                self.presentAlert(title: "Something went wrong", message: error.rawValue)
-                self.refreshControl?.endRefreshing()
-                self.tableView.setContentOffset(.zero, animated: true)
-            }
-        }
     }
 }
