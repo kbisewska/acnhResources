@@ -9,13 +9,13 @@
 import UIKit
 
 protocol StateRefreshable: AnyObject {
-    var refreshControl: UIRefreshControl { get }
+    var refreshControl: UIRefreshControl? { get }
 }
 
 extension StateRefreshable where Self: UIViewController {
     
     func configureRefreshControl(forTableView tableView: UITableView, withAction action: Selector) {
-        refreshControl.addTarget(self, action: action, for: .valueChanged)
+        refreshControl?.addTarget(self, action: action, for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
 }
