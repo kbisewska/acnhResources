@@ -8,10 +8,11 @@
 
 import UIKit
 
-final class VillagersViewController: UIViewController {
+final class VillagersViewController: UIViewController, ContentSearchable, UISearchResultsUpdating {
     
     private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
+    let searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ final class VillagersViewController: UIViewController {
         villagersTableViewController.delegate = villagersCollectionViewController
         
         configureLayout()
-        configureSearchController()
+        configureSearchController(withPlaceholder: "Search for a resource")
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
@@ -47,7 +48,7 @@ final class VillagersViewController: UIViewController {
     
     // MARK: - Searching Items
     
-    override func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             villagersTableViewController.isFiltering = false
             villagersTableViewController.filteredVillagers.removeAll()
