@@ -34,32 +34,6 @@ extension UIViewController {
             viewController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
         }
     }
-    
-    func addNavigationItems(leftBarButtonAction: Selector, rightBarButtonAction: Selector) {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: leftBarButtonAction)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: rightBarButtonAction)
-    }
-    
-    func configureNavigationBar(forEnabledState state: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = state
-        navigationItem.leftBarButtonItem?.isEnabled = state
-        navigationItem.rightBarButtonItem?.isEnabled = state
-        navigationItem.searchController?.searchBar.isUserInteractionEnabled = state
-    }
-}
-
-extension UIViewController: UISearchResultsUpdating {
-    
-    func configureSearchController() {
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a resource"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-    
-    public func updateSearchResults(for searchController: UISearchController) {}
 }
 
 extension UIViewController: UITableViewDataSource, UITableViewDelegate {
@@ -70,12 +44,6 @@ extension UIViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.register(cell.self, forCellReuseIdentifier: identifier)
         view.addSubview(tableView)
         tableView.adjustedForAutoLayout().pinToEdges(of: view)
-    }
-    
-    func configureRefreshControl(forTableView tableView: UITableView, withAction action: Selector) {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: action, for: .valueChanged)
-        tableView.refreshControl = refreshControl
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
