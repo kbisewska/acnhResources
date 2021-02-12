@@ -12,7 +12,7 @@ protocol VillagersTableViewControllerDelegate: class {
     func didTapCheckmarkButton()
 }
 
-final class VillagersTableViewController: UITableViewController, StateRefreshable, EmptyStateRepresentable, UISearchBarDelegate {
+final class VillagersTableViewController: UITableViewController, NavigationBarCustomizable, StateRefreshable, EmptyStateRepresentable, UISearchBarDelegate {
     
     weak var delegate: VillagersTableViewControllerDelegate!
     
@@ -36,6 +36,7 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
         super.viewDidLoad()
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
+        configureNavigationBar(forEnabledState: true, forViewController: parent)
         configureRefreshControl(withAction: #selector(refresh))
         configureEmptyStateView(for: parent)
     }
@@ -78,9 +79,11 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
                 
                 Current.persistenceManager.store(objects: self.villagers)
                 
+                self.tableView.isHidden = false
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
+                self.configureNavigationBar(forEnabledState: true, forViewController: self.parent)
                 
             case .failure(let error):
                 if needsUpdate {
@@ -91,6 +94,7 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector((self.tryAgainButtonTapped)))
                     self.refreshControl = nil
                     self.tableView.isHidden = true
+                    self.configureNavigationBar(forEnabledState: false, forViewController: self.parent)
                 }
             }
         }
