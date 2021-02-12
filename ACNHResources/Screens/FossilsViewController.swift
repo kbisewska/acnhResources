@@ -30,7 +30,7 @@ final class FossilsViewController: UIViewController, NavigationBarCustomizable, 
         
         configure(tableView: tableView, cell: ResourceCell.self, with: reuseIdentifier)
         addNavigationItems(leftBarButtonTitle: "Sort", leftBarButtonAction: #selector(sortItems), rightBarButtonTitle: "Filter", rightBarButtonAction: #selector(filterItems))
-        configureNavigationBar(forEnabledState: true)
+        configureNavigationBar(forEnabledState: true, forViewController: self)
         configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
         configureEmptyStateView(for: self)
         configureSearchController(withPlaceholder: "Search for a resource")
@@ -80,7 +80,7 @@ final class FossilsViewController: UIViewController, NavigationBarCustomizable, 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
-                self.configureNavigationBar(forEnabledState: true)
+                self.configureNavigationBar(forEnabledState: true, forViewController: self)
 
             case .failure(let error):
                 if needsUpdate {
@@ -88,7 +88,7 @@ final class FossilsViewController: UIViewController, NavigationBarCustomizable, 
                     self.refreshControl?.endRefreshing()
                 } else {
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector(self.tryAgainButtonTapped))
-                    self.configureNavigationBar(forEnabledState: false)
+                    self.configureNavigationBar(forEnabledState: false, forViewController: self)
                     self.refreshControl = nil
                 }
             }

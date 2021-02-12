@@ -17,10 +17,13 @@ extension NavigationBarCustomizable where Self: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightBarButtonTitle, style: .plain, target: self, action: rightBarButtonAction)
     }
     
-    func configureNavigationBar(forEnabledState state: Bool) {
+    func configureNavigationBar(forEnabledState state: Bool, forViewController viewController: UIViewController?) {
         navigationController?.navigationBar.prefersLargeTitles = state
-        navigationItem.leftBarButtonItem?.isEnabled = state
-        navigationItem.rightBarButtonItem?.isEnabled = state
-        navigationItem.searchController?.searchBar.isUserInteractionEnabled = state
+        
+        if let navigationItem = viewController?.navigationItem {
+            navigationItem.leftBarButtonItem?.isEnabled = state
+            navigationItem.rightBarButtonItem?.isEnabled = state
+            navigationItem.searchController?.searchBar.isUserInteractionEnabled = state
+        }
     }
 }
