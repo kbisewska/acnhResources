@@ -14,10 +14,12 @@ protocol EmptyStateRepresentable: AnyObject {
 
 extension EmptyStateRepresentable where Self: UIViewController {
     
-    func configureEmptyStateView() {
-        emptyStateView.isHidden = true
-        view.addSubview(emptyStateView)
-        emptyStateView.adjustedForAutoLayout().pinToEdges(of: view)
+    func configureEmptyStateView(for viewController: UIViewController?) {
+        if let view = viewController?.view {
+            emptyStateView.isHidden = true
+            view.addSubview(emptyStateView)
+            emptyStateView.adjustedForAutoLayout().pinToEdges(of: view)
+        }
     }
     
     func presentEmptyStateView(withMessage message: String, withAction action: Selector) {

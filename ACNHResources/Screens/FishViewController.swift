@@ -32,7 +32,7 @@ final class FishViewController: UIViewController, NavigationBarCustomizable, Sta
         addNavigationItems(leftBarButtonTitle: "Sort", leftBarButtonAction: #selector(sortItems), rightBarButtonTitle: "Filter", rightBarButtonAction: #selector(filterItems))
         configureNavigationBar(forEnabledState: true)
         configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
-        configureEmptyStateView()
+        configureEmptyStateView(for: self)
         configureSearchController(withPlaceholder: "Search for a resource")
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
