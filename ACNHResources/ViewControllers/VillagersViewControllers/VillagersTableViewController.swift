@@ -12,11 +12,12 @@ protocol VillagersTableViewControllerDelegate: class {
     func didTapCheckmarkButton()
 }
 
-final class VillagersTableViewController: UITableViewController, StateRefreshable, UISearchBarDelegate {
+final class VillagersTableViewController: UITableViewController, StateRefreshable, EmptyStateRepresentable, UISearchBarDelegate {
     
     weak var delegate: VillagersTableViewControllerDelegate!
     
     private let reuseIdentifier = "VillagerCell"
+    let emptyStateView = EmptyStateView()
     
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
@@ -36,6 +37,7 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         configureRefreshControl(withAction: #selector(refresh))
+        configureEmptyStateView(for: parent)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +80,7 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
                 
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+                self.emptyStateView.isHidden = true
                 
             case .failure(let error):
                 if needsUpdate {
@@ -85,7 +88,9 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
                     self.refreshControl?.endRefreshing()
                     self.tableView.setContentOffset(.zero, animated: true)
                 } else {
+                    self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector((self.tryAgainButtonTapped)))
                     self.refreshControl = nil
+                    self.tableView.isHidden = true
                 }
             }
         }
@@ -99,7 +104,7 @@ final class VillagersTableViewController: UITableViewController, StateRefreshabl
     
     @objc func tryAgainButtonTapped() {
         getVillagers(needsUpdate: false)
-        configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
+        configureRefreshControl(withAction: #selector(refresh))
     }
 }
 
