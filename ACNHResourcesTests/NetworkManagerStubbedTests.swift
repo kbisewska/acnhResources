@@ -12,7 +12,7 @@ import OHHTTPStubsSwift
 
 @testable import ACNHResources
 
-class NetworkManagerTests: XCTestCase {
+class NetworkManagerStubbedTests: XCTestCase {
     
     var sut: NetworkManager!
 

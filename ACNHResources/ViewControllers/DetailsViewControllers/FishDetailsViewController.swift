@@ -10,7 +10,6 @@ import UIKit
 
 final class FishDetailsViewController: UIViewController {
 
-    private let persistenceManager = PersistenceManager()
     private let customView = DetailsView().adjustedForAutoLayout()
     private var fish: Fish
     
@@ -46,13 +45,13 @@ final class FishDetailsViewController: UIViewController {
         let allDay = "All Day"
         
         customView.resourceDetailsLabel.text = """
-        Availability: \(getAvailability())
+        Availability (Months): \(getAvailability())
         
-        Time: \(fish.availability.isAllDay ? allDay : fish.availability.time ?? "")
+        Time: \(fish.isAllDay ? allDay : fish.time ?? "")
         
-        Location: \(fish.availability.location)
+        Location: \(fish.location)
         
-        Rarity: \(fish.availability.rarity)
+        Rarity: \(fish.rarity)
         
         Price: \(fish.price) Bells
         
@@ -62,12 +61,13 @@ final class FishDetailsViewController: UIViewController {
     
     private func getAvailability() -> String {
         let allYear = "All Year"
-        let hemisphere: Hemisphere? = try? persistenceManager.retrieve(from: "Hemisphere")
+        
+        let hemisphereIndex: Int? = try? Current.persistenceManager.retrieve(fromKey: "Hemisphere")
+        let hemisphere = Hemisphere.allCases[hemisphereIndex ?? 0]
         
         switch hemisphere {
-        case .north: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthNorthern ?? "")"
-        case .south: return "\(fish.availability.isAllYear ? allYear : fish.availability.monthSouthern ?? "")"
-        case .none: return ""
+        case .north: return "\(fish.isAllYear ? allYear : fish.monthNorthern ?? "")"
+        case .south: return "\(fish.isAllYear ? allYear : fish.monthSouthern ?? "")"
         }
     }
 }

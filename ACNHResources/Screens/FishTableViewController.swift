@@ -10,19 +10,16 @@ import UIKit
 
 final class FishTableViewController: UITableViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "FishCell"
     
     var fish = [Fish]()
     var filteredFish = [Fish]()
     var isFiltering = false
-    var ownedFish = [Fish]() {
-        didSet {
-            ownedCountLabel?.text = "You found \(ownedFish.count) out of \(fish.count) fish."
-        }
-    }
+    
     weak var ownedCountLabel: UILabel?
+    var ownedCountLabelText: String {
+        "You found \(fish.filter { $0.isOwned }.count) out of \(fish.count) fish."
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +27,23 @@ final class FishTableViewController: UITableViewController {
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         configureNavigationBar()
-        getFish()
+        configureRefreshControl()
         configureSearchController()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let fishObjects = Current.persistenceManager.retrieve(objectsOfType: Fish.self)
+        
+        if fishObjects.isEmpty {
+            getFish(needsUpdate: false)
+        } else {
+            fish = fishObjects.sorted { $0.name < $1.name }
+            tableView.reloadData()
+        }
     }
     
     // MARK: - Table View Configuration
@@ -45,16 +57,19 @@ final class FishTableViewController: UITableViewController {
         let activeFishArray = isFiltering ? filteredFish : fish
         let fishItem = activeFishArray[indexPath.row]
         
-        var selectionState = ownedFish.contains(fishItem)
+        var selectionState = fishItem.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedFish.removeAll(where: { $0.id == fishItem.id }) : self.ownedFish.append(fishItem)
-            try? self.persistenceManager.store(value: self.ownedFish, with: "OwnedFish")
+            Current.persistenceManager.update {
+                fishItem.isOwned = !fishItem.isOwned
+            }
             
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState
+            
+            self.ownedCountLabel?.text = self.ownedCountLabelText
         }
         
         let resource = Resource.fish(id: fishItem.id)
@@ -78,7 +93,7 @@ final class FishTableViewController: UITableViewController {
         header.backgroundColor = .systemIndigo
         
         let headerTitle = UILabel().adjustedForAutoLayout()
-        headerTitle.configureHeaderLabel(text: "You found \(ownedFish.count) out of \(fish.count) fish.", textAlignment: .center)
+        headerTitle.configureHeaderLabel(text: ownedCountLabelText, textAlignment: .center)
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
         
@@ -102,26 +117,62 @@ final class FishTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
     }
     
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getFish(needsUpdate: true)
+    }
+    
     // MARK: - Getting Data
 
-    private func getFish() {
-        networkManager.getFishData() { [weak self] result in
+    private func getFish(needsUpdate: Bool) {
+        let ownedFish = fish.filter { $0.isOwned }
+        
+        Current.networkManager.getFishData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let fishDictionary):
-                let fishList = Array(fishDictionary.values).sorted { $0.id < $1.id }
-                self.fish = fishList
+                self.fish = Array(fishDictionary.values)
+                    .map { entry -> Fish in
+                        entry.name = entry.name.capitalized
+                        if needsUpdate {
+                            entry.isOwned = ownedFish.first { $0.id == entry.id }?.isOwned ?? false
+                        }
+                        return entry
+                    }
+                    .sorted { $0.name < $1.name }
                 
-                let ownedFish: [Fish]? = try? self.persistenceManager.retrieve(from: "OwnedFish")
-                self.ownedFish = ownedFish ?? []
+                if needsUpdate {
+                    Current.persistenceManager.delete(objectsOfType: Fish.self)
+                }
+                
+                Current.persistenceManager.store(objects: self.fish)
                 
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        Current.persistenceManager.delete(objectsOfType: Fish.self)
+        fish = []
+        filteredFish = []
+        
+        tableView.reloadData()
     }
     
     // MARK: - Filtering Items
@@ -132,14 +183,14 @@ final class FishTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredFish = self.ownedFish
+            self.filteredFish = self.fish.filter { $0.isOwned }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredFish = self.fish.filter { !self.ownedFish.contains($0) }
+            self.filteredFish = self.fish.filter { !$0.isOwned }
             self.tableView.reloadData()
         })
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6225C410770088F274 /* RealmSwift */; };
+		8F2A5C6525C410770088F274 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6425C410770088F274 /* Realm */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
 		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
@@ -59,13 +61,12 @@
 		8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */; };
 		8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3C24DAE3B40037C6D0 /* fossils.json */; };
 		8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */; };
-		8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */; };
+		8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */; };
 		8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4B24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */; };
 		8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1E513248E8698001663F8 /* UILabel+Ext.swift */; };
-		8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,13 +133,12 @@
 		8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3C24DAE3B40037C6D0 /* fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fossils.json; sourceTree = "<group>"; };
 		8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
-		8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStubbedTests.swift; sourceTree = "<group>"; };
 		8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4824E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4A24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8FB1E513248E8698001663F8 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
-		8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F2A5C6525C410770088F274 /* Realm in Frameworks */,
+				8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +207,7 @@
 			children = (
 				8F43342D2461687C00714B95 /* Info.plist */,
 				8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */,
-				8F765E4024DC0B3F0037C6D0 /* NetworkManagerTests.swift */,
+				8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */,
 				8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */,
 				8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */,
 				8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */,
@@ -277,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */,
-				8FE0322C249A4C0A007C5A6C /* Date+Ext.swift */,
 				8F433470246BF95A00714B95 /* String+Ext.swift */,
 				8F43346A2464544200714B95 /* UIImageView+Ext.swift */,
 				8FB1E513248E8698001663F8 /* UILabel+Ext.swift */,
@@ -397,6 +398,8 @@
 			);
 			name = ACNHResources;
 			packageProductDependencies = (
+				8F2A5C6225C410770088F274 /* RealmSwift */,
+				8F2A5C6425C410770088F274 /* Realm */,
 			);
 			productName = ACNHResources;
 			productReference = 8F4334112461687400714B95 /* ACNHResources.app */;
@@ -456,6 +459,7 @@
 			packageReferences = (
 				8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				8F765E2524D961E20037C6D0 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 8F4334122461687400714B95 /* Products */;
 			projectDirPath = "";
@@ -497,7 +501,6 @@
 			files = (
 				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
 				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
-				8FE0322D249A4C0A007C5A6C /* Date+Ext.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
@@ -549,7 +552,7 @@
 				8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
-				8F765E4124DC0B3F0037C6D0 /* NetworkManagerTests.swift in Sources */,
+				8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */,
 				8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */,
 				8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */,
 			);
@@ -808,6 +811,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
 		8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
@@ -827,6 +838,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F2A5C6225C410770088F274 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		8F2A5C6425C410770088F274 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F2A5C6125C410770088F274 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
 		8F765E2324B322140037C6D0 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F765E2224B322140037C6D0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;

@@ -12,9 +12,10 @@ class NetworkManager {
     
     private let baseURL = "http://acnhapi.com/v1/"
     private let urlSession = URLSession(configuration: .default)
-    private let persistanceManager = PersistenceManager()
+    private let persistenceManager = PersistenceManager()
     
     static private var cancellableTasks = [String: URLSessionDataTask]()
+
     
     // MARK: - Getting Data
     
@@ -141,7 +142,7 @@ class NetworkManager {
     private func getResourceImage(urlRequest: URLRequest, completion: @escaping (UIImage?) -> Void) {
         let key = urlRequest.url!.absoluteString.sha256()
         
-        if let image = persistanceManager.retrieveImage(from: key) {
+        if let image = persistenceManager.retrieveImage(from: key) {
             DispatchQueue.main.async {
                 completion(image)
             }
@@ -162,7 +163,7 @@ class NetworkManager {
                     return
             }
             
-            self.persistanceManager.store(image: image, with: key)
+            self.persistenceManager.store(image: image, with: key)
             
             DispatchQueue.main.async {
                 completion(image)
@@ -176,7 +177,7 @@ class NetworkManager {
 
 // MARK: - Mocking Network Requests
 
-private class NetworkManagerMock: NetworkManager {
+internal class NetworkManagerMock: NetworkManager {
     
     override func getVillagersData(completion: @escaping (Result<[String : Villager], ErrorMessage>) -> Void) {
         let response = Bundle.main.decode([String: Villager].self, from: "villagers.json")
@@ -201,7 +202,7 @@ private class NetworkManagerMock: NetworkManager {
 
 extension NetworkManager {
     
-    static var mock: NetworkManager = {
-       NetworkManagerMock()
-    }()
+    static var mock: NetworkManagerMock {
+        NetworkManagerMock()
+    }
 }

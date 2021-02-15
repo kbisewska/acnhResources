@@ -17,7 +17,6 @@ class VillagerDetailsViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         let villager = Bundle.main.decode([String: Villager].self, from: "villagers.json")
             .compactMap { $0.value }
             .first(where: { $0.id == 1 })!

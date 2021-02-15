@@ -17,12 +17,10 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
     weak var delegate: VillagersTableViewControllerDelegate!
     
     private let reuseIdentifier = "VillagerCell"
-    private let persistenceManager = PersistenceManager()
     
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
     var isFiltering = false
-    var ownedVillagers = [Villager]()
     
     init(with villagers: [Villager]) {
         super.init(nibName: nil, bundle: nil)
@@ -37,14 +35,36 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         super.viewDidLoad()
         
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        configureRefreshControl()
     }
     
-    func update(with villagers: [Villager]) {
-        self.villagers = villagers
-        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
-        self.ownedVillagers = ownedVillagers ?? []
-        tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let villagerObjects = Current.persistenceManager.retrieve(objectsOfType: Villager.self)
+        
+        if villagerObjects.isEmpty {
+            getVillagers(needsUpdate: false)
+        } else {
+            villagers = villagerObjects.sorted { $0.name < $1.name }
+            tableView.reloadData()
+        }
     }
+    
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getVillagers(needsUpdate: true)
+    }
+    
+    // MARK: - Table View Configuration
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isFiltering ? filteredVillagers.count : villagers.count
@@ -55,12 +75,14 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         let activeVillagersArray = isFiltering ? filteredVillagers : villagers
         let villager = activeVillagersArray[indexPath.row]
         
-        var selectionState = ownedVillagers.contains(villager)
+        var selectionState = villager.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedVillagers.removeAll(where: { $0.id == villager.id }) : self.ownedVillagers.append(villager)
-            try? self.persistenceManager.store(value: self.ownedVillagers, with: "OwnedVillagers")
+            Current.persistenceManager.update {
+                villager.isOwned = !villager.isOwned
+            }
+            
             self.delegate.didTapCheckmarkButton()
             
             let updatedState = !selectionState
@@ -103,5 +125,41 @@ final class VillagersTableViewController: UITableViewController, UISearchBarDele
         ])
         
         return header
+    }
+    
+    // MARK: - Getting Data
+    
+    private func getVillagers(needsUpdate: Bool) {
+        let ownedVillagers = villagers.filter { $0.isOwned }
+        
+        Current.networkManager.getVillagersData() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let villagersDictionary):
+                self.villagers = Array(villagersDictionary.values)
+                    .sorted { $0.name < $1.name }
+                    .map { entry -> Villager in
+                        if needsUpdate {
+                            entry.isOwned = ownedVillagers.first { $0.id == entry.id }?.isOwned ?? false
+                        }
+                        return entry
+                    }
+                
+                if needsUpdate {
+                    Current.persistenceManager.delete(objectsOfType: Villager.self)
+                }
+                
+                Current.persistenceManager.store(objects: self.villagers)
+                
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                
+            case .failure(let error):
+                self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
+                self.tableView.setContentOffset(.zero, animated: true)
+            }
+        }
     }
 }

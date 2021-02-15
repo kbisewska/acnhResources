@@ -11,7 +11,6 @@ import UIKit
 final class GeneralSettingsViewController: UIViewController {
     
     private let customView = GeneralSettingsView()
-    private let persistenceManager = PersistenceManager()
     
     override func loadView() {
         view = customView
@@ -19,6 +18,8 @@ final class GeneralSettingsViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
         
         configureLayout()
         configurePicker()
@@ -28,18 +29,45 @@ final class GeneralSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func resetData() {
+        Current.persistenceManager.removeAllImages()
+        Current.persistenceManager.removeData(withKey: "Hemisphere")
+        customView.picker.selectRow(0, inComponent: 0, animated: true)
+    }
+    
     private func configureLayout() {
         view.backgroundColor = .systemBackground
         
-        customView.titleLabel.text = "Settings"
-        customView.settingsLabel.text = "Your Hemisphere:"
+        customView.hemisphereLabel.text = "Settings"
+        customView.hemisphereSettingsLabel.text = "Your Hemisphere:"
+        
+        customView.resetButton.setTitle("Clear App Data", for: .normal)
+        customView.resetButton.addTarget(self, action: #selector(presentResetAlert), for: .touchUpInside)
     }
     
     private func configurePicker() {
         customView.picker.delegate = self
         customView.picker.dataSource = self
-        customView.picker.selectRow(0, inComponent: 0, animated: true)
-        try? persistenceManager.store(value: Hemisphere.allCases[0], with: "Hemisphere")
+    
+        if let row: Int = try? Current.persistenceManager.retrieve(fromKey: "Hemisphere") {
+            customView.picker.selectRow(row, inComponent: 0, animated: true)
+        } else {
+            customView.picker.selectRow(0, inComponent: 0, animated: true)
+            try? Current.persistenceManager.store(value: 0, withKey: "Hemisphere")
+        }
+    }
+    
+    @objc func presentResetAlert() {
+        let alert = UIAlertController(title: "Clear App Data", message: "All saved data in this app will be cleared. Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] _ in
+            self?.sendNotification()
+        }))
+        present(alert, animated: true)
+    }
+    
+    func sendNotification() {
+        NotificationCenter.default.post(Notification(name: Notification.Name("ResetData")))
     }
 }
 
@@ -65,6 +93,6 @@ extension GeneralSettingsViewController: UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        try? persistenceManager.store(value: Hemisphere.allCases[row], with: "Hemisphere")
+        try? Current.persistenceManager.store(value: row, withKey: "Hemisphere")
     }
 }

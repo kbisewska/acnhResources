@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct PersistenceManager {
+class PersistenceManager {
 
     private let fileManager = FileManager.default
     private let userDefaults = UserDefaults.standard
+    private let realm = try? Realm()
     
     // MARK: - Storing and Retrieving Images Using FileManager
     
@@ -33,6 +35,21 @@ struct PersistenceManager {
         return nil
     }
     
+    func removeAllImages() {
+        if let filesURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let filesPath = filesURL.path
+            
+            if let files = try? fileManager.contentsOfDirectory(atPath: filesPath) {
+                for file in files {
+                    if file.hasSuffix(".png") {
+                        let filePath = "\(filesPath)/\(file)"
+                        try? fileManager.removeItem(atPath: filePath)
+                    }
+                }
+            }
+        }
+    }
+    
     private func getFilePath(for key: String) -> URL? {
         guard let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         
@@ -41,22 +58,59 @@ struct PersistenceManager {
     
     // MARK: - Storing and Retrieving Data Using UserDefaults
     
-    func store<T: Codable>(value: T, with key: String) throws {
-        do {
-            let data = try JSONEncoder().encode(value)
-            userDefaults.set(data, forKey: key)
-        } catch (let error) {
-            throw error
+    func store<T>(value: T, withKey key: String) throws {
+        userDefaults.set(value, forKey: key)
+    }
+    
+    func retrieve<T>(fromKey key: String) throws -> T? {
+        guard let data = userDefaults.object(forKey: key) as? T else { return nil }
+        return data
+    }
+    
+    func removeData(withKey key: String) {
+        userDefaults.removeObject(forKey: key)
+    }
+    
+    // MARK: - Storing and Retrieving Data Using Realm Database
+    
+    func store<T: Object>(objects: [T]) {
+        try? realm?.write {
+            realm?.add(objects)
         }
     }
     
-    func retrieve<T: Codable>(from key: String) throws -> T? {
-        guard let data = userDefaults.data(forKey: key) else { return nil }
-        
-        do {
-            return try JSONDecoder().decode(T.self, from: data)
-        } catch (let error) {
-            throw error
+    func update(with action: @escaping () -> Void) {
+        try? realm?.write {
+            action()
         }
+    }
+    
+    func retrieve<T: Object>(objectsOfType type: T.Type) -> [T] {
+        guard let results = realm?.objects(type) else { return [] }
+        return Array(results)
+    }
+    
+    func delete<T: Object>(objectsOfType type: T.Type) {
+        try? realm?.write {
+            realm?.delete(retrieve(objectsOfType: type))
+        }
+    }
+}
+
+final class PersistenceManagerMock: PersistenceManager {
+    override func store<T>(objects: [T]) where T : Object {}
+    
+    override func update(with action: @escaping () -> Void) {}
+    
+    override func retrieve<T>(objectsOfType type: T.Type) -> [T] where T : Object {
+        return []
+    }
+    
+    override func delete<T>(objectsOfType type: T.Type) where T : Object {}
+}
+
+extension PersistenceManager {
+    static var mock: PersistenceManagerMock {
+        PersistenceManagerMock()
     }
 }

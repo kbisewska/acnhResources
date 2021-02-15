@@ -11,7 +11,6 @@ import UIKit
 final class VillagersCollectionViewController: UICollectionViewController {
     
     private let headerReuseIdentifier = "Header"
-    private let persistenceManager = PersistenceManager()
     
     var villagers = [Villager]()
     var filteredVillagers = [Villager]()
@@ -29,6 +28,11 @@ final class VillagersCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         update()
     }
     
@@ -42,13 +46,11 @@ final class VillagersCollectionViewController: UICollectionViewController {
     }
     
     private func update() {
-        let ownedVillagers: [Villager]? = try? persistenceManager.retrieve(from: "OwnedVillagers")
-        villagers = ownedVillagers ?? []
-        collectionView.reloadData()
+        villagers = Current.persistenceManager.retrieve(objectsOfType: Villager.self)
+            .filter { $0.isOwned }
+            .sorted { $0.name < $1.name }
         
-        if let birthdayVillager = villagers.first(where: { $0.birthdaySimplified == Date().convertToDayMonthFormat() }) {
-            presentAlert(title: "Hooray!", message: "\(birthdayVillager.name) has a birthday today! 🎉")
-        }
+        collectionView.reloadData()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

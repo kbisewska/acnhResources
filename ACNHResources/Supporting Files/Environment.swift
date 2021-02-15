@@ -9,13 +9,27 @@
 import Foundation
 
 struct Environment {
-    var networkManager = NetworkManager()
-}
-
-extension Environment {
-    static var mock: Environment {
-        Environment(networkManager: .mock)
+    var networkManager: NetworkManager
+    var persistenceManager: PersistenceManager
+    
+    fileprivate static var isRunningTests: Bool {
+        return ProcessInfo.processInfo.environment["isRunningTests"] != nil
     }
 }
 
-var Current: Environment = Environment()
+extension Environment {
+    static var live: Environment {
+        Environment(networkManager: NetworkManager(),
+                    persistenceManager: PersistenceManager())
+    }
+    
+    static var mock: Environment {
+        Environment(networkManager: .mock,
+                    persistenceManager: .mock)
+    }
+}
+
+private(set) var Current: Environment
+    = Environment.isRunningTests
+    ? .mock
+    : .live

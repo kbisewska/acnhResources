@@ -7,41 +7,59 @@
 //
 
 import Foundation
+import RealmSwift
 
-final class Villager: Codable, Equatable, Hashable {
+final class Villager: Object, Codable {
 
-    let id: Int
-    var name: String { nameDetails.nameEn.capitalizeFirstLetter() }
-    let personality: String
-    let birthday: String
-    let birthdaySimplified: String
-    let species: String
-    let gender: String
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var personality: String = ""
+    @objc dynamic var birthday: String = ""
+    @objc dynamic var birthdaySimplified: String = ""
+    @objc dynamic var species: String = ""
+    @objc dynamic var gender: String = ""
     
-    var isOwned: Bool = false
-    
-    private let nameDetails: Name
+    @objc dynamic var isOwned: Bool = false
     
     private enum CodingKeys: String, CodingKey {
-        case nameDetails = "name"
         case birthday = "birthday-string"
         case birthdaySimplified = "birthday"
-        case id, personality, species, gender
+        case id, name, personality, species, gender
     }
     
-    private struct Name: Codable {
-        let nameEn: String
+    private enum NameCodingKeys: String, CodingKey {
+        case nameEn = "name-EUen"
+    }
+    
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
         
-        enum CodingKeys: String, CodingKey {
-            case nameEn = "name-EUen"
-        }
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        personality = try container.decode(String.self, forKey: .personality)
+        birthday = try container.decode(String.self, forKey: .birthday)
+        birthdaySimplified = try container.decode(String.self, forKey: .birthdaySimplified)
+        species = try container.decode(String.self, forKey: .species)
+        gender = try container.decode(String.self, forKey: .gender)
+        
+        let nameContainer = try container.nestedContainer(keyedBy: NameCodingKeys.self, forKey: .name)
+        name = try nameContainer.decode(String.self, forKey: .nameEn)
     }
     
-    static func == (lhs: Villager, rhs: Villager) -> Bool {
-        lhs.id == rhs.id
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(personality, forKey: .personality)
+        try container.encode(birthday, forKey: .birthday)
+        try container.encode(birthdaySimplified, forKey: .birthdaySimplified)
+        try container.encode(species, forKey: .species)
+        try container.encode(gender, forKey: .gender)
+        
+        var nameContainer = container.nestedContainer(keyedBy: NameCodingKeys.self, forKey: .name)
+        try nameContainer.encode(name, forKey: .nameEn)
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }

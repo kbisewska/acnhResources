@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import RealmSwift
 import SnapshotTesting
 
 @testable import ACNHResources
@@ -17,7 +18,6 @@ class FossilsTableViewControllerSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Current = .mock
         sut = FossilsTableViewController()
     }
     

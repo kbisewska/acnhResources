@@ -10,7 +10,6 @@ import UIKit
 
 final class VillagersViewController: UIViewController {
     
-    private let networkManager = Current.networkManager
     private let villagersCollectionViewController = VillagersCollectionViewController()
     private let villagersTableViewController = VillagersTableViewController(with: [])
     
@@ -19,28 +18,12 @@ final class VillagersViewController: UIViewController {
         
         add(villagersCollectionViewController)
         add(villagersTableViewController)
-        getVillagers()
+        villagersTableViewController.delegate = villagersCollectionViewController
+        
         configureLayout()
         configureSearchController()
         
-        villagersTableViewController.delegate = villagersCollectionViewController
-    }
-    
-    // MARK: - Getting Data
-    
-    private func getVillagers() {
-        networkManager.getVillagersData() { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let villagersDictionary):
-                let villagersList = Array(villagersDictionary.values).sorted { $0.name < $1.name }
-                self.villagersTableViewController.update(with: villagersList)
-                
-            case .failure(let error):
-                self.presentAlert(title: "Something went wrong", message: error.rawValue)
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
     
     // MARK: - Layout Configuration
@@ -82,6 +65,19 @@ final class VillagersViewController: UIViewController {
         
         villagersCollectionViewController.isFiltering = true
         villagersCollectionViewController.filteredVillagers = villagersCollectionViewController.villagers.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        villagersCollectionViewController.collectionView.reloadData()
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        Current.persistenceManager.delete(objectsOfType: Villager.self)
+        villagersTableViewController.villagers = []
+        villagersTableViewController.filteredVillagers = []
+        villagersTableViewController.tableView.reloadData()
+        
+        villagersCollectionViewController.villagers = []
+        villagersCollectionViewController.filteredVillagers = []
         villagersCollectionViewController.collectionView.reloadData()
     }
 }

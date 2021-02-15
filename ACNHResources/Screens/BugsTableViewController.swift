@@ -10,19 +10,16 @@ import UIKit
 
 final class BugsTableViewController: UITableViewController {
     
-    private let networkManager = Current.networkManager
-    private let persistenceManager = PersistenceManager()
     private let reuseIdentifier = "BugCell"
     
     var bugs = [Bug]()
     var filteredBugs = [Bug]()
     var isFiltering = false
-    var ownedBugs = [Bug]() {
-        didSet {
-            ownedCountLabel?.text = "You found \(ownedBugs.count) out of \(bugs.count) bugs."
-        }
-    }
+    
     weak var ownedCountLabel: UILabel?
+    var ownedCountLabelText: String {
+        "You found \(bugs.filter { $0.isOwned }.count) out of \(bugs.count) bugs."
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +27,23 @@ final class BugsTableViewController: UITableViewController {
         tableView.register(ResourceCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         configureNavigationBar()
-        getBugs()
+        configureRefreshControl()
         configureSearchController()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let bugsObjects = Current.persistenceManager.retrieve(objectsOfType: Bug.self)
+        
+        if bugsObjects.isEmpty {
+            getBugs(needsUpdate: false)
+        } else {
+            bugs = bugsObjects.sorted { $0.name < $1.name }
+            tableView.reloadData()
+        }
     }
     
     // MARK: - Table View Configuration
@@ -45,16 +57,19 @@ final class BugsTableViewController: UITableViewController {
         let activeBugsArray = isFiltering ? filteredBugs : bugs
         let bug = activeBugsArray[indexPath.row]
         
-        var selectionState = ownedBugs.contains(bug)
+        var selectionState = bug.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
-            selectionState ? self.ownedBugs.removeAll(where: { $0.id == bug.id }) : self.ownedBugs.append(bug)
-            try? self.persistenceManager.store(value: self.ownedBugs, with: "OwnedBugs")
+            Current.persistenceManager.update {
+                bug.isOwned = !bug.isOwned
+            }
             
             let updatedState = !selectionState
             cell.configure(forSelectionState: updatedState)
             selectionState = updatedState
+            
+            self.ownedCountLabel?.text = self.ownedCountLabelText
         }
         
         let resource = Resource.bug(id: bug.id)
@@ -78,7 +93,7 @@ final class BugsTableViewController: UITableViewController {
         header.backgroundColor = .systemIndigo
         
         let headerTitle = UILabel().adjustedForAutoLayout()
-        headerTitle.configureHeaderLabel(text: "You found \(ownedBugs.count) out of \(bugs.count) bugs.", textAlignment: .center)
+        headerTitle.configureHeaderLabel(text: ownedCountLabelText, textAlignment: .center)
         header.addSubview(headerTitle)
         ownedCountLabel = headerTitle
         
@@ -102,26 +117,62 @@ final class BugsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterItems))
     }
     
+    // MARK: - Refresh Control Configuration
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        getBugs(needsUpdate: true)
+    }
+    
     // MARK: - Getting Data
     
-    private func getBugs() {
-        networkManager.getBugsData() { [weak self] result in
+    private func getBugs(needsUpdate: Bool) {
+        let ownedBugs = bugs.filter { $0.isOwned }
+        
+        Current.networkManager.getBugsData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let bugsDictionary):
-                let bugsList = Array(bugsDictionary.values).sorted { $0.id < $1.id }
-                self.bugs = bugsList
+                self.bugs = Array(bugsDictionary.values)
+                    .map { entry -> Bug in
+                        entry.name = entry.name.capitalized
+                        if needsUpdate {
+                            entry.isOwned = ownedBugs.first { $0.id == entry.id }?.isOwned ?? false
+                        }
+                        return entry
+                    }
+                    .sorted { $0.name < $1.name }
                 
-                let ownedBugs: [Bug]? = try? self.persistenceManager.retrieve(from: "OwnedBugs")
-                self.ownedBugs = ownedBugs ?? []
+                if needsUpdate {
+                    Current.persistenceManager.delete(objectsOfType: Bug.self)
+                }
+                
+                Current.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
 
             case .failure(let error):
                 self.presentAlert(title: "Something went wrong", message: error.rawValue)
+                self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    // MARK: - Resetting Data
+    
+    @objc func resetData() {
+        Current.persistenceManager.delete(objectsOfType: Bug.self)
+        bugs = []
+        filteredBugs = []
+        
+        tableView.reloadData()
     }
     
     // MARK: - Filtering Items
@@ -132,14 +183,14 @@ final class BugsTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.ownedBugs
+            self.filteredBugs = self.bugs.filter { $0.isOwned }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.bugs.filter { !self.ownedBugs.contains($0) }
+            self.filteredBugs = self.bugs.filter { !$0.isOwned }
             self.tableView.reloadData()
         })
         
