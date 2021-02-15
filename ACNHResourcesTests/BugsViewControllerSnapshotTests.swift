@@ -1,5 +1,5 @@
 //
-//  BugsTableViewControllerSnapshotTests.swift
+//  BugsViewControllerSnapshotTests.swift
 //  ACNHResourcesTests
 //
 //  Created by Kornelia Bisewska on 05/08/2020.
@@ -11,13 +11,13 @@ import SnapshotTesting
 
 @testable import ACNHResources
 
-class BugsTableViewControllerSnapshotTests: XCTestCase {
+class BugsViewControllerSnapshotTests: XCTestCase {
     
-    var sut: BugsTableViewController!
+    var sut: BugsViewController!
     
     override func setUp() {
         super.setUp()
-        sut = BugsTableViewController()
+        sut = BugsViewController()
     }
     
     override func tearDown() {
@@ -25,7 +25,7 @@ class BugsTableViewControllerSnapshotTests: XCTestCase {
         super.tearDown()
     }
     
-    func testBugsTableViewController() {
+    func testBugsViewController() {
         assertSnapshot(matching: sut, as: .image(on: .iPhoneXr))
     }
 }

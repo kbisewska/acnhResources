@@ -9,15 +9,20 @@
 /* Begin PBXBuildFile section */
 		8F2A5C6325C410770088F274 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6225C410770088F274 /* RealmSwift */; };
 		8F2A5C6525C410770088F274 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2A5C6425C410770088F274 /* Realm */; };
+		8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */; };
+		8F2A5C9125D4184F0088F274 /* EmptyStateRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */; };
+		8F2A5C9525D41EB00088F274 /* StateRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */; };
+		8F2A5C9B25D4227B0088F274 /* ContentSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */; };
+		8F2A5CA125D42BED0088F274 /* NavigationBarCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */; };
 		8F4334152461687400714B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334142461687400714B95 /* AppDelegate.swift */; };
 		8F4334172461687400714B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334162461687400714B95 /* SceneDelegate.swift */; };
-		8F4334192461687400714B95 /* FishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishTableViewController.swift */; };
+		8F4334192461687400714B95 /* FishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334182461687400714B95 /* FishViewController.swift */; };
 		8F43341E2461687C00714B95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F43341D2461687C00714B95 /* Assets.xcassets */; };
 		8F4334212461687C00714B95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F43341F2461687C00714B95 /* LaunchScreen.storyboard */; };
 		8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */; };
 		8F433446246169E000714B95 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F433445246169E000714B95 /* TabBarController.swift */; };
-		8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsTableViewController.swift */; };
-		8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsTableViewController.swift */; };
+		8F43344B2461733200714B95 /* BugsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344A2461733200714B95 /* BugsViewController.swift */; };
+		8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43344C2461734000714B95 /* FossilsViewController.swift */; };
 		8F43345124617DB000714B95 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43345024617DB000714B95 /* NetworkManager.swift */; };
 		8F4334532461827200714B95 /* Villager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334522461827200714B95 /* Villager.swift */; };
 		8F4334552461827B00714B95 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4334542461827B00714B95 /* Fish.swift */; };
@@ -54,13 +59,13 @@
 		8F765E2B24D96D8F0037C6D0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E2A24D96D8F0037C6D0 /* Environment.swift */; };
 		8F765E2E24D96FB00037C6D0 /* fish.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E2D24D96FB00037C6D0 /* fish.json */; };
 		8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */; };
-		8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */; };
+		8F765E3324D974000037C6D0 /* FishViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3224D974000037C6D0 /* FishViewControllerSnapshotTests.swift */; };
 		8F765E3524DAD1AC0037C6D0 /* villagers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3424DAD1AC0037C6D0 /* villagers.json */; };
 		8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */; };
 		8F765E3924DAD6EF0037C6D0 /* bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3824DAD6EF0037C6D0 /* bugs.json */; };
-		8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */; };
+		8F765E3B24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */; };
 		8F765E3D24DAE3B40037C6D0 /* fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F765E3C24DAE3B40037C6D0 /* fossils.json */; };
-		8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */; };
+		8F765E3F24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */; };
 		8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */; };
 		8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */; };
 		8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */; };
@@ -80,10 +85,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateRepresentable.swift; sourceTree = "<group>"; };
+		8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRefreshable.swift; sourceTree = "<group>"; };
+		8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSearchable.swift; sourceTree = "<group>"; };
+		8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCustomizable.swift; sourceTree = "<group>"; };
 		8F4334112461687400714B95 /* ACNHResources.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHResources.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4334142461687400714B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4334162461687400714B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8F4334182461687400714B95 /* FishTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewController.swift; sourceTree = "<group>"; };
+		8F4334182461687400714B95 /* FishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewController.swift; sourceTree = "<group>"; };
 		8F43341D2461687C00714B95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F4334202461687C00714B95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F4334222461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,8 +101,8 @@
 		8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHResourcesTests.swift; sourceTree = "<group>"; };
 		8F43342D2461687C00714B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F433445246169E000714B95 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		8F43344A2461733200714B95 /* BugsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewController.swift; sourceTree = "<group>"; };
-		8F43344C2461734000714B95 /* FossilsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewController.swift; sourceTree = "<group>"; };
+		8F43344A2461733200714B95 /* BugsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewController.swift; sourceTree = "<group>"; };
+		8F43344C2461734000714B95 /* FossilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsViewController.swift; sourceTree = "<group>"; };
 		8F43345024617DB000714B95 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8F4334522461827200714B95 /* Villager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Villager.swift; sourceTree = "<group>"; };
 		8F4334542461827B00714B95 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
@@ -126,13 +136,13 @@
 		8F765E2A24D96D8F0037C6D0 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8F765E2D24D96FB00037C6D0 /* fish.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fish.json; sourceTree = "<group>"; };
 		8F765E2F24D970310037C6D0 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
-		8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3224D974000037C6D0 /* FishViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3424DAD1AC0037C6D0 /* villagers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = villagers.json; sourceTree = "<group>"; };
 		8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagersViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3824DAD6EF0037C6D0 /* bugs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bugs.json; sourceTree = "<group>"; };
-		8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E3C24DAE3B40037C6D0 /* fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fossils.json; sourceTree = "<group>"; };
-		8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsTableViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStubbedTests.swift; sourceTree = "<group>"; };
 		8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillagerDetailsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
@@ -209,9 +219,9 @@
 				8F43342B2461687C00714B95 /* ACNHResourcesTests.swift */,
 				8F765E4024DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift */,
 				8F765E3624DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift */,
-				8F765E3224D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift */,
-				8F765E3A24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift */,
-				8F765E3E24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift */,
+				8F765E3224D974000037C6D0 /* FishViewControllerSnapshotTests.swift */,
+				8F765E3A24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift */,
+				8F765E3E24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift */,
 				8F765E1B24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift */,
 				8F765E4624E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift */,
 				8F765E4424E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift */,
@@ -237,9 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				8F433484246EDCC100714B95 /* VillagersViewController.swift */,
-				8F4334182461687400714B95 /* FishTableViewController.swift */,
-				8F43344A2461733200714B95 /* BugsTableViewController.swift */,
-				8F43344C2461734000714B95 /* FossilsTableViewController.swift */,
+				8F4334182461687400714B95 /* FishViewController.swift */,
+				8F43344A2461733200714B95 /* BugsViewController.swift */,
+				8F43344C2461734000714B95 /* FossilsViewController.swift */,
 				8F765E0424A4B9E80037C6D0 /* SettingsViewController.swift */,
 			);
 			path = Screens;
@@ -303,6 +313,7 @@
 			children = (
 				8F765E0F24A5F62E0037C6D0 /* CreditsView.swift */,
 				8F43347B246C35F500714B95 /* DetailsView.swift */,
+				8F2A5C7C25D153E30088F274 /* EmptyStateView.swift */,
 				8F765E0D24A5F5E30037C6D0 /* GeneralSettingsView.swift */,
 			);
 			path = Views;
@@ -332,7 +343,11 @@
 		8F765E1424ACB4070037C6D0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8F2A5C9A25D4227B0088F274 /* ContentSearchable.swift */,
+				8F2A5C9025D4184F0088F274 /* EmptyStateRepresentable.swift */,
+				8F2A5CA025D42BED0088F274 /* NavigationBarCustomizable.swift */,
 				8F4334892475316300714B95 /* SelfConfiguringCell.swift */,
+				8F2A5C9425D41EB00088F274 /* StateRefreshable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -500,14 +515,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F433490247BC63200714B95 /* VillagersCollectionViewController.swift in Sources */,
-				8F4334192461687400714B95 /* FishTableViewController.swift in Sources */,
+				8F4334192461687400714B95 /* FishViewController.swift in Sources */,
 				8F433473246C317300714B95 /* VillagerDetailsViewController.swift in Sources */,
 				8F433496247FA8C600714B95 /* Resource.swift in Sources */,
 				8FB1E514248E8698001663F8 /* UILabel+Ext.swift in Sources */,
-				8F43344B2461733200714B95 /* BugsTableViewController.swift in Sources */,
+				8F43344B2461733200714B95 /* BugsViewController.swift in Sources */,
 				8F765E0524A4B9E80037C6D0 /* SettingsViewController.swift in Sources */,
 				8F4334572461828600714B95 /* Bug.swift in Sources */,
 				8F433471246BF95A00714B95 /* String+Ext.swift in Sources */,
+				8F2A5C9525D41EB00088F274 /* StateRefreshable.swift in Sources */,
 				8F765E0A24A4C6750037C6D0 /* GeneralSettingsViewController.swift in Sources */,
 				8F43346F246AA7F100714B95 /* PersistenceManager.swift in Sources */,
 				8F43346324643FBB00714B95 /* ResourceCell.swift in Sources */,
@@ -515,8 +531,9 @@
 				8F433478246C328A00714B95 /* BugDetailsViewController.swift in Sources */,
 				8F765E2B24D96D8F0037C6D0 /* Environment.swift in Sources */,
 				8F433446246169E000714B95 /* TabBarController.swift in Sources */,
-				8F43344D2461734000714B95 /* FossilsTableViewController.swift in Sources */,
+				8F43344D2461734000714B95 /* FossilsViewController.swift in Sources */,
 				8F43347C246C35F500714B95 /* DetailsView.swift in Sources */,
+				8F2A5C7D25D153E40088F274 /* EmptyStateView.swift in Sources */,
 				8F4334882474075900714B95 /* VillagerCell.swift in Sources */,
 				8F43347E246C38B500714B95 /* UIView+Ext.swift in Sources */,
 				8F43347A246C329C00714B95 /* FossilDetailsViewController.swift in Sources */,
@@ -526,14 +543,17 @@
 				8F43345B24618C1F00714B95 /* ErrorMessage.swift in Sources */,
 				8F4334552461827B00714B95 /* Fish.swift in Sources */,
 				8F4334592461828F00714B95 /* Fossil.swift in Sources */,
+				8F2A5C9B25D4227B0088F274 /* ContentSearchable.swift in Sources */,
 				8F43348A2475316400714B95 /* SelfConfiguringCell.swift in Sources */,
 				8F4334152461687400714B95 /* AppDelegate.swift in Sources */,
 				8F765E3024D970310037C6D0 /* Bundle+Ext.swift in Sources */,
 				8F433483246EDC5100714B95 /* VillagersTableViewController.swift in Sources */,
+				8F2A5CA125D42BED0088F274 /* NavigationBarCustomizable.swift in Sources */,
 				8F43346B2464544200714B95 /* UIImageView+Ext.swift in Sources */,
 				8F765E0E24A5F5E30037C6D0 /* GeneralSettingsView.swift in Sources */,
 				8F4334172461687400714B95 /* SceneDelegate.swift in Sources */,
 				8F765E1024A5F62E0037C6D0 /* CreditsView.swift in Sources */,
+				8F2A5C9125D4184F0088F274 /* EmptyStateRepresentable.swift in Sources */,
 				8F765E1224A63FAD0037C6D0 /* Hemisphere.swift in Sources */,
 				8F433494247D174C00714B95 /* UIViewController+Ext.swift in Sources */,
 				8F4334532461827200714B95 /* Villager.swift in Sources */,
@@ -547,14 +567,14 @@
 				8F765E3724DAD58E0037C6D0 /* VillagersViewControllerSnapshotTests.swift in Sources */,
 				8F765E4524E188210037C6D0 /* FishDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4724E18A340037C6D0 /* VillagerDetailsViewControllerSnapshotTests.swift in Sources */,
-				8F765E3324D974000037C6D0 /* FishTableViewControllerSnapshotTests.swift in Sources */,
+				8F765E3324D974000037C6D0 /* FishViewControllerSnapshotTests.swift in Sources */,
 				8F765E4B24E18C100037C6D0 /* FossilDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4924E18B8F0037C6D0 /* BugDetailsViewControllerSnapshotTests.swift in Sources */,
 				8F43342C2461687C00714B95 /* ACNHResourcesTests.swift in Sources */,
 				8F765E1C24B31E950037C6D0 /* SettingsViewControllerSnapshotTests.swift in Sources */,
 				8F765E4124DC0B3F0037C6D0 /* NetworkManagerStubbedTests.swift in Sources */,
-				8F765E3B24DADA530037C6D0 /* BugsTableViewControllerSnapshotTests.swift in Sources */,
-				8F765E3F24DAE4850037C6D0 /* FossilsTableViewControllerSnapshotTests.swift in Sources */,
+				8F765E3B24DADA530037C6D0 /* BugsViewControllerSnapshotTests.swift in Sources */,
+				8F765E3F24DAE4850037C6D0 /* FossilsViewControllerSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

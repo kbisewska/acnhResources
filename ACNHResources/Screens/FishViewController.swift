@@ -1,5 +1,5 @@
 //
-//  BugsViewController.swift
+//  FishViewController.swift
 //  ACNHResources
 //
 //  Created by Kornelia Bisewska on 05/05/2020.
@@ -8,31 +8,31 @@
 
 import UIKit
 
-final class BugsViewController: UIViewController, NavigationBarCustomizable, StateRefreshable, EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
+final class FishViewController: UIViewController, NavigationBarCustomizable, StateRefreshable, EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
     
-    
-    private let reuseIdentifier = "BugCell"
-    let refreshControl = UIRefreshControl()
+    private let tableView = UITableView()
+    private let reuseIdentifier = "FishCell"
+    var refreshControl: UIRefreshControl? = UIRefreshControl()
     let emptyStateView = EmptyStateView()
     let searchController = UISearchController()
     
-    var bugs = [Bug]()
-    var filteredBugs = [Bug]()
+    var fish = [Fish]()
+    var filteredFish = [Fish]()
     var isFiltering = false
     
     weak var ownedCountLabel: UILabel?
     var ownedCountLabelText: String {
-        "You found \(bugs.filter { $0.isOwned }.count) out of \(bugs.count) bugs."
+        "You found \(fish.filter { $0.isOwned }.count) out of \(fish.count) fish."
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         configure(tableView: tableView, cell: ResourceCell.self, with: reuseIdentifier)
         addNavigationItems(leftBarButtonTitle: "Sort", leftBarButtonAction: #selector(sortItems), rightBarButtonTitle: "Filter", rightBarButtonAction: #selector(filterItems))
-        configureNavigationBar(forEnabledState: true)
+        configureNavigationBar(forEnabledState: true, forViewController: self)
         configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
-        configureEmptyStateView()
+        configureEmptyStateView(for: self)
         configureSearchController(withPlaceholder: "Search for a resource")
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
@@ -41,55 +41,55 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let bugsObjects = Current.persistenceManager.retrieve(objectsOfType: Bug.self)
+        let fishObjects = Current.persistenceManager.retrieve(objectsOfType: Fish.self)
         
-        if bugsObjects.isEmpty {
-            getBugs(needsUpdate: false)
+        if fishObjects.isEmpty {
+            getFish(needsUpdate: false)
         } else {
-            bugs = bugsObjects.sorted { $0.name < $1.name }
+            fish = fishObjects.sorted { $0.name < $1.name }
             tableView.reloadData()
         }
     }
     
     // MARK: - Getting Data
-    
-    private func getBugs(needsUpdate: Bool) {
-        let ownedBugs = bugs.filter { $0.isOwned }
+
+    private func getFish(needsUpdate: Bool) {
+        let ownedFish = fish.filter { $0.isOwned }
         
-        Current.networkManager.getBugsData() { [weak self] result in
+        Current.networkManager.getFishData() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success(let bugsDictionary):
-                self.bugs = Array(bugsDictionary.values)
-                    .map { entry -> Bug in
+            case .success(let fishDictionary):
+                self.fish = Array(fishDictionary.values)
+                    .map { entry -> Fish in
                         entry.name = entry.name.capitalized
                         if needsUpdate {
-                            entry.isOwned = ownedBugs.first { $0.id == entry.id }?.isOwned ?? false
+                            entry.isOwned = ownedFish.first { $0.id == entry.id }?.isOwned ?? false
                         }
                         return entry
                     }
                     .sorted { $0.name < $1.name }
                 
                 if needsUpdate {
-                    Current.persistenceManager.delete(objectsOfType: Bug.self)
+                    Current.persistenceManager.delete(objectsOfType: Fish.self)
                 }
                 
-                Current.persistenceManager.store(objects: self.bugs)
+                Current.persistenceManager.store(objects: self.fish)
                 
                 self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
-                self.configureNavigationBar(forEnabledState: true)
+                self.configureNavigationBar(forEnabledState: true, forViewController: self)
 
             case .failure(let error):
                 if needsUpdate {
                     self.presentAlert(title: "Something went wrong", message: error.rawValue)
-                    self.tableView.refreshControl?.endRefreshing()
+                    self.refreshControl?.endRefreshing()
                 } else {
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector(self.tryAgainButtonTapped))
-                    self.configureNavigationBar(forEnabledState: false)
-                    self.tableView.refreshControl = nil
+                    self.configureNavigationBar(forEnabledState: false, forViewController: self)
+                    self.refreshControl = nil
                 }
             }
         }
@@ -102,25 +102,25 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
         
         alertController.addAction(UIAlertAction(title: "Sort by name: A to Z", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.isFiltering ? self.filteredBugs.sort { $0.name < $1.name } : self.bugs.sort { $0.name < $1.name }
+            self.isFiltering ? self.filteredFish.sort { $0.name < $1.name } : self.fish.sort { $0.name < $1.name }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by name: Z to A", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.isFiltering ? self.filteredBugs.sort { $0.name > $1.name } : self.bugs.sort { $0.name > $1.name }
+            self.isFiltering ? self.filteredFish.sort { $0.name > $1.name } : self.fish.sort { $0.name > $1.name }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by price: low to high", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.isFiltering ? self.filteredBugs.sort { $0.price < $1.price } : self.bugs.sort { $0.price < $1.price }
+            self.isFiltering ? self.filteredFish.sort { $0.price < $1.price } : self.fish.sort { $0.price < $1.price }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Sort by price: high to low", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.isFiltering ? self.filteredBugs.sort { $0.price > $1.price } : self.bugs.sort { $0.price > $1.price }
+            self.isFiltering ? self.filteredFish.sort { $0.price > $1.price } : self.fish.sort { $0.price > $1.price }
             self.tableView.reloadData()
         })
         
@@ -137,14 +137,14 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
         alertController.addAction(UIAlertAction(title: "Show only found items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.bugs.filter { $0.isOwned }
+            self.filteredFish = self.fish.filter { $0.isOwned }
             self.tableView.reloadData()
         })
         
         alertController.addAction(UIAlertAction(title: "Show only undiscovered items", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isFiltering = true
-            self.filteredBugs = self.bugs.filter { !$0.isOwned }
+            self.filteredFish = self.fish.filter { !$0.isOwned }
             self.tableView.reloadData()
         })
         
@@ -158,61 +158,61 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
         
         present(alertController, animated: true)
     }
-        
+    
     // MARK: - Searching Items
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             isFiltering = false
-            filteredBugs.removeAll()
+            filteredFish.removeAll()
             tableView.reloadData()
             return
         }
         
         isFiltering = true
-        filteredBugs = bugs.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        filteredFish = fish.filter { $0.name.lowercased().contains(filter.lowercased()) }
         tableView.reloadData()
     }
     
     // MARK: - Selectors
-    
+
     @objc func refresh() {
-        getBugs(needsUpdate: true)
+        getFish(needsUpdate: true)
     }
     
     @objc func resetData() {
-        Current.persistenceManager.delete(objectsOfType: Bug.self)
-        bugs = []
-        filteredBugs = []
+        Current.persistenceManager.delete(objectsOfType: Fish.self)
+        fish = []
+        filteredFish = []
         
         tableView.reloadData()
     }
-    
+
     @objc func tryAgainButtonTapped() {
-        getBugs(needsUpdate: false)
+        getFish(needsUpdate: false)
         configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
     }
 }
 
 // MARK: - Table View Configuration
 
-extension BugsViewController {
+extension FishViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isFiltering ? filteredBugs.count : bugs.count
+        isFiltering ? filteredFish.count : fish.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ResourceCell
-        let activeBugsArray = isFiltering ? filteredBugs : bugs
-        let bug = activeBugsArray[indexPath.row]
+        let activeFishArray = isFiltering ? filteredFish : fish
+        let fishItem = activeFishArray[indexPath.row]
         
-        var selectionState = bug.isOwned
+        var selectionState = fishItem.isOwned
         cell.configure(forSelectionState: selectionState)
         
         cell.checkmarkButtonAction = { [unowned self] in
             Current.persistenceManager.update {
-                bug.isOwned = !bug.isOwned
+                fishItem.isOwned = !fishItem.isOwned
             }
             
             let updatedState = !selectionState
@@ -222,18 +222,18 @@ extension BugsViewController {
             self.ownedCountLabel?.text = self.ownedCountLabelText
         }
         
-        let resource = Resource.bug(id: bug.id)
-        cell.resourceNameLabel.text = bug.name
+        let resource = Resource.fish(id: fishItem.id)
+        cell.resourceNameLabel.text = fishItem.name
         cell.configure(with: resource)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let activeBugsArray = isFiltering ? filteredBugs : bugs
+        let activeFishArray = isFiltering ? filteredFish : fish
         
-        let bugDetailsViewController = BugDetailsViewController(with: activeBugsArray[indexPath.row])
-        presentViewController(bugDetailsViewController)
+        let fishDetailsViewController = FishDetailsViewController(with: activeFishArray[indexPath.row])
+        presentViewController(fishDetailsViewController)
         
         tableView.deselectRow(at: indexPath, animated: false)
     }

@@ -1,5 +1,5 @@
 //
-//  FossilsTableViewControllerSnapshotTests.swift
+//  FossilsViewControllerSnapshotTests.swift
 //  ACNHResourcesTests
 //
 //  Created by Kornelia Bisewska on 05/08/2020.
@@ -12,13 +12,13 @@ import SnapshotTesting
 
 @testable import ACNHResources
 
-class FossilsTableViewControllerSnapshotTests: XCTestCase {
+class FossilsViewControllerSnapshotTests: XCTestCase {
     
-    var sut: FossilsTableViewController!
+    var sut: FossilsViewController!
     
     override func setUp() {
         super.setUp()
-        sut = FossilsTableViewController()
+        sut = FossilsViewController()
     }
     
     override func tearDown() {
@@ -26,7 +26,7 @@ class FossilsTableViewControllerSnapshotTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFossilsTableViewController() {
+    func testFossilsViewController() {
         assertSnapshot(matching: sut, as: .image(on: .iPhoneXr))
     }
 }

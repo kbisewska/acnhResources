@@ -29,6 +29,6 @@ final class CreditsViewController: UIViewController {
         customView.titleLabel.text = "Credits"
         customView.firstCreditsLabel.text = "All data images used in this app are the sole property of Nintendo."
         customView.secondCreditsLabel.text = "Data used in the app come from ACNH API (http://acnhapi.com)."
-        customView.thirdCreditsLabel.text = "Tab bar icons made by Freepik and Vitaly Gorbachev from www.flaticon.com."
+        customView.thirdCreditsLabel.text = "Tab bar icons made by Freepik, Smashicons, and Vitaly Gorbachev from www.flaticon.com."
     }
 }

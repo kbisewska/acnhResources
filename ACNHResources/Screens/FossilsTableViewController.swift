@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FossilsTableViewController: UITableViewController {
+final class FossilsViewController: UITableViewController {
     
     private let reuseIdentifier = "FossilCell"
     
@@ -28,7 +28,7 @@ final class FossilsTableViewController: UITableViewController {
         
         configureNavigationBar()
         configureRefreshControl()
-        configureSearchController()
+        //configureSearchController()
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
     }
@@ -241,7 +241,7 @@ final class FossilsTableViewController: UITableViewController {
     
     // MARK: - Searching Items
     
-    override func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             isFiltering = false
             filteredFossils.removeAll()

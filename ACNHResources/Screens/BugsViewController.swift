@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class BugsViewController: UIViewController, NavigationBarCustomizable, StateRefreshable, EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
+final class BugsViewController: UIViewController, NavigationBarCustomizable, StateRefreshable,  EmptyStateRepresentable, ContentSearchable, UISearchResultsUpdating {
     
-    
+    private let tableView = UITableView()
     private let reuseIdentifier = "BugCell"
-    let refreshControl = UIRefreshControl()
+    var refreshControl: UIRefreshControl? = UIRefreshControl()
     let emptyStateView = EmptyStateView()
     let searchController = UISearchController()
     
@@ -30,9 +30,9 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
                 
         configure(tableView: tableView, cell: ResourceCell.self, with: reuseIdentifier)
         addNavigationItems(leftBarButtonTitle: "Sort", leftBarButtonAction: #selector(sortItems), rightBarButtonTitle: "Filter", rightBarButtonAction: #selector(filterItems))
-        configureNavigationBar(forEnabledState: true)
+        configureNavigationBar(forEnabledState: true, forViewController: self)
         configureRefreshControl(forTableView: tableView, withAction: #selector(refresh))
-        configureEmptyStateView()
+        configureEmptyStateView(for: self)
         configureSearchController(withPlaceholder: "Search for a resource")
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetData), name: Notification.Name("ResetData"), object: nil)
@@ -78,18 +78,18 @@ final class BugsViewController: UIViewController, NavigationBarCustomizable, Sta
                 Current.persistenceManager.store(objects: self.bugs)
                 
                 self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.emptyStateView.isHidden = true
-                self.configureNavigationBar(forEnabledState: true)
+                self.configureNavigationBar(forEnabledState: true, forViewController: self)
 
             case .failure(let error):
                 if needsUpdate {
                     self.presentAlert(title: "Something went wrong", message: error.rawValue)
-                    self.tableView.refreshControl?.endRefreshing()
+                    self.refreshControl?.endRefreshing()
                 } else {
                     self.presentEmptyStateView(withMessage: error.rawValue, withAction: #selector(self.tryAgainButtonTapped))
-                    self.configureNavigationBar(forEnabledState: false)
-                    self.tableView.refreshControl = nil
+                    self.configureNavigationBar(forEnabledState: false, forViewController: self)
+                    self.refreshControl = nil
                 }
             }
         }

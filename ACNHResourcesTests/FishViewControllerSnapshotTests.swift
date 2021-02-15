@@ -1,5 +1,5 @@
 //
-//  FishTableViewControllerSnapshotTests.swift
+//  FishViewControllerSnapshotTests.swift
 //  ACNHResourcesTests
 //
 //  Created by Kornelia Bisewska on 04/08/2020.
@@ -11,13 +11,13 @@ import SnapshotTesting
 
 @testable import ACNHResources
 
-class FishTableViewControllerSnapshotTests: XCTestCase {
+class FishViewControllerSnapshotTests: XCTestCase {
     
-    var sut: FishTableViewController!
+    var sut: FishViewController!
     
     override func setUp() {
         super.setUp()
-        sut = FishTableViewController()
+        sut = FishViewController()
     }
     
     override func tearDown() {
@@ -25,7 +25,7 @@ class FishTableViewControllerSnapshotTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFishTableViewController() {
+    func testFishViewController() {
         assertSnapshot(matching: sut, as: .image(on: .iPhoneXr))
     }
 }

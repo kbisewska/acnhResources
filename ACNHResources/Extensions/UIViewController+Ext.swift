@@ -36,16 +36,21 @@ extension UIViewController {
     }
 }
 
-extension UIViewController: UISearchResultsUpdating {
+extension UIViewController: UITableViewDataSource, UITableViewDelegate {
     
-    public func updateSearchResults(for searchController: UISearchController) {}
+    func configure(tableView: UITableView, cell: AnyClass, with identifier: String) {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(cell.self, forCellReuseIdentifier: identifier)
+        view.addSubview(tableView)
+        tableView.adjustedForAutoLayout().pinToEdges(of: view)
+    }
     
-    func configureSearchController() {
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a resource"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
     }
 }
